@@ -27,7 +27,10 @@ export default async function PrivacyPage() {
         </li>
         <li>
           <b>Newsletter:</b> adresa de e-mail. Scop: trimiterea de comunicări comerciale. Temei: consimțământul
-          (art. 6 alin. 1 lit. a GDPR), retractabil oricând.
+          (art. 6 alin. 1 lit. a GDPR), retractabil oricând. Abonarea se face în doi pași
+          (dublă confirmare): primești un e-mail cu un link de confirmare, iar până la confirmare nu primești
+          comunicări. Cererile neconfirmate se șterg automat după 30 de zile; păstrăm data confirmării ca dovadă a
+          consimțământului.
         </li>
         <li>
           <b>Statistici anonime ale site-ului:</b> pagini vizitate, clicuri pe butoane/linkuri, tipul dispozitivului,

@@ -160,7 +160,7 @@ function Content({ initial }: { initial: NotifForm }) {
                 <Input type="email" value={form.leadEmailTo} onChange={(e) => setForm({ ...form, leadEmailTo: e.target.value })} placeholder="mesaje@winex.ro" />
               </Field>
               <label className="flex items-center gap-3 text-sm"><input type="checkbox" checked={form.pushOnLead} onChange={(e) => setForm({ ...form, pushOnLead: e.target.checked })} className="h-4 w-4 accent-[var(--red)]" /> Notificare push la fiecare mesaj nou</label>
-              <label className="flex items-center gap-3 text-sm"><input type="checkbox" checked={form.pushOnSubscriber} onChange={(e) => setForm({ ...form, pushOnSubscriber: e.target.checked })} className="h-4 w-4 accent-[var(--red)]" /> Notificare push la fiecare abonat nou</label>
+              <label className="flex items-center gap-3 text-sm"><input type="checkbox" checked={form.pushOnSubscriber} onChange={(e) => setForm({ ...form, pushOnSubscriber: e.target.checked })} className="h-4 w-4 accent-[var(--red)]" /> Notificare push la fiecare abonat nou confermat</label>
               <Btn variant="primary" type="submit">Salvează</Btn>
             </form>
           }

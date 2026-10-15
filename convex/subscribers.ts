@@ -1,35 +1,101 @@
 import { v, ConvexError } from "convex/values";
-import { internalQuery, mutation, query } from "./_generated/server";
+import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { subscriberStatus } from "./schema";
 import { assertIngestSecret, audit, randomToken, requireAdmin } from "./lib/admin";
 
-/** Iscrizione dal sito (server Next.js). Non riattiva chi è "suppressed" (bounce/reclamo). */
+const CONFIRM_THROTTLE_MS = 10 * 60_000; // max 1 email di conferma ogni 10 minuti per indirizzo
+const CONFIRM_TTL_MS = 7 * 24 * 60 * 60_000; // il link di conferma vale 7 giorni
+const PENDING_RETENTION_MS = 30 * 24 * 60 * 60_000; // richieste non confermate: cancellate dopo 30 giorni
+
+/**
+ * Richiesta di iscrizione dal sito (server Next.js) — DOUBLE OPT-IN.
+ * Crea/aggiorna un iscritto "pending" e dice al chiamante se deve inviare l'email di conferma.
+ * Nessun iscritto diventa "subscribed" senza cliccare il link di conferma.
+ * La risposta non rivela se l'indirizzo era già iscritto (anti-enumerazione): il chiamante risponde sempre uguale.
+ */
 export const subscribe = mutation({
   args: { secret: v.string(), email: v.string(), source: v.string(), consent: v.boolean() },
-  handler: async (ctx, { secret, email, source, consent }) => {
+  handler: async (ctx, { secret, email, source, consent }): Promise<{ send: boolean; confirmToken?: string }> => {
     assertIngestSecret(secret);
+    if (!consent) throw new ConvexError("CONSENT_REQUIRED");
     const normalized = email.trim().toLowerCase();
+    const now = Date.now();
     const existing = await ctx.db
       .query("subscribers")
       .withIndex("by_email", (q) => q.eq("email", normalized))
       .first();
-    if (existing) {
-      if (existing.status === "unsubscribed" && consent) {
-        await ctx.db.patch(existing._id, { status: "subscribed", subscribedAt: Date.now(), consent: true });
-        return { created: true, token: existing.unsubToken };
-      }
-      return { created: false, token: existing.unsubToken };
+
+    if (!existing) {
+      const confirmToken = randomToken();
+      await ctx.db.insert("subscribers", {
+        email: normalized,
+        source,
+        consent: true,
+        status: "pending",
+        unsubToken: randomToken(),
+        confirmToken,
+        confirmSentAt: now,
+        subscribedAt: now,
+      });
+      return { send: true, confirmToken };
     }
-    const token = randomToken();
-    await ctx.db.insert("subscribers", {
-      email: normalized,
-      source,
-      consent,
-      status: "subscribed",
-      unsubToken: token,
-      subscribedAt: Date.now(),
+    // già attivo o bloccato (bounce/reclamo): nessuna email, nessuna modifica
+    if (existing.status === "subscribed" || existing.status === "suppressed") return { send: false };
+    // in attesa: non ripetere l'invio troppo spesso
+    if (existing.status === "pending" && existing.confirmSentAt && now - existing.confirmSentAt < CONFIRM_THROTTLE_MS) {
+      return { send: false };
+    }
+    // in attesa (scaduta/da reinviare) o disiscritto che si riscrive → nuova conferma obbligatoria
+    const confirmToken = randomToken();
+    await ctx.db.patch(existing._id, {
+      status: "pending",
+      consent: true,
+      confirmToken,
+      confirmSentAt: now,
+      subscribedAt: now,
+      unsubscribedAt: undefined,
     });
-    return { created: true, token };
+    return { send: true, confirmToken };
+  },
+});
+
+/** Conferma tramite link dell'email (richiesta esplicita dalla pagina /confirma-abonare). */
+export const confirmByToken = mutation({
+  args: { secret: v.string(), token: v.string() },
+  handler: async (
+    ctx,
+    { secret, token },
+  ): Promise<{ ok: boolean; reason?: "invalid" | "expired"; firstTime?: boolean; email?: string; unsubToken?: string }> => {
+    assertIngestSecret(secret);
+    if (token.length < 16 || token.length > 64) return { ok: false, reason: "invalid" };
+    const sub = await ctx.db
+      .query("subscribers")
+      .withIndex("by_confirmToken", (q) => q.eq("confirmToken", token))
+      .first();
+    if (!sub || sub.status !== "pending") return { ok: false, reason: "invalid" };
+    if (!sub.confirmSentAt || Date.now() - sub.confirmSentAt > CONFIRM_TTL_MS) return { ok: false, reason: "expired" };
+    await ctx.db.patch(sub._id, { status: "subscribed", confirmedAt: Date.now(), confirmToken: undefined });
+    return { ok: true, firstTime: true, email: sub.email, unsubToken: sub.unsubToken };
+  },
+});
+
+/** Pulizia giornaliera: richieste mai confermate oltre 30 giorni (minimizzazione dei dati, GDPR). */
+export const pruneUnconfirmed = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const cutoff = Date.now() - PENDING_RETENTION_MS;
+    const rows = await ctx.db
+      .query("subscribers")
+      .withIndex("by_status", (q) => q.eq("status", "pending"))
+      .take(500);
+    let n = 0;
+    for (const r of rows) {
+      if ((r.confirmSentAt ?? r.subscribedAt) < cutoff) {
+        await ctx.db.delete(r._id);
+        n++;
+      }
+    }
+    return n;
   },
 });
 
@@ -79,6 +145,7 @@ export const list = query({
       source: r.source,
       consent: r.consent,
       subscribedAt: r.subscribedAt,
+      confirmedAt: r.confirmedAt,
       unsubscribedAt: r.unsubscribedAt,
     }));
   },
@@ -88,9 +155,10 @@ export const stats = query({
   args: {},
   handler: async (ctx) => {
     await requireAdmin(ctx);
-    const count = async (status: "subscribed" | "unsubscribed" | "suppressed") =>
+    const count = async (status: "pending" | "subscribed" | "unsubscribed" | "suppressed") =>
       (await ctx.db.query("subscribers").withIndex("by_status", (i) => i.eq("status", status)).take(20000)).length;
     return {
+      pending: await count("pending"),
       subscribed: await count("subscribed"),
       unsubscribed: await count("unsubscribed"),
       suppressed: await count("suppressed"),
@@ -123,8 +191,8 @@ export const adminSetStatus = mutation({
   args: { id: v.id("subscribers"), status: subscriberStatus },
   handler: async (ctx, { id, status }) => {
     const admin = await requireAdmin(ctx);
-    // Riattivare chi si è disiscritto richiederebbe un nuovo consenso: non consentito da admin.
-    if (status === "subscribed") throw new ConvexError("NOT_ALLOWED");
+    // Riattivare o "confermare" al posto della persona non è consentito: serve il suo consenso (link di conferma).
+    if (status === "subscribed" || status === "pending") throw new ConvexError("NOT_ALLOWED");
     await ctx.db.patch(id, { status, unsubscribedAt: Date.now() });
     await audit(ctx, admin.email, `subscriber.${status}`, id);
   },

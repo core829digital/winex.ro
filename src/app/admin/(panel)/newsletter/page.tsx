@@ -9,8 +9,8 @@ import { Badge, Btn, Card, ConfirmBtn, Empty, Field, Input, PageHeader, Skeleton
 import { errMsg, useToast } from "@/components/admin/toast";
 
 type Status = Doc<"subscribers">["status"];
-const TONE = { subscribed: "green", unsubscribed: "gray", suppressed: "amber" } as const;
-const LABEL = { subscribed: "Activ", unsubscribed: "Dezabonat", suppressed: "Blocat (bounce/reclamație)" } as const;
+const TONE = { pending: "blue", subscribed: "green", unsubscribed: "gray", suppressed: "amber" } as const;
+const LABEL = { pending: "În așteptare", subscribed: "Activ", unsubscribed: "Dezabonat", suppressed: "Blocat (bounce/reclamație)" } as const;
 
 export default function NewsletterPage() {
   const [filter, setFilter] = useState<Status | "all">("all");
@@ -27,7 +27,7 @@ export default function NewsletterPage() {
   const rows = useMemo(() => (list ?? []).filter((s) => s.email.includes(q.trim().toLowerCase())), [list, q]);
 
   function exportCsv() {
-    const body = ["email,status,sursa,data_abonare", ...rows.map((s) => `${s.email},${s.status},${s.source},${new Date(s.subscribedAt).toISOString()}`)].join("\n");
+    const body = ["email,status,sursa,data_cerere,data_confirmare", ...rows.map((s) => `${s.email},${s.status},${s.source},${new Date(s.subscribedAt).toISOString()},${s.confirmedAt ? new Date(s.confirmedAt).toISOString() : ""}`)].join("\n");
     const url = URL.createObjectURL(new Blob([body], { type: "text/csv;charset=utf-8" }));
     const a = Object.assign(document.createElement("a"), { href: url, download: `abonati-winex-${new Date().toISOString().slice(0, 10)}.csv` });
     a.click();
@@ -36,10 +36,11 @@ export default function NewsletterPage() {
 
   return (
     <>
-      <PageHeader title="Newsletter" subtitle="Abonații din site. Cei dezabonați sau blocați nu primesc niciodată campanii." actions={<Btn onClick={exportCsv} disabled={rows.length === 0}><Download size={16} /> Export CSV</Btn>} />
+      <PageHeader title="Newsletter" subtitle="Abonații din site (cu dublă confirmare). Primesc campanii doar cei activi: în așteptare, dezabonați și blocați sunt exclusi." actions={<Btn onClick={exportCsv} disabled={rows.length === 0}><Download size={16} /> Export CSV</Btn>} />
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Stat label="Activi" value={stats?.subscribed ?? "–"} accent />
+        <Stat label="În așteptare" value={stats?.pending ?? "–"} hint="nu au confirmat încă" />
         <Stat label="Dezabonați" value={stats?.unsubscribed ?? "–"} />
         <Stat label="Blocați" value={stats?.suppressed ?? "–"} hint="bounce / reclamație" />
       </div>
@@ -64,7 +65,7 @@ export default function NewsletterPage() {
       </Card>
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
-        {(["all", "subscribed", "unsubscribed", "suppressed"] as const).map((f) => (
+        {(["all", "subscribed", "pending", "unsubscribed", "suppressed"] as const).map((f) => (
           <Btn key={f} size="sm" variant={filter === f ? "primary" : "soft"} onClick={() => setFilter(f)}>
             {f === "all" ? "Toți" : LABEL[f].split(" ")[0]}
           </Btn>
@@ -81,7 +82,7 @@ export default function NewsletterPage() {
           <div className="overflow-x-auto rounded-2xl border border-black/[0.07] bg-white">
             <table className="w-full min-w-[560px] text-left text-sm">
               <thead className="border-b border-black/[0.07] text-xs uppercase tracking-[0.08em] text-ink-mute">
-                <tr><th className="px-4 py-3">E-mail</th><th className="px-4 py-3">Stare</th><th className="px-4 py-3">Sursă</th><th className="px-4 py-3">Abonat la</th><th className="px-4 py-3" /></tr>
+                <tr><th className="px-4 py-3">E-mail</th><th className="px-4 py-3">Stare</th><th className="px-4 py-3">Sursă</th><th className="px-4 py-3">Cerere / confirmare</th><th className="px-4 py-3" /></tr>
               </thead>
               <tbody className="divide-y divide-black/[0.06]">
                 {rows.map((s) => (
@@ -89,7 +90,7 @@ export default function NewsletterPage() {
                     <td className="px-4 py-3 font-medium">{s.email}</td>
                     <td className="px-4 py-3"><Badge tone={TONE[s.status]}>{LABEL[s.status]}</Badge></td>
                     <td className="px-4 py-3 text-ink-soft">{s.source}</td>
-                    <td className="px-4 py-3 text-ink-soft">{fmtDate(s.subscribedAt)}</td>
+                    <td className="px-4 py-3 text-ink-soft">{s.confirmedAt ? `Confirmat ${fmtDate(s.confirmedAt)}` : fmtDate(s.subscribedAt)}</td>
                     <td className="px-4 py-3 text-right">
                       <span className="inline-flex gap-2">
                         {s.status === "subscribed" && <Btn size="sm" onClick={() => setStatus({ id: s._id, status: "unsubscribed" }).catch((e) => toast(errMsg(e), "error"))}>Dezabonează</Btn>}

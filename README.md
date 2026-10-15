@@ -50,11 +50,14 @@ Pannello riservato (non indicizzato) per: **statistiche in tempo reale** (visita
 ### Sicurezza dell'admin
 Accesso con codice monouso via e-mail (10 min), solo per le e-mail autorizzate; ogni funzione Convex ricontrolla sessione e lista admin; sessione max 7 giorni / 12 h di inattività; scritture dal sito protette da segreto condiviso; webhook con firma Svix + anti-replay; analytics senza cookie (ID anonimo giornaliero, rispetta DNT/GPC, eventi grezzi cancellati dopo 3 giorni).
 
+### Newsletter con doppia conferma (double opt-in)
+Chi si iscrive dal sito resta **«în așteptare»** finché non clicca il link nell'e-mail di conferma (pagina `/confirma-abonare`, con click esplicito: i filtri antispam non confermano da soli). Solo dopo la conferma diventa **attivo**, riceve l'e-mail di benvenuto e può ricevere campagne. Dettagli: link valido 7 giorni e monouso; massimo 1 e-mail di conferma ogni 10 minuti per indirizzo; la risposta del form è sempre la stessa (nessuno può scoprire chi è già iscritto); le richieste non confermate si cancellano dopo 30 giorni; la data di conferma resta come prova del consenso. Richiede Convex **e** Resend configurati, altrimenti il form risponde «servizio non disponibile» (e non salva nulla).
+
 ### Notifiche push
 `/admin/notificari` → «Activează». Su iPhone serve aggiungere il sito alla schermata Home (PWA) e aprirlo da lì.
 
 ### Test
-`npm test` — 31 test (Convex in-process con `convex-test`: permessi, newsletter, analytics, campagne con Resend simulato, blog, impostazioni, push; firma webhook; validazioni).
+`npm test` — 41 test (Convex in-process con `convex-test`: permessi, newsletter, analytics, campagne con Resend simulato, blog, impostazioni, push; firma webhook; validazioni).
 
 ## Da completare (contenuti)
 

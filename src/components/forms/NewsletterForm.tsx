@@ -14,7 +14,7 @@ export function NewsletterForm() {
     return (
       <div role="status" className="glass flex items-center justify-center gap-3 rounded-2xl px-6 py-5 text-ink">
         <CheckCircle2 className="text-red" />
-        <span className="font-semibold">Mulțumim! Te-ai abonat cu succes.</span>
+        <span className="font-semibold">Aproape gata! Verifică-ți e-mailul și apasă linkul de confirmare.</span>
       </div>
     );
   }
@@ -61,7 +61,7 @@ export function NewsletterForm() {
           className="mt-0.5 h-4 w-4 accent-[var(--red)]"
         />
         <span>
-          Sunt de acord să primesc e-mailuri de la Winex și am citit{" "}
+          Sunt de acord să primesc e-mailuri de la Winex (vei primi un e-mail de confirmare) și am citit{" "}
           <Link href="/politica-confidentialitate" className="font-semibold text-red-deep underline underline-offset-2">
             Politica de confidențialitate
           </Link>

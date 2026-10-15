@@ -1,6 +1,6 @@
 // @vitest-environment edge-runtime
 import { describe, expect, it } from "vitest";
-import { api } from "../../convex/_generated/api";
+import { api, internal } from "../../convex/_generated/api";
 import { SECRET, asUser, makeT } from "./helpers";
 
 const lead = (n: string) => ({ secret: SECRET, name: n, email: `${n}@x.ro`, message: "mesaj de test suficient", source: "contact", consent: true });
@@ -32,45 +32,141 @@ describe("messaggi (leads)", () => {
   });
 });
 
-describe("newsletter", () => {
-  it("iscrizione idempotente, token, disiscrizione e re-iscrizione con consenso", async () => {
+describe("newsletter — double opt-in", () => {
+  const sub = (t: ReturnType<typeof makeT>, email: string) =>
+    t.mutation(api.subscribers.subscribe, { secret: SECRET, email, source: "website", consent: true });
+  const row = (t: ReturnType<typeof makeT>, email: string) =>
+    t.run(async (ctx) => ctx.db.query("subscribers").withIndex("by_email", (q) => q.eq("email", email)).first());
+
+  it("la richiesta crea un iscritto PENDING (non attivo) e chiede di inviare la conferma", async () => {
     const t = makeT();
     const { client } = await asUser(t, "stefan@core829.ro");
-    const a = await t.mutation(api.subscribers.subscribe, { secret: SECRET, email: " Mario@X.RO ", source: "website", consent: true });
-    expect(a.created).toBe(true);
-    expect(a.token).toMatch(/^[0-9a-f]{32}$/);
-    const b = await t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "mario@x.ro", source: "website", consent: true });
-    expect(b).toEqual({ created: false, token: a.token });
-
-    // il token non viene mai esposto all'admin UI
-    const list = await client.query(api.subscribers.list, {});
-    expect(list).toHaveLength(1);
-    expect(list[0]).not.toHaveProperty("unsubToken");
-    expect(list[0].email).toBe("mario@x.ro");
-
-    expect(await t.mutation(api.subscribers.unsubscribeByToken, { secret: SECRET, token: "short" })).toEqual({ ok: false });
-    expect(await t.mutation(api.subscribers.unsubscribeByToken, { secret: SECRET, token: "f".repeat(32) })).toEqual({ ok: false });
-    expect(await t.mutation(api.subscribers.unsubscribeByToken, { secret: SECRET, token: a.token })).toEqual({ ok: true });
-    expect(await client.query(api.subscribers.stats, {})).toEqual({ subscribed: 0, unsubscribed: 1, suppressed: 0 });
-
-    const again = await t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "mario@x.ro", source: "website", consent: true });
-    expect(again).toEqual({ created: true, token: a.token });
-    expect((await client.query(api.subscribers.stats, {})).subscribed).toBe(1);
+    const r = await sub(t, " Mario@X.RO ");
+    expect(r.send).toBe(true);
+    expect(r.confirmToken).toMatch(/^[0-9a-f]{32}$/);
+    const d = await row(t, "mario@x.ro");
+    expect(d).toMatchObject({ status: "pending", consent: true });
+    expect(d?.unsubToken).not.toBe(r.confirmToken); // token distinti
+    expect(await client.query(api.subscribers.stats, {})).toEqual({ pending: 1, subscribed: 0, unsubscribed: 0, suppressed: 0 });
+    expect(await client.query(api.subscribers.activeCount, {})).toBe(0); // i pending NON ricevono campagne
+    // l'admin UI non vede mai i token
+    const [item] = await client.query(api.subscribers.list, {});
+    expect(item).not.toHaveProperty("unsubToken");
+    expect(item).not.toHaveProperty("confirmToken");
   });
 
-  it("bounce/reclamo → suppressed e non si riattiva da solo né da admin", async () => {
+  it("senza consenso nessuna iscrizione", async () => {
+    const t = makeT();
+    await expect(t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "a@b.ro", source: "w", consent: false })).rejects.toThrow(/CONSENT_REQUIRED/);
+    expect(await row(t, "a@b.ro")).toBeNull();
+  });
+
+  it("conferma: pending → subscribed, token monouso, restituisce i dati per la welcome email", async () => {
     const t = makeT();
     const { client } = await asUser(t, "stefan@core829.ro");
-    const s = await t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "bad@x.ro", source: "website", consent: true });
-    await t.mutation(api.subscribers.suppressByEmail, { secret: SECRET, email: "BAD@x.ro" });
-    expect((await client.query(api.subscribers.stats, {})).suppressed).toBe(1);
-    const re = await t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "bad@x.ro", source: "website", consent: true });
-    expect(re.created).toBe(false);
-    expect((await client.query(api.subscribers.stats, {})).suppressed).toBe(1);
+    const { confirmToken } = await sub(t, "mario@x.ro");
+    const ok = await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: confirmToken! });
+    expect(ok).toMatchObject({ ok: true, firstTime: true, email: "mario@x.ro" });
+    expect(ok.unsubToken).toMatch(/^[0-9a-f]{32}$/);
+    const d = await row(t, "mario@x.ro");
+    expect(d).toMatchObject({ status: "subscribed" });
+    expect(d?.confirmToken).toBeUndefined();
+    expect(d?.confirmedAt).toBeTypeOf("number");
+    expect(await client.query(api.subscribers.activeCount, {})).toBe(1);
+    // il token non è riutilizzabile
+    expect(await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: confirmToken! })).toEqual({ ok: false, reason: "invalid" });
+  });
 
-    const [row] = await client.query(api.subscribers.list, {});
-    await expect(client.mutation(api.subscribers.adminSetStatus, { id: row._id, status: "subscribed" })).rejects.toThrow(/NOT_ALLOWED/);
-    expect(s.token).toBeTruthy();
+  it("token non validi o con segreto errato sono rifiutati", async () => {
+    const t = makeT();
+    expect(await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: "short" })).toEqual({ ok: false, reason: "invalid" });
+    expect(await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: "f".repeat(32) })).toEqual({ ok: false, reason: "invalid" });
+    await expect(t.mutation(api.subscribers.confirmByToken, { secret: "wrong", token: "f".repeat(32) })).rejects.toThrow(/Unauthorized/);
+  });
+
+  it("il link di conferma scade dopo 7 giorni", async () => {
+    const t = makeT();
+    const { confirmToken } = await sub(t, "late@x.ro");
+    await t.run(async (ctx) => {
+      const d = await ctx.db.query("subscribers").withIndex("by_email", (q) => q.eq("email", "late@x.ro")).first();
+      await ctx.db.patch(d!._id, { confirmSentAt: Date.now() - 8 * 86_400_000 });
+    });
+    expect(await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: confirmToken! })).toEqual({ ok: false, reason: "expired" });
+    expect((await row(t, "late@x.ro"))?.status).toBe("pending");
+    // una nuova richiesta (oltre il throttle) emette un nuovo link valido e invalida il vecchio
+    const again = await sub(t, "late@x.ro");
+    expect(again.send).toBe(true);
+    expect(again.confirmToken).not.toBe(confirmToken);
+    expect(await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: confirmToken! })).toEqual({ ok: false, reason: "invalid" });
+    expect((await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: again.confirmToken! })).ok).toBe(true);
+  });
+
+  it("throttle: max 1 email di conferma ogni 10 minuti per indirizzo (anti-abuso)", async () => {
+    const t = makeT();
+    expect((await sub(t, "spam@x.ro")).send).toBe(true);
+    expect((await sub(t, "spam@x.ro")).send).toBe(false);
+    expect((await sub(t, "SPAM@x.ro")).send).toBe(false);
+    await t.run(async (ctx) => {
+      const d = await ctx.db.query("subscribers").withIndex("by_email", (q) => q.eq("email", "spam@x.ro")).first();
+      await ctx.db.patch(d!._id, { confirmSentAt: Date.now() - 11 * 60_000 });
+    });
+    expect((await sub(t, "spam@x.ro")).send).toBe(true);
+  });
+
+  it("anti-enumerazione: già attivo o bloccato → nessuna email e nessuna modifica", async () => {
+    const t = makeT();
+    const { confirmToken } = await sub(t, "active@x.ro");
+    await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: confirmToken! });
+    expect(await sub(t, "active@x.ro")).toEqual({ send: false });
+    expect((await row(t, "active@x.ro"))?.status).toBe("subscribed");
+
+    const b = await sub(t, "bad@x.ro");
+    await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: b.confirmToken! });
+    await t.mutation(api.subscribers.suppressByEmail, { secret: SECRET, email: "BAD@x.ro" });
+    expect(await sub(t, "bad@x.ro")).toEqual({ send: false });
+    expect((await row(t, "bad@x.ro"))?.status).toBe("suppressed");
+  });
+
+  it("disiscrizione e ri-iscrizione: serve di nuovo la conferma", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    const { confirmToken } = await sub(t, "mario@x.ro");
+    const c = await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: confirmToken! });
+    expect(await t.mutation(api.subscribers.unsubscribeByToken, { secret: SECRET, token: "short" })).toEqual({ ok: false });
+    expect(await t.mutation(api.subscribers.unsubscribeByToken, { secret: SECRET, token: "f".repeat(32) })).toEqual({ ok: false });
+    expect(await t.mutation(api.subscribers.unsubscribeByToken, { secret: SECRET, token: c.unsubToken! })).toEqual({ ok: true });
+    expect(await client.query(api.subscribers.stats, {})).toEqual({ pending: 0, subscribed: 0, unsubscribed: 1, suppressed: 0 });
+
+    const again = await sub(t, "mario@x.ro");
+    expect(again.send).toBe(true);
+    expect((await row(t, "mario@x.ro"))?.status).toBe("pending"); // NON torna attivo da solo
+    expect(await client.query(api.subscribers.activeCount, {})).toBe(0);
+    await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: again.confirmToken! });
+    expect(await client.query(api.subscribers.activeCount, {})).toBe(1);
+  });
+
+  it("i pending non ricevono campagne e vengono cancellati dopo 30 giorni", async () => {
+    const t = makeT();
+    await sub(t, "fresh@x.ro");
+    await sub(t, "old@x.ro");
+    await t.run(async (ctx) => {
+      const d = await ctx.db.query("subscribers").withIndex("by_email", (q) => q.eq("email", "old@x.ro")).first();
+      await ctx.db.patch(d!._id, { confirmSentAt: Date.now() - 31 * 86_400_000 });
+    });
+    expect(await t.query(internal.subscribers.recipientsPage, { limit: 100 })).toEqual([]);
+    expect(await t.mutation(internal.subscribers.pruneUnconfirmed, {})).toBe(1);
+    expect(await row(t, "old@x.ro")).toBeNull();
+    expect(await row(t, "fresh@x.ro")).not.toBeNull();
+  });
+
+  it("l'admin non può attivare né 'confermare' al posto della persona", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    await sub(t, "x@x.ro");
+    const [item] = await client.query(api.subscribers.list, {});
+    await expect(client.mutation(api.subscribers.adminSetStatus, { id: item._id, status: "subscribed" })).rejects.toThrow(/NOT_ALLOWED/);
+    await expect(client.mutation(api.subscribers.adminSetStatus, { id: item._id, status: "pending" })).rejects.toThrow(/NOT_ALLOWED/);
+    await client.mutation(api.subscribers.adminSetStatus, { id: item._id, status: "unsubscribed" }); // ritirare è sempre ammesso
   });
 
   it("aggiunta manuale richiede consenso e valida l'email", async () => {

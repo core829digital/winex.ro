@@ -12,14 +12,14 @@ export const contactSchema = z.object({
   subject: clean(160).optional(),
   message: clean(4000).min(10, "Mesajul este prea scurt."),
   consent: z.literal(true, { error: "Trebuie să accepți prelucrarea datelor." }),
-  /** honeypot: i bot lo compilano, gli umani non lo vedono */
-  website: z.string().max(0).optional(),
+  /** honeypot: i bot lo compilano, gli umani no. Non si rifiuta: la route risponde "ok" senza fare nulla. */
+  website: z.string().max(500).optional(),
 });
 export type ContactInput = z.infer<typeof contactSchema>;
 
 export const newsletterSchema = z.object({
   email: clean(254).pipe(z.email("Adresa de e-mail nu este validă.")),
   consent: z.literal(true, { error: "Trebuie să accepți condițiile." }),
-  website: z.string().max(0).optional(),
+  website: z.string().max(500).optional(),
 });
 export type NewsletterInput = z.infer<typeof newsletterSchema>;

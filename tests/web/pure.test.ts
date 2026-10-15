@@ -79,7 +79,8 @@ describe("validazione form", () => {
     expect(contactSchema.safeParse(ok).success).toBe(true);
     expect(contactSchema.safeParse({ ...ok, consent: false }).success).toBe(false);
     expect(contactSchema.safeParse({ ...ok, email: "nope" }).success).toBe(false);
-    expect(contactSchema.safeParse({ ...ok, website: "http://spam" }).success).toBe(false);
+    expect(contactSchema.safeParse({ ...ok, website: "http://spam" }).success).toBe(true); // accettato: la route lo ignora in silenzio
+    expect(contactSchema.safeParse({ ...ok, website: "x".repeat(501) }).success).toBe(false);
     expect(contactSchema.safeParse({ ...ok, phone: "abc" }).success).toBe(false);
     expect(contactSchema.safeParse({ ...ok, message: "x".repeat(4001) }).success).toBe(false);
     expect(newsletterSchema.safeParse({ email: "a@b.ro", consent: true }).success).toBe(true);
@@ -89,5 +90,25 @@ describe("validazione form", () => {
     const k = "t" + Math.random();
     expect([1, 2, 3].map(() => rateLimit(k, 3, 1000))).toEqual([true, true, true]);
     expect(rateLimit(k, 3, 1000)).toBe(false);
+  });
+});
+
+import { confirmationEmail, confirmationUrl, welcomeEmail } from "../../src/lib/newsletter-mail";
+
+describe("email newsletter (double opt-in)", () => {
+  it("link di conferma: URL corretto, token codificato, nessuna iniezione", () => {
+    expect(confirmationUrl("https://www.winex.ro/", "abc123")).toBe("https://www.winex.ro/confirma-abonare?t=abc123");
+    const m = confirmationEmail("https://www.winex.ro", 'x"><script>alert(1)</script>');
+    expect(m.html).not.toContain("<script>");
+    expect(m.html).toContain("/confirma-abonare?t=x%22%3E%3Cscript%3E");
+    expect(m.text).toContain("https://www.winex.ro/confirma-abonare?t=");
+    expect(m.html).toContain("ignoră acest mesaj");
+    expect(m.subject).toMatch(/Confirmă/);
+  });
+  it("benvenuto: disiscrizione con un click (header RFC 8058) e link pagina", () => {
+    const m = welcomeEmail("https://www.winex.ro", "tok123");
+    expect(m.headers["List-Unsubscribe"]).toBe("<https://www.winex.ro/api/unsubscribe?t=tok123>");
+    expect(m.headers["List-Unsubscribe-Post"]).toBe("List-Unsubscribe=One-Click");
+    expect(m.html).toContain("https://www.winex.ro/dezabonare?t=tok123");
   });
 });

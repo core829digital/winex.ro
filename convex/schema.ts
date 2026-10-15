@@ -9,6 +9,7 @@ export const leadStatus = v.union(
   v.literal("archived"),
 );
 export const subscriberStatus = v.union(
+  v.literal("pending"), // in attesa di conferma via email (double opt-in)
   v.literal("subscribed"),
   v.literal("unsubscribed"),
   v.literal("suppressed"), // bounce / complaint: non si scrive più
@@ -48,11 +49,15 @@ export default defineSchema({
     source: v.string(),
     status: subscriberStatus,
     unsubToken: v.string(),
-    subscribedAt: v.number(),
+    confirmToken: v.optional(v.string()), // monouso: azzerato alla conferma
+    confirmSentAt: v.optional(v.number()),
+    confirmedAt: v.optional(v.number()),
+    subscribedAt: v.number(), // data della richiesta di iscrizione
     unsubscribedAt: v.optional(v.number()),
   })
     .index("by_email", ["email"])
     .index("by_token", ["unsubToken"])
+    .index("by_confirmToken", ["confirmToken"])
     .index("by_status", ["status"]),
 
   /* --------------------------------- Campagne email --------------------------------- */
