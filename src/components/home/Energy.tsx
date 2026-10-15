@@ -12,7 +12,7 @@ const items = [
 
 export function Energy() {
   return (
-    <section className="relative px-4 py-24 sm:px-6 lg:py-32">
+    <section className="cv-auto relative px-4 py-24 sm:px-6 lg:py-32">
       <div className="mx-auto grid max-w-6xl items-start gap-14 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="lg:sticky lg:top-32">
           <SectionHeading

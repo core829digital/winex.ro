@@ -7,7 +7,12 @@ import Lenis from "lenis";
 export function SmoothScroll() {
   useEffect(() => {
     document.documentElement.classList.add("js");
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Scroll nativo su touch (momentum del sistema, zero JS per frame) e con reduced-motion.
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(hover: none), (pointer: coarse)").matches
+    )
+      return;
 
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, anchors: true });
     let raf = 0;

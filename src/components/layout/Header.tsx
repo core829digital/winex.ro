@@ -14,22 +14,25 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 12);
+    // setState solo quando il valore cambia davvero (evita re-render a ogni evento di scroll)
+    let last = false;
+    const on = () => {
+      const next = window.scrollY > 12;
+      if (next !== last) {
+        last = next;
+        setScrolled(next);
+      }
+    };
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("lenis-stopped", open);
-    return () => document.documentElement.classList.remove("lenis-stopped");
-  }, [open]);
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
       <div
         className={clsx(
-          "glass-strong mx-auto flex max-w-6xl items-center justify-between rounded-full py-2.5 pl-5 pr-2.5 transition-all duration-500 ease-[var(--ease-out)]",
+          "glass-strong mx-auto flex max-w-6xl items-center justify-between rounded-full py-2.5 pl-5 pr-2.5 transition-shadow duration-300",
           scrolled ? "shadow-[0_18px_44px_-18px_rgba(37,40,45,0.3)]" : "",
         )}
       >
@@ -79,17 +82,16 @@ export function Header() {
       <div
         id="mobile-menu"
         className={clsx(
-          "glass-strong mx-auto mt-2 max-w-6xl origin-top overflow-hidden rounded-3xl transition-all duration-500 ease-[var(--ease-out)] md:hidden",
-          open ? "max-h-96 opacity-100" : "pointer-events-none max-h-0 opacity-0",
+          "glass-strong glass-solid mx-auto mt-2 max-w-6xl origin-top rounded-3xl transition-[opacity,transform,visibility] duration-200 ease-out md:hidden",
+          open ? "visible translate-y-0 scale-100 opacity-100" : "invisible -translate-y-2 scale-[0.97] opacity-0",
         )}
-        aria-hidden={!open}
+        inert={!open}
       >
         <nav aria-label="Navigare mobil" className="flex flex-col p-3">
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
               className="rounded-2xl px-4 py-3.5 text-lg font-semibold text-ink hover:bg-black/[0.04]"
             >
@@ -98,7 +100,6 @@ export function Header() {
           ))}
           <Link
             href="/configurator"
-            tabIndex={open ? 0 : -1}
             onClick={() => setOpen(false)}
             className="mt-2 rounded-2xl bg-red px-4 py-3.5 text-center text-lg font-semibold text-white"
           >

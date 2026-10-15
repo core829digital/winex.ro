@@ -16,11 +16,21 @@ export function HeroScene() {
     const el = stage.current;
     const r = rig.current;
     if (!el || !r) return;
+
+    // Metti in pausa animazioni CSS e SMIL quando la scena non è visibile.
+    const svg = el.querySelector<SVGSVGElement>('svg[viewBox="0 0 400 420"]');
+    const io = new IntersectionObserver(([entry]) => {
+      el.dataset.paused = entry.isIntersecting ? "false" : "true";
+      if (entry.isIntersecting) svg?.unpauseAnimations?.();
+      else svg?.pauseAnimations?.();
+    });
+    io.observe(el);
+
     if (
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
       window.matchMedia("(hover: none)").matches
     )
-      return;
+      return () => io.disconnect();
 
     let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
     const tick = () => {
@@ -48,6 +58,7 @@ export function HeroScene() {
     window.addEventListener("pointermove", onMove, { passive: true });
     el.addEventListener("pointerleave", onLeave);
     return () => {
+      io.disconnect();
       window.removeEventListener("pointermove", onMove);
       el.removeEventListener("pointerleave", onLeave);
       cancelAnimationFrame(raf);
@@ -57,24 +68,23 @@ export function HeroScene() {
   return (
     <div
       ref={stage}
-      className="relative mx-auto aspect-[5/6] w-full max-w-[540px] [perspective:1400px]"
+      className="scene-stage relative mx-auto aspect-[5/6] w-full max-w-[540px]"
     >
       <div
         ref={rig}
-        className="absolute inset-0 [transform-style:preserve-3d] will-change-transform"
+        className="scene-rig absolute inset-0"
         style={{ transition: "transform 0.15s linear" }}
       >
         {/* Alone di luce dietro la finestra */}
         <div
           aria-hidden
-          className="absolute inset-[4%] rounded-full bg-[radial-gradient(closest-side,rgba(220,36,48,0.28),rgba(255,120,90,0.12)_55%,transparent)] blur-2xl"
-          style={{ transform: "translateZ(-120px) scale(1.15)" }}
+          className="z3d absolute inset-[-4%] rounded-full bg-[radial-gradient(closest-side,rgba(220,36,48,0.26),rgba(255,120,90,0.11)_55%,transparent)]"
+          style={{ "--z": "-120px" } as React.CSSProperties}
         />
 
         {/* Telaio */}
         <div
           className="absolute inset-x-[9%] inset-y-[5%] rounded-[2.2rem] bg-[linear-gradient(150deg,#ffffff,#eceef0_70%,#e2e4e7)] p-[5.5%] shadow-[0_50px_90px_-30px_rgba(37,40,45,0.45),0_0_0_1px_rgba(37,40,45,0.06),inset_0_2px_0_#fff,inset_0_-3px_6px_rgba(37,40,45,0.08)]"
-          style={{ transform: "translateZ(0)" }}
         >
           {/* Vetrate */}
           <div className="relative grid h-full grid-cols-2 gap-[3.2%] rounded-[1.4rem] bg-[#d9dcdf] p-[3.2%] shadow-[inset_0_3px_10px_rgba(37,40,45,0.18)]">
@@ -112,9 +122,6 @@ export function HeroScene() {
                   <stop offset="0.5" stopColor="#dc2430" stopOpacity="0.95" />
                   <stop offset="1" stopColor="#ff7a50" stopOpacity="0" />
                 </linearGradient>
-                <filter id="hg" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="3" />
-                </filter>
               </defs>
               {[
                 "M-10 300 C 90 230, 150 360, 250 290 S 380 230, 420 260",
@@ -122,7 +129,7 @@ export function HeroScene() {
                 "M-10 140 C 100 100, 170 190, 260 130 S 360 90, 420 110",
               ].map((d, i) => (
                 <g key={d}>
-                  <path d={d} stroke="url(#hf)" strokeWidth="6" filter="url(#hg)" opacity="0.55" />
+                  <path d={d} stroke="url(#hf)" strokeWidth="9" strokeLinecap="round" opacity="0.18" />
                   <path
                     d={d}
                     stroke="url(#hf)"
@@ -133,10 +140,10 @@ export function HeroScene() {
                   />
                 </g>
               ))}
-              <circle r="4.5" fill="#dc2430">
+              <circle className="hero-dot" r="4.5" fill="#dc2430">
                 <animateMotion dur="6s" repeatCount="indefinite" path="M-10 300 C 90 230, 150 360, 250 290 S 380 230, 420 260" />
               </circle>
-              <circle r="3.5" fill="#ff7a50">
+              <circle className="hero-dot" r="3.5" fill="#ff7a50">
                 <animateMotion dur="8s" begin="-3s" repeatCount="indefinite" path="M-10 220 C 80 160, 170 290, 260 210 S 370 150, 420 180" />
               </circle>
             </svg>
@@ -144,7 +151,7 @@ export function HeroScene() {
         </div>
 
         {/* Chip: efficienza */}
-        <div className="absolute left-[-2%] top-[14%]" style={{ transform: "translateZ(110px)" }}>
+        <div className="z3d absolute left-[-2%] top-[14%]" style={{ "--z": "110px" } as React.CSSProperties}>
           <div className="glass-strong float-y rounded-2xl p-3.5 pr-5" style={{ "--d": "0s" } as React.CSSProperties}>
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-red text-white shadow-[0_8px_18px_-6px_rgba(220,36,48,0.7)]">
@@ -161,7 +168,7 @@ export function HeroScene() {
         </div>
 
         {/* Chip: materiali */}
-        <div className="absolute right-[-3%] top-[47%]" style={{ transform: "translateZ(150px)" }}>
+        <div className="z3d absolute right-[-3%] top-[47%]" style={{ "--z": "150px" } as React.CSSProperties}>
           <div className="glass-strong float-y rounded-2xl px-4 py-3" style={{ "--d": "-2.3s" } as React.CSSProperties}>
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-ink-mute">Materiale</p>
             <ul className="mt-1.5 space-y-1 font-display text-sm font-bold text-ink">
@@ -176,7 +183,7 @@ export function HeroScene() {
         </div>
 
         {/* Chip: origine */}
-        <div className="absolute bottom-[7%] left-[3%]" style={{ transform: "translateZ(80px)" }}>
+        <div className="z3d absolute bottom-[7%] left-[3%]" style={{ "--z": "80px" } as React.CSSProperties}>
           <div className="glass-strong float-y flex items-center gap-2.5 rounded-full py-2.5 pl-3 pr-5" style={{ "--d": "-4.1s" } as React.CSSProperties}>
             <span className="grid h-8 w-8 place-items-center rounded-full bg-red-soft text-red-deep">
               <MapPin size={16} />

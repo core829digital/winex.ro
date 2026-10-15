@@ -11,7 +11,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="relative px-4 py-24 sm:px-6 lg:py-32">
+    <section className="cv-auto relative px-4 py-24 sm:px-6 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Cum lucrăm" title="De la idee la fereastră montată." align="center" />
         <ol className="mt-14 grid gap-5 md:grid-cols-4">

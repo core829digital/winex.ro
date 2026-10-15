@@ -10,7 +10,26 @@ type Props = {
   className?: string;
 };
 
-/** Rivela il contenuto quando entra nel viewport (IntersectionObserver, una sola volta). */
+// Un solo observer condiviso da tutte le istanze (meno overhead su mobile).
+let shared: IntersectionObserver | null = null;
+function observer() {
+  if (!shared) {
+    shared = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            shared?.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.05 },
+    );
+  }
+  return shared;
+}
+
+/** Rivela il contenuto quando entra nel viewport (una sola volta; solo opacity/transform). */
 export function Reveal({ children, as: Tag = "div", delay = 0, className }: Props) {
   const ref = useRef<HTMLElement>(null);
 
@@ -21,19 +40,9 @@ export function Reveal({ children, as: Tag = "div", delay = 0, className }: Prop
       el.classList.add("is-in");
       return;
     }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
-          }
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-    );
+    const io = observer();
     io.observe(el);
-    return () => io.disconnect();
+    return () => io.unobserve(el);
   }, []);
 
   return (

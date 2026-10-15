@@ -5,7 +5,7 @@ import type { ComponentProps, ReactNode } from "react";
 type Variant = "primary" | "glass" | "ghost";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-semibold tracking-tight transition-all duration-300 ease-[var(--ease-out)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none";
+  "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-semibold tracking-tight transition-[transform,background-color,box-shadow] duration-200 ease-[var(--ease-out)] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   primary:

@@ -5,7 +5,7 @@ import { Logo } from "@/components/ui/Logo";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative mt-12 px-3 pb-6 sm:px-6">
+    <footer className="cv-auto relative mt-12 px-3 pb-6 sm:px-6">
       <div className="glass mx-auto max-w-6xl rounded-[2rem] p-8 sm:p-12">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>

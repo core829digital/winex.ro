@@ -77,7 +77,7 @@ export default function ConfiguratorPage() {
                 <GlassCard strong interactive={false} className="relative h-full overflow-hidden p-8 sm:p-10">
                   <div
                     aria-hidden
-                    className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[radial-gradient(closest-side,rgba(220,36,48,0.25),transparent)] blur-2xl"
+                    className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[radial-gradient(closest-side,rgba(220,36,48,0.25),transparent)]"
                   />
                   <p className="eyebrow relative">În curând</p>
                   <h2 className="relative mt-4 text-3xl font-extrabold">Configuratorul online se pregătește.</h2>

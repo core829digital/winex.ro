@@ -37,3 +37,12 @@ CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy; validazione Zod
 ## Da completare (contenuti)
 
 Dati societari, testi About, foto fabbrica, logo ufficiale, revisione legale delle pagine legali.
+
+## Performance (mobile-first)
+
+- `backdrop-filter` (glass) attivo solo su desktop con puntatore reale; su touch/schermi piccoli superfici opache equivalenti.
+- Sfondo canvas con profilo leggero su mobile (24 fps, 4 nastri), in pausa durante lo scroll e auto-spegnimento su dispositivi lenti.
+- Animazioni infinite e 3D dell'hero solo su desktop e solo quando visibili; nessun `filter: blur` in animazione.
+- Lenis solo su desktop (su touch scroll nativo). Menu mobile animato solo con `transform`/`opacity`.
+- `content-visibility: auto` sulle sezioni sotto la piega.
+- Misura di riferimento (Chromium, emulazione iPhone, CPU 4× più lenta): 24 → 60 fps; latenza tap 168–312 ms → 40–72 ms.

@@ -9,11 +9,11 @@ export function ConfiguratorCta() {
         <div className="glass-strong relative overflow-hidden rounded-[2.2rem] px-7 py-14 sm:px-14 sm:py-20">
           <div
             aria-hidden
-            className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[radial-gradient(closest-side,rgba(220,36,48,0.28),transparent)] blur-2xl"
+            className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[radial-gradient(closest-side,rgba(220,36,48,0.28),transparent)]"
           />
           <div
             aria-hidden
-            className="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(255,122,80,0.22),transparent)] blur-2xl"
+            className="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(255,122,80,0.22),transparent)]"
           />
           <div className="relative max-w-2xl">
             <p className="eyebrow">Configurator</p>
