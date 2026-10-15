@@ -1,7 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { contactSchema } from "@/lib/validation";
 import { rateLimit } from "@/lib/rate-limit";
-import { convex, convexReady, env, esc, guard, readJson, refs, resend, resendReady } from "@/lib/server";
+import {
+  api,
+  convex,
+  convexReady,
+  env,
+  esc,
+  getServerSettings,
+  guard,
+  readJson,
+  resend,
+  resendReady,
+} from "@/lib/server";
+import { notifyAdmins } from "@/lib/push";
 import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -12,15 +24,18 @@ export async function POST(req: Request) {
   if (!rateLimit(`contact:${g.ip}`, 5, 10 * 60_000))
     return NextResponse.json({ error: "Prea multe încercări. Reîncearcă peste câteva minute." }, { status: 429 });
 
-  const body = await readJson(req);
-  const parsed = contactSchema.safeParse(body);
+  const parsed = contactSchema.safeParse(await readJson(req));
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "Date invalide." }, { status: 400 });
   }
   const { website, ...data } = parsed.data;
-  if (website) return NextResponse.json({ ok: true }); // honeypot: rispondi "ok" senza fare nulla
+  if (website) return NextResponse.json({ ok: true }); // honeypot
 
-  if (!convexReady && !(resendReady && env.to)) {
+  const settings = await getServerSettings();
+  const notif = (settings.notifications ?? {}) as { leadEmailTo?: string; pushOnLead?: boolean };
+  const teamTo = notif.leadEmailTo?.trim() || env.to;
+
+  if (!convexReady && !(resendReady && teamTo)) {
     console.error("[contact] Nessun canale configurato (Convex / Resend).");
     return NextResponse.json({ error: "Serviciul nu este disponibil momentan. Ne poți suna sau scrie direct." }, { status: 503 });
   }
@@ -30,7 +45,7 @@ export async function POST(req: Request) {
 
   if (convexReady) {
     try {
-      await convex().mutation(refs.createLead, {
+      await convex().mutation(api.leads.create, {
         secret: env.ingestSecret!,
         name: data.name,
         email: data.email,
@@ -46,12 +61,11 @@ export async function POST(req: Request) {
     }
   }
 
-  if (resendReady && env.to) {
+  if (resendReady && teamTo) {
     try {
-      const r = resend();
-      const { error } = await r.emails.send({
+      const { error } = await resend().emails.send({
         from: env.from!,
-        to: env.to,
+        to: teamTo,
         replyTo: data.email,
         subject: `[Winex.ro] ${data.subject || "Mesaj nou"} — ${data.name}`,
         html: `<h2>Mesaj nou de pe winex.ro</h2>
@@ -60,15 +74,6 @@ export async function POST(req: Request) {
       });
       if (error) throw error;
       mailed = true;
-      // conferma al cliente (best-effort)
-      await r.emails
-        .send({
-          from: env.from!,
-          to: data.email,
-          subject: `Am primit mesajul tău — ${site.name}`,
-          html: `<p>Bună, ${esc(data.name)},</p><p>Am primit mesajul tău și revenim cât mai curând.</p><p>— Echipa ${site.name}</p>`,
-        })
-        .catch(() => undefined);
     } catch (e) {
       console.error("[contact] Resend error", e);
     }
@@ -77,5 +82,23 @@ export async function POST(req: Request) {
   if (!stored && !mailed) {
     return NextResponse.json({ error: "Nu am putut trimite mesajul. Te rugăm să reîncerci." }, { status: 502 });
   }
+
+  // Dopo la risposta: conferma al cliente e notifica push (non rallentano il form).
+  after(async () => {
+    if (resendReady) {
+      await resend()
+        .emails.send({
+          from: env.from!,
+          to: data.email,
+          subject: `Am primit mesajul tău — ${site.name}`,
+          html: `<p>Bună, ${esc(data.name)},</p><p>Am primit mesajul tău și revenim cât mai curând.</p><p>— Echipa ${site.name}</p>`,
+        })
+        .catch(() => undefined);
+    }
+    if (notif.pushOnLead !== false) {
+      await notifyAdmins({ title: "Mesaj nou — winex.ro", body: `De la ${data.name}`, url: "/admin/mesaje" });
+    }
+  });
+
   return NextResponse.json({ ok: true });
 }

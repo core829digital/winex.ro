@@ -34,6 +34,28 @@ npm run lint && npm run typecheck && npm run build
 
 CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy; validazione Zod, honeypot, rate-limit in memoria, controllo Origin sulle API; scritture Convex autenticate con segreto. Per traffico ostile aggiungere rate-limit a livello edge (Vercel Firewall/Upstash).
 
+## Area admin (`/admin`)
+
+Pannello riservato (non indicizzato) per: **statistiche in tempo reale** (visitatori attivi, pagine, click, sorgenti, dispositivi, paesi), **messaggi** dal modulo contatti con notifiche istantanee, **newsletter** (iscritti, export CSV), **campagne e-mail** (editor, anteprima, test, invio/programmazione, statistiche aperture/click), **blog** (predisposto, non pubblico), **contenuti** (dati societari modificabili) e **sicurezza** (admin autorizzati, audit log).
+
+### Primo avvio
+1. `npx convex dev` — collega/crea il progetto Convex, rigenera `convex/_generated/*` (committare il risultato) e fa il typecheck del backend.
+2. `npx @convex-dev/auth` — imposta `SITE_URL`, `JWT_PRIVATE_KEY` e `JWKS` su Convex.
+3. Variabili Convex (`npx convex env set …`): `ADMIN_EMAILS`, `INGEST_SECRET`, `AUTH_RESEND_KEY`, `RESEND_API_KEY`, `RESEND_FROM` (vedi `.env.example`).
+4. Variabili Vercel: `NEXT_PUBLIC_CONVEX_URL`, `CONVEX_INGEST_SECRET`, Resend, VAPID (vedi `.env.example`).
+5. Resend: verifica il dominio, attiva *open/click tracking*, crea un webhook verso `https://www.winex.ro/api/webhooks/resend` (eventi `email.delivered`, `opened`, `clicked`, `bounced`, `complained`) e copia il segreto in `RESEND_WEBHOOK_SECRET`.
+6. Produzione Convex: `npx convex deploy`.
+7. Apri `/admin/login`, inserisci un'email presente in `ADMIN_EMAILS` e il codice a 8 cifre ricevuto.
+
+### Sicurezza dell'admin
+Accesso con codice monouso via e-mail (10 min), solo per le e-mail autorizzate; ogni funzione Convex ricontrolla sessione e lista admin; sessione max 7 giorni / 12 h di inattività; scritture dal sito protette da segreto condiviso; webhook con firma Svix + anti-replay; analytics senza cookie (ID anonimo giornaliero, rispetta DNT/GPC, eventi grezzi cancellati dopo 3 giorni).
+
+### Notifiche push
+`/admin/notificari` → «Activează». Su iPhone serve aggiungere il sito alla schermata Home (PWA) e aprirlo da lì.
+
+### Test
+`npm test` — 31 test (Convex in-process con `convex-test`: permessi, newsletter, analytics, campagne con Resend simulato, blog, impostazioni, push; firma webhook; validazioni).
+
 ## Da completare (contenuti)
 
 Dati societari, testi About, foto fabbrica, logo ufficiale, revisione legale delle pagine legali.

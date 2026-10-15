@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { newsletterSchema } from "@/lib/validation";
 import { rateLimit } from "@/lib/rate-limit";
-import { convex, convexReady, env, esc, guard, readJson, refs, resend, resendReady } from "@/lib/server";
+import { api, convex, convexReady, env, esc, getServerSettings, guard, readJson, resend, resendReady } from "@/lib/server";
+import { notifyAdmins } from "@/lib/push";
 import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -26,16 +27,18 @@ export async function POST(req: Request) {
 
   let ok = false;
   let isNew = true;
+  let token: string | undefined;
 
   if (convexReady) {
     try {
-      const res = (await convex().mutation(refs.subscribe, {
+      const res = await convex().mutation(api.subscribers.subscribe, {
         secret: env.ingestSecret!,
         email,
         source: "website",
         consent: true,
-      })) as { created: boolean };
+      });
       isNew = res.created;
+      token = res.token;
       ok = true;
     } catch (e) {
       console.error("[newsletter] Convex error", e);
@@ -44,25 +47,38 @@ export async function POST(req: Request) {
 
   if (resendReady && env.audienceId) {
     try {
-      const r = resend();
-      const { error } = await r.contacts.create({ email, audienceId: env.audienceId, unsubscribed: false });
+      const { error } = await resend().contacts.create({ email, audienceId: env.audienceId, unsubscribed: false });
       if (error) throw error;
       ok = true;
-      if (isNew) {
-        await r.emails
-          .send({
-            from: env.from!,
-            to: email,
-            subject: `Bun venit la ${site.name}`,
-            html: `<p>Mulțumim pentru abonare la newsletterul ${esc(site.name)}.</p><p>Te poți dezabona oricând, răspunzând la acest mesaj.</p>`,
-          })
-          .catch(() => undefined);
-      }
     } catch (e) {
       console.error("[newsletter] Resend error", e);
     }
   }
 
   if (!ok) return NextResponse.json({ error: "Nu am putut finaliza abonarea. Reîncearcă." }, { status: 502 });
+
+  after(async () => {
+    if (!isNew) return;
+    if (resendReady) {
+      const unsub = token ? `<p style="font-size:12px;color:#6f7681"><a href="${site.url}/dezabonare?t=${token}">Dezabonează-te</a></p>` : "";
+      await resend()
+        .emails.send({
+          from: env.from!,
+          to: email,
+          subject: `Bun venit la ${site.name}`,
+          html: `<p>Mulțumim pentru abonare la newsletterul ${esc(site.name)}.</p>${unsub}`,
+          headers: token
+            ? {
+                "List-Unsubscribe": `<${site.url}/api/unsubscribe?t=${token}>`,
+                "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+              }
+            : undefined,
+        })
+        .catch(() => undefined);
+    }
+    const notif = ((await getServerSettings()).notifications ?? {}) as { pushOnSubscriber?: boolean };
+    if (notif.pushOnSubscriber) await notifyAdmins({ title: "Abonat nou", body: "Un nou abonat la newsletter.", url: "/admin/newsletter" });
+  });
+
   return NextResponse.json({ ok: true });
 }

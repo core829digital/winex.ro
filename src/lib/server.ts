@@ -1,7 +1,7 @@
 import "server-only";
 import { ConvexHttpClient } from "convex/browser";
-import { makeFunctionReference } from "convex/server";
 import { Resend } from "resend";
+import { api } from "../../convex/_generated/api";
 import { site } from "./site";
 
 export const env = {
@@ -11,15 +11,17 @@ export const env = {
   from: process.env.RESEND_FROM,
   to: process.env.CONTACT_TO_EMAIL,
   audienceId: process.env.RESEND_AUDIENCE_ID,
+  webhookSecret: process.env.RESEND_WEBHOOK_SECRET,
+  vapidPublic: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+  vapidPrivate: process.env.VAPID_PRIVATE_KEY,
+  vapidSubject: process.env.VAPID_SUBJECT,
+  analyticsSalt: process.env.ANALYTICS_SALT ?? process.env.CONVEX_INGEST_SECRET,
 };
 
 export const convexReady = Boolean(env.convexUrl && env.ingestSecret);
 export const resendReady = Boolean(env.resendKey && env.from);
 
-export const refs = {
-  createLead: makeFunctionReference<"mutation">("leads:create"),
-  subscribe: makeFunctionReference<"mutation">("subscribers:subscribe"),
-};
+export { api };
 
 export function convex() {
   return new ConvexHttpClient(env.convexUrl!);
@@ -56,5 +58,16 @@ export async function readJson(req: Request, maxBytes = 16_000): Promise<unknown
     return JSON.parse(text);
   } catch {
     return null;
+  }
+}
+
+/** Impostazioni (contatti, destinatario notifiche) lette dal server in modo sicuro, con fallback ai default. */
+export async function getServerSettings() {
+  if (!convexReady) return { company: null, notifications: null };
+  try {
+    return await convex().query(api.settings.getServer, { secret: env.ingestSecret! });
+  } catch (e) {
+    console.error("[settings] Convex error", e);
+    return { company: null, notifications: null };
   }
 }

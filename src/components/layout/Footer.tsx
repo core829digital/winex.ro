@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { legalNav, nav, site } from "@/lib/site";
+import { getCompany } from "@/lib/company";
 import { Logo } from "@/components/ui/Logo";
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const c = await getCompany();
   return (
     <footer className="cv-auto relative mt-12 px-3 pb-6 sm:px-6">
       <div className="glass mx-auto max-w-6xl rounded-[2rem] p-8 sm:p-12">
@@ -65,9 +67,9 @@ export function Footer() {
           <div>
             <h3 className="eyebrow !text-ink-mute">Contact</h3>
             <address className="mt-4 space-y-2.5 text-sm not-italic text-ink-soft">
-              <p>{site.company.address}</p>
-              <p>{site.company.phone}</p>
-              <p>{site.company.email}</p>
+              <p>{c.address}</p>
+              <p>{c.phone}</p>
+              <p>{c.email}</p>
             </address>
           </div>
         </div>
@@ -77,7 +79,7 @@ export function Footer() {
           <p>
             © {year} {site.name}. Toate drepturile rezervate.
           </p>
-          <p>CUI: {site.company.cui} · Reg. Com.: {site.company.regCom}</p>
+          <p>CUI: {c.cui} · Reg. Com.: {c.regCom}</p>
         </div>
       </div>
     </footer>

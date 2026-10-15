@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/ui/LegalPage";
-import { site } from "@/lib/site";
+import { getCompany } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Politica de confidențialitate",
   alternates: { canonical: "/politica-confidentialitate" },
 };
 
-export default function PrivacyPage() {
-  const c = site.company;
+export default async function PrivacyPage() {
+  const c = await getCompany();
   return (
     <LegalPage title="Politica de confidențialitate" updated="TODO — data publicării">
       {/* ATENȚIE: model de lucru. Trebuie verificat și aprobat de consultantul juridic al companiei înainte de publicare. */}
       <h2>1. Operatorul de date</h2>
       <p>
-        Operatorul datelor cu caracter personal este <b>{site.legalName}</b>, CUI {c.cui}, Reg. Com. {c.regCom},
+        Operatorul datelor cu caracter personal este <b>{c.legalName}</b>, CUI {c.cui}, Reg. Com. {c.regCom},
         cu sediul în {c.address}. Contact: {c.email}, {c.phone}.
       </p>
 
@@ -30,6 +30,14 @@ export default function PrivacyPage() {
           (art. 6 alin. 1 lit. a GDPR), retractabil oricând.
         </li>
         <li>
+          <b>Statistici anonime ale site-ului:</b> pagini vizitate, clicuri pe butoane/linkuri, tipul dispozitivului,
+          țara și sursa de trafic. Nu folosim cookie-uri și nu stocăm nimic pe dispozitivul tău. Identificatorul de
+          vizitator este un cod anonim, calculat zilnic, care nu poate fi folosit pentru a te identifica și se
+          schimbă în fiecare zi. Respectăm semnalele „Do Not Track” și „Global Privacy Control”. Scop: înțelegerea și
+          îmbunătățirea site-ului. Temei: interes legitim. Evenimentele detaliate se șterg după 3 zile; rămân doar
+          totaluri agregate.
+        </li>
+        <li>
           <b>Date tehnice:</b> adresa IP este folosită temporar pentru securitate și prevenirea abuzurilor (limitarea
           cererilor). Temei: interes legitim.
         </li>
@@ -38,7 +46,7 @@ export default function PrivacyPage() {
       <h2>3. Destinatari</h2>
       <p>Datele sunt prelucrate prin furnizori care acționează ca persoane împuternicite:</p>
       <ul>
-        <li>Convex, Inc. — stocarea mesajelor și a abonaților;</li>
+        <li>Convex, Inc. — stocarea mesajelor, a abonaților și a statisticilor anonime;</li>
         <li>Resend, Inc. — trimiterea și livrarea e-mailurilor;</li>
         <li>Furnizorul de găzduire al site-ului (TODO — ex. Vercel Inc.);</li>
         <li>OneSpec — doar dacă folosești configuratorul online, conform politicii lor.</li>

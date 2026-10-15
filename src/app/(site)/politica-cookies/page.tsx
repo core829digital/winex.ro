@@ -16,8 +16,9 @@ export default function CookiesPage() {
 
       <h2>2. Ce folosim pe {site.domain}</h2>
       <p>
-        În prezent, site-ul <b>nu folosește cookie-uri de analiză sau de marketing</b>. Nu este necesar un
-        consimțământ pentru funcționarea tehnică a site-ului.
+        În prezent, site-ul <b>nu folosește cookie-uri de analiză sau de marketing</b>. Măsurăm vizitele cu
+        un sistem propriu, fără cookie-uri și fără a stoca informații pe dispozitivul tău (detalii în Politica de
+        confidențialitate). Nu este necesar un consimțământ pentru funcționarea tehnică a site-ului.
       </p>
 
       <h2>3. Servicii terțe</h2>

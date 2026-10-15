@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { site } from "@/lib/site";
+import { getCompany } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-const info = [
-  { icon: MapPin, label: "Adresă", value: site.company.address },
-  { icon: Phone, label: "Telefon", value: site.company.phone },
-  { icon: Mail, label: "E-mail", value: site.company.email },
-  { icon: Clock, label: "Program", value: site.company.hours },
-];
-
-export default function ContactPage() {
+export default async function ContactPage() {
+  const c = await getCompany();
+  const info = [
+    { icon: MapPin, label: "Adresă", value: c.address },
+    { icon: Phone, label: "Telefon", value: c.phone },
+    { icon: Mail, label: "E-mail", value: c.email },
+    { icon: Clock, label: "Program", value: c.hours },
+  ];
   return (
     <>
       <PageHero

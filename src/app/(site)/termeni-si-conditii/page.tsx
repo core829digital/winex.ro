@@ -2,20 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
+import { getCompany } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Termeni și condiții",
   alternates: { canonical: "/termeni-si-conditii" },
 };
 
-export default function TermsPage() {
-  const c = site.company;
+export default async function TermsPage() {
+  const c = await getCompany();
   return (
     <LegalPage title="Termeni și condiții" updated="TODO — data publicării">
       {/* ATENȚIE: model de lucru. Trebuie verificat și aprobat de consultantul juridic al companiei înainte de publicare. */}
       <h2>1. Despre site</h2>
       <p>
-        Acest site ({site.domain}) este operat de <b>{site.legalName}</b>, CUI {c.cui}, Reg. Com. {c.regCom}, sediu:{" "}
+        Acest site ({site.domain}) este operat de <b>{c.legalName}</b>, CUI {c.cui}, Reg. Com. {c.regCom}, sediu:{" "}
         {c.address}. Prin accesarea site-ului accepți acești termeni.
       </p>
 
