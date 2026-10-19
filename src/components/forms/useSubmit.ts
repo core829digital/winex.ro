@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-export type SubmitState = { status: "idle" | "loading" | "success" | "error"; message?: string };
+/** `code` è un codice errore stabile (non testo): la UI lo traduce con forms.errors.<code>. */
+export type SubmitState = { status: "idle" | "loading" | "success" | "error"; code?: string };
 
 /** Invio JSON a una route API con gestione stati/errori uniforme. */
 export function useSubmit(endpoint: string) {
@@ -18,13 +19,13 @@ export function useSubmit(endpoint: string) {
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
-        setState({ status: "error", message: data.error ?? "A apărut o eroare. Reîncearcă." });
+        setState({ status: "error", code: data.error ?? "generic" });
         return false;
       }
       setState({ status: "success" });
       return true;
     } catch {
-      setState({ status: "error", message: "Conexiune indisponibilă. Verifică internetul și reîncearcă." });
+      setState({ status: "error", code: "network" });
       return false;
     }
   }

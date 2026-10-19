@@ -21,6 +21,9 @@ export const env = {
 export const convexReady = Boolean(env.convexUrl && env.ingestSecret);
 export const resendReady = Boolean(env.resendKey && env.from);
 
+/** La newsletter (doppia conferma) richiede Convex + Resend: senza, le sezioni/form non vengono mostrati. */
+export const newsletterEnabled = () => convexReady && resendReady;
+
 export { api };
 
 export function convex() {

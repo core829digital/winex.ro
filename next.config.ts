@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -11,7 +14,7 @@ const csp = [
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "connect-src 'self' https://*.convex.cloud wss://*.convex.cloud https://*.convex.site" + (isDev ? " ws:" : ""),
-  "frame-src 'self' https://onespec.eu https://*.onespec.eu",
+  "frame-src 'self' https://platform.onespec.eu https://onespec.eu https://*.onespec.eu",
   "worker-src 'self'",
   "manifest-src 'self'",
   "frame-ancestors 'self'",
@@ -51,4 +54,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

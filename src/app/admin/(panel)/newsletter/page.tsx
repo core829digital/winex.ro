@@ -27,7 +27,7 @@ export default function NewsletterPage() {
   const rows = useMemo(() => (list ?? []).filter((s) => s.email.includes(q.trim().toLowerCase())), [list, q]);
 
   function exportCsv() {
-    const body = ["email,status,sursa,data_cerere,data_confirmare", ...rows.map((s) => `${s.email},${s.status},${s.source},${new Date(s.subscribedAt).toISOString()},${s.confirmedAt ? new Date(s.confirmedAt).toISOString() : ""}`)].join("\n");
+    const body = ["email,status,limba,sursa,data_cerere,data_confirmare", ...rows.map((s) => `${s.email},${s.status},${s.locale},${s.source},${new Date(s.subscribedAt).toISOString()},${s.confirmedAt ? new Date(s.confirmedAt).toISOString() : ""}`)].join("\n");
     const url = URL.createObjectURL(new Blob([body], { type: "text/csv;charset=utf-8" }));
     const a = Object.assign(document.createElement("a"), { href: url, download: `abonati-winex-${new Date().toISOString().slice(0, 10)}.csv` });
     a.click();
@@ -80,16 +80,16 @@ export default function NewsletterPage() {
           <Empty icon={<Users size={28} />} title="Niciun abonat" text="Abonații din formularul de pe site vor apărea aici." />
         ) : (
           <div className="overflow-x-auto rounded-2xl border border-black/[0.07] bg-white">
-            <table className="w-full min-w-[560px] text-left text-sm">
+            <table className="w-full min-w-[640px] text-left text-sm">
               <thead className="border-b border-black/[0.07] text-xs uppercase tracking-[0.08em] text-ink-mute">
-                <tr><th className="px-4 py-3">E-mail</th><th className="px-4 py-3">Stare</th><th className="px-4 py-3">Sursă</th><th className="px-4 py-3">Cerere / confirmare</th><th className="px-4 py-3" /></tr>
+                <tr><th className="px-4 py-3">E-mail</th><th className="px-4 py-3">Stare</th><th className="px-4 py-3">Limbă</th><th className="px-4 py-3">Sursă</th><th className="px-4 py-3">Cerere / confirmare</th><th className="px-4 py-3" /></tr>
               </thead>
               <tbody className="divide-y divide-black/[0.06]">
                 {rows.map((s) => (
                   <tr key={s._id}>
                     <td className="px-4 py-3 font-medium">{s.email}</td>
                     <td className="px-4 py-3"><Badge tone={TONE[s.status]}>{LABEL[s.status]}</Badge></td>
-                    <td className="px-4 py-3 text-ink-soft">{s.source}</td>
+                    <td className="px-4 py-3 text-ink-soft">{s.locale.toUpperCase()}</td><td className="px-4 py-3 text-ink-soft">{s.source}</td>
                     <td className="px-4 py-3 text-ink-soft">{s.confirmedAt ? `Confirmat ${fmtDate(s.confirmedAt)}` : fmtDate(s.subscribedAt)}</td>
                     <td className="px-4 py-3 text-right">
                       <span className="inline-flex gap-2">

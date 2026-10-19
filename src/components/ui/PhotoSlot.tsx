@@ -2,10 +2,10 @@ import { clsx } from "clsx";
 import Image from "next/image";
 
 type Props = {
-  /** Percorso in /public (es. "/photos/fabrica-01.jpg"). Se assente, mostra il segnaposto. */
+  /** Percorso in /public (es. "/photos/fabrica-01.jpg"). Se assente, mostra un riquadro tecnico neutro. */
   src?: string;
   alt: string;
-  label: string;
+  caption: string;
   className?: string;
   priority?: boolean;
   sizes?: string;
@@ -13,29 +13,31 @@ type Props = {
 
 /**
  * Slot fotografico: quando arrivano le foto reali basta passare `src`.
- * Fino ad allora mostra un segnaposto elegante, chiaramente marcato.
+ * Fino ad allora: riquadro tecnico neutro con la didascalia del soggetto (nessun testo "in arrivo").
  */
-export function PhotoSlot({ src, alt, label, className, priority, sizes = "(min-width: 1024px) 50vw, 100vw" }: Props) {
+export function PhotoSlot({ src, alt, caption, className, priority, sizes = "(min-width: 1024px) 50vw, 100vw" }: Props) {
   return (
-    <div className={clsx("relative overflow-hidden rounded-3xl glass", className)}>
+    <figure className={clsx("relative overflow-hidden rounded-[var(--r-card)] border border-line bg-[#eceef1]", className)}>
       {src ? (
         <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
       ) : (
-        <div
-          role="img"
-          aria-label={alt}
-          className="absolute inset-0 grid place-items-center bg-[radial-gradient(120%_90%_at_20%_0%,rgba(220,36,48,0.10),transparent_60%),linear-gradient(135deg,#fafafa,#efeff1)]"
-        >
-          <svg viewBox="0 0 64 64" className="h-12 w-12 text-ink-mute/60" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-            <rect x="8" y="14" width="48" height="36" rx="5" />
-            <circle cx="24" cy="28" r="4" />
-            <path d="m10 46 14-12 10 8 8-6 12 10" />
+        <div role="img" aria-label={alt} className="absolute inset-0">
+          <svg className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+            <defs>
+              <pattern id="ps-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                <path d="M32 0H0V32" fill="none" stroke="rgba(31,35,40,0.07)" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#ps-grid)" />
+            <line x1="0" y1="0" x2="100%" y2="100%" stroke="rgba(31,35,40,0.06)" />
+            <line x1="100%" y1="0" x2="0" y2="100%" stroke="rgba(31,35,40,0.06)" />
           </svg>
-          <span className="absolute bottom-4 left-4 right-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-mute">
-            Foto în curând · {label}
-          </span>
         </div>
       )}
-    </div>
+      <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-2.5 bg-gradient-to-t from-black/45 to-transparent px-4 pb-3.5 pt-8 text-xs font-semibold tracking-wide text-white">
+        <span className="h-px w-5 bg-white/80" />
+        {caption}
+      </figcaption>
+    </figure>
   );
 }

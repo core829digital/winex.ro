@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "title": "Winex — Fenster und Türen aus PVC, Aluminium und Holz",
+    "description": "Winex liefert Fenster, Türen und Bauelemente-Systeme aus PVC, Aluminium und Holz. Energieeffizient, präzise ausgeführt und direkt vom Werkshof geliefert.",
+    "pages": {
+      "about": { "title": "Über uns", "description": "Winex liefert Bauelemente aus PVC, Aluminium und Holz, direkt vom Werkshof." },
+      "factory": { "title": "Das Werk", "description": "Wo es entsteht: Zuschnitt, Schweißen, Montage und Qualitätskontrolle von Bauelementen aus PVC, Aluminium und Holz." },
+      "configurator": { "title": "Konfigurator", "description": "Konfigurieren Sie Winex-Fenster und -Türen online: Material, Farbe, Öffnungsart und Verglasung." },
+      "contact": { "title": "Kontakt", "description": "Kontaktieren Sie Winex für ein Angebot zu Fenstern und Türen aus PVC, Aluminium und Holz." },
+      "privacy": { "title": "Datenschutzerklärung", "description": "Wie Winex personenbezogene Daten verarbeitet." },
+      "terms": { "title": "Nutzungsbedingungen", "description": "Nutzungsbedingungen der Winex-Website." },
+      "cookies": { "title": "Cookie-Richtlinie", "description": "Cookies und ähnliche Technologien auf der Winex-Website." },
+      "unsubscribe": { "title": "Vom Newsletter abmelden", "description": "Vom Winex-Newsletter abmelden." },
+      "confirm": { "title": "Anmeldung bestätigen", "description": "Bestätigen Sie Ihre Anmeldung zum Winex-Newsletter." }
+    }
+  },
+  "common": {
+    "skip": "Zum Inhalt springen",
+    "tagline": "Direkt vom Werkshof",
+    "home": "Winex — Startseite",
+    "language": "Sprache",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "scrollDown": "Zum nächsten Abschnitt",
+    "photoAlt": "Foto: {caption}"
+  },
+  "nav": {
+    "label": "Hauptnavigation",
+    "mobileLabel": "Mobile Navigation",
+    "about": "Über uns",
+    "factory": "Werk",
+    "configurator": "Konfigurator",
+    "contact": "Kontakt",
+    "cta": "Konfigurieren"
+  },
+  "hero": {
+    "eyebrow": "Fenster, Türen und Systeme",
+    "titleLine1": "Energieeffiziente Bauelemente,",
+    "titleLine2": "direkt vom Werkshof.",
+    "lead": "Unsere Fenster und Türen sind auf Dämmung, Langlebigkeit und ein Design ausgelegt, das auffällt.",
+    "primary": "Bauelemente konfigurieren",
+    "secondary": "Das Werk entdecken",
+    "diagramLabel": "Schematischer Schnitt durch ein Fenster (Illustration)",
+    "interior": "Innen",
+    "exterior": "Außen",
+    "item1Title": "Mehrkammerprofil",
+    "item1Text": "Innenliegende Kammern verlangsamen den Wärmefluss durch den Rahmen.",
+    "item2Title": "Wärmedämmende Verglasung",
+    "item2Text": "Versiegelte Scheiben mit Abstandhalter verringern Wärmeverluste.",
+    "item3Title": "Umlaufende Dichtung",
+    "item3Text": "Dichtet die Fuge zwischen Flügel und Rahmen gegen Luft und Wasser ab.",
+    "trust1": "Technische Datenblätter auf Anfrage",
+    "trust2": "PVC · Aluminium · Holz",
+    "trust3": "Online-Konfigurator",
+    "trust4": "Fachgerechte Montage"
+  },
+  "materials": {
+    "eyebrow": "Materialien",
+    "title": "Drei Materialien, ein Qualitätsstandard.",
+    "lead": "Derselbe Qualitätsstandard für jedes Material, damit die Spezifikation dem Projekt folgt und nicht den Grenzen des Lieferanten.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "Die ausgewogene Wahl für Wohn- und Gewerbebauten: hohe Wärme- und Schalldämmung, minimaler Wartungsaufwand und ein gutes Verhältnis von Leistung und Investition.",
+      "p1": "Mehrkammerprofile",
+      "p2": "Minimaler Wartungsaufwand",
+      "p3": "Energieeffizienz"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Aluminium",
+      "text": "Schlanke, steife Profile für große Glasflächen, klare architektonische Linien und Gewerbeprojekte.",
+      "p1": "Schlanke Ansichten, mehr Tageslicht",
+      "p2": "Konstruktive Festigkeit",
+      "p3": "Langlebige Oberflächen"
+    },
+    "timber": {
+      "label": "HOLZ",
+      "title": "Holz",
+      "text": "Die Wärme eines natürlichen Werkstoffs, geliefert mit der Präzision industrieller Fertigung, für Projekte, bei denen die Optik ebenso zählt wie die Leistung.",
+      "p1": "Natürliche Ästhetik",
+      "p2": "Details nach Maß",
+      "p3": "Für Häuser und Restaurierungen"
+    }
+  },
+  "energy": {
+    "eyebrow": "Energieeffizienz",
+    "title": "Wärmeschutz, den man auf der Rechnung und im Raum spürt.",
+    "lead": "Gute Bauelemente beurteilt man danach, was sie einsparen und wie sie sich anfühlen, nicht nur danach, wie sie aussehen.",
+    "chambersTitle": "Mehrkammerprofile",
+    "chambersText": "Luftkammern im Profil verlangsamen den Wärmeübergang zwischen innen und außen.",
+    "heatTitle": "Die Wärme bleibt drinnen",
+    "heatText": "Weniger Energieverlust im Winter, weniger Wärmeeintrag im Sommer.",
+    "acousticTitle": "Akustischer Komfort",
+    "acousticText": "Verglasungen und Dichtungen, die Außenlärm dämpfen.",
+    "airtightTitle": "Luftdicht und sicher",
+    "airtightText": "Umlaufende Dichtungen und hochwertige Beschläge für einen präzisen Verschluss.",
+    "note": "Die Leistungswerte hängen vom gewählten System und der Verglasung ab. Technische Datenblätter sind auf Anfrage erhältlich."
+  },
+  "process": {
+    "eyebrow": "Unsere Arbeitsweise",
+    "title": "Von der Spezifikation zum montierten Element.",
+    "s1Title": "Beratung",
+    "s1Text": "Wir klären die Anforderungen des Projekts: Maße, Material, Leistungswerte und Budget.",
+    "s2Title": "Konfiguration",
+    "s2Text": "Sie wählen Profil, Farbe, Verglasung und Beschläge im Online-Konfigurator.",
+    "s3Title": "Fertigung",
+    "s3Text": "Ihre Bauelemente werden auftragsbezogen hergestellt, mit Kontrollen in jeder Phase.",
+    "s4Title": "Montage",
+    "s4Text": "Lieferung und fachgerechte Montage, damit die Leistung auch im Gebäude ankommt."
+  },
+  "cta": {
+    "eyebrow": "Konfigurator",
+    "title": "Spezifizieren Sie Ihre Bauelemente online.",
+    "text": "Wählen Sie Material, Farbe, Öffnungsart und Verglasung und senden Sie die Konfiguration direkt an unser Team.",
+    "button": "Konfigurator öffnen"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Bleiben Sie informiert.",
+    "text": "Neuigkeiten zu Produkten, Projekten und Angeboten. Kein Spam — Sie können sich jederzeit abmelden."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "E-Mail-Adresse",
+      "placeholder": "name@firma.de",
+      "submit": "Anmelden",
+      "consent": "Ich bin damit einverstanden, E-Mails von Winex zu erhalten (Sie erhalten eine Bestätigungs-E-Mail) und habe die <link>Datenschutzerklärung</link> gelesen.",
+      "success": "Fast geschafft. Prüfen Sie Ihren Posteingang und klicken Sie auf den Bestätigungslink."
+    },
+    "contact": {
+      "name": "Name",
+      "namePh": "Ihr Name",
+      "email": "E-Mail",
+      "emailPh": "name@firma.de",
+      "phone": "Telefon",
+      "phonePh": "+49 …",
+      "subject": "Betreff",
+      "subjectPh": "z. B. Angebot für PVC-Fenster",
+      "message": "Nachricht",
+      "messagePh": "Erzählen Sie uns von Ihrem Projekt …",
+      "consent": "Ich bin mit der Verarbeitung meiner Daten gemäß der <link>Datenschutzerklärung</link> einverstanden.",
+      "submit": "Nachricht senden",
+      "successTitle": "Nachricht gesendet",
+      "successText": "Vielen Dank. Wir melden uns so bald wie möglich bei Ihnen."
+    },
+    "unsubscribe": {
+      "title": "Abmelden",
+      "invalid": "Ungültiger Link. Verwenden Sie den Abmeldelink aus der zuletzt erhaltenen E-Mail.",
+      "ask": "Bestätigen Sie, dass Sie den Winex-Newsletter nicht mehr erhalten möchten.",
+      "button": "Abmeldung bestätigen",
+      "done": "Sie wurden abgemeldet. Sie erhalten keine weiteren E-Mails von uns.",
+      "error": "Der Link ist ungültig oder es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    "confirm": {
+      "title": "Anmeldung bestätigen",
+      "invalid": "Ungültiger Link. Verwenden Sie den Link aus der Bestätigungs-E-Mail.",
+      "ask": "Klicken Sie auf die Schaltfläche, um zu bestätigen, dass Sie den Winex-Newsletter erhalten möchten.",
+      "button": "Anmeldung bestätigen",
+      "done": "Vielen Dank. Ihre Anmeldung ist bestätigt. Eine Willkommens-E-Mail ist unterwegs.",
+      "expired": "Dieser Link ist abgelaufen. Bitte melden Sie sich erneut über die Startseite an.",
+      "used": "Dieser Link ist ungültig oder wurde bereits verwendet.",
+      "error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    "errors": {
+      "invalid_name": "Bitte geben Sie Ihren Namen ein.",
+      "invalid_email": "Die E-Mail-Adresse ist ungültig.",
+      "invalid_phone": "Die Telefonnummer ist ungültig.",
+      "invalid_message": "Ihre Nachricht ist zu kurz.",
+      "consent_required": "Sie müssen der Datenverarbeitung zustimmen.",
+      "rate_limited": "Zu viele Versuche. Bitte versuchen Sie es in einigen Minuten erneut.",
+      "unavailable": "Der Dienst ist vorübergehend nicht verfügbar. Rufen Sie uns an oder schreiben Sie uns direkt.",
+      "failed": "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+      "forbidden": "Anfrage abgelehnt.",
+      "network": "Keine Verbindung. Prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+      "generic": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    }
+  },
+  "about": {
+    "eyebrow": "Über uns",
+    "titleLine1": "Ein Qualitätsstandard,",
+    "titleLine2": "angewendet auf jede Öffnung.",
+    "lead": "Winex liefert Bauelemente aus PVC, Aluminium und Holz. Wir arbeiten auftragsbezogen, prüfen die Qualität in jeder Phase und liefern direkt vom Werkshof.",
+    "storyTitle": "Was wir tun",
+    "story1": "Unser Angebot basiert auf drei Materialien — PVC, Aluminium und Holz —, damit jedes Projekt die passende Lösung erhält und nicht nur die gerade verfügbare.",
+    "story2": "Durch die direkte Zusammenarbeit mit dem Werk und die Lieferung unmittelbar vom Werkshof behalten wir Spezifikation, Lieferzeiten und Qualität eng im Griff.",
+    "photoCaption": "Das Team",
+    "valuesEyebrow": "Grundsätze",
+    "valuesTitle": "Wie wir arbeiten.",
+    "precisionTitle": "Präzision",
+    "precisionText": "Jedes Element wird maßgenau spezifiziert, mit engen Toleranzen und Kontrollen entlang des Weges.",
+    "efficiencyTitle": "Effizienz",
+    "efficiencyText": "Wir betrachten Bauelemente als System, das Energie spart, und nicht nur als Produkt.",
+    "craftTitle": "Handwerk",
+    "craftText": "Moderne Technologie, verbunden mit der Erfahrung von Menschen, die das Material kennen.",
+    "reliabilityTitle": "Verlässlichkeit",
+    "reliabilityText": "Klare Kommunikation, realistische Lieferzeiten und Unterstützung vor und nach der Montage."
+  },
+  "factory": {
+    "eyebrow": "Das Werk",
+    "titleLine1": "Wo jedes Element",
+    "titleLine2": "Gestalt annimmt.",
+    "lead": "Auftragsbezogen gefertigte Bauelemente, Schritt für Schritt geprüft und montagefertig versandt — direkt vom Werkshof.",
+    "exterior": "Werksgelände",
+    "cutting": "Zuschnittlinie",
+    "welding": "Schweißen der Profile",
+    "assembly": "Montage",
+    "quality": "Qualitätskontrolle",
+    "dispatch": "Lager und Versand",
+    "stagesEyebrow": "Fertigung",
+    "stagesTitle": "Vom Profil zum fertigen Element.",
+    "raw": "Rohmaterialien",
+    "rawText": "Auswahl von Profilen, Verglasung und Beschlägen.",
+    "cut": "Zuschnitt und Bearbeitung",
+    "cutText": "Auf den Millimeter genau zugeschnitten, gemäß Auftrag.",
+    "assemble": "Montage",
+    "assembleText": "Schweißen, Beschläge montieren und verglasen.",
+    "qc": "Qualitätskontrolle",
+    "qcText": "Prüfungen vor Verpackung und Versand."
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "titleLine1": "Sprechen wir",
+    "titleLine2": "über Ihr Projekt.",
+    "lead": "Schreiben Sie uns oder rufen Sie an. Wir antworten mit einem klaren Angebot und einer realistischen Lieferzeit.",
+    "infoTitle": "Kontaktdaten",
+    "formTitle": "Schreiben Sie uns",
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "hours": "Öffnungszeiten",
+    "noDetails": "Nutzen Sie das Formular, um uns zu kontaktieren."
+  },
+  "configurator": {
+    "eyebrow": "Konfigurator",
+    "titleLine1": "Spezifizieren Sie Ihre",
+    "titleLine2": "Bauelemente.",
+    "lead": "Konfigurieren Sie Fenster und Türen für Ihr Projekt und senden Sie uns Ihre Angebotsanfrage.",
+    "step1": "Typ und Material wählen",
+    "step2": "Maße festlegen",
+    "step3": "Farbe, Verglasung, Zubehör",
+    "step4": "Konfiguration senden",
+    "iframeTitle": "Winex-Angebotskonfigurator",
+    "openNew": "In neuem Fenster öffnen",
+    "help": "Möchten Sie lieber mit jemandem sprechen?",
+    "helpLink": "Unser Team kontaktieren"
+  },
+  "footer": {
+    "tagline": "Bauelemente aus PVC, Aluminium und Holz. Direkt vom Werkshof.",
+    "navigate": "Navigation",
+    "legal": "Rechtliches",
+    "contact": "Kontakt",
+    "anpc": "ANPC — alternative Streitbeilegung",
+    "rights": "Alle Rechte vorbehalten.",
+    "cui": "Steuernummer",
+    "regCom": "Handelsregister"
+  },
+  "notFound": {
+    "eyebrow": "Fehler 404",
+    "titleLine1": "Seite nicht",
+    "titleLine2": "gefunden.",
+    "text": "Diese Adresse existiert nicht oder wurde verschoben.",
+    "back": "Zurück zur Startseite"
+  },
+  "legal": {
+    "updated": "Zuletzt aktualisiert: {date}",
+    "translationNotice": "Diese Übersetzung dient nur der Information. Bei Abweichungen gilt die rumänische Fassung.",
+    "idCui": "Steuernummer {v}",
+    "idRegCom": "Handelsregister {v}",
+    "idAddress": "Sitz: {v}",
+    "idEmail": "E-Mail: {v}",
+    "idPhone": "Telefon: {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Verantwortlicher",
+        "blocks": [{ "p": "Verantwortlicher für die Verarbeitung personenbezogener Daten ist **{identity}**." }]
+      },
+      {
+        "title": "2. Welche Daten wir verarbeiten und warum",
+        "blocks": [
+          {
+            "ul": [
+              "**Kontakt- und Angebotsformulare:** Name, E-Mail, Telefon (optional), Nachrichteninhalt und Sprache der Seite. Zweck: Beantwortung Ihrer Anfrage und Erstellung eines Angebots. Rechtsgrundlage: vorvertragliche Maßnahmen auf Ihre Anfrage und unser berechtigtes Interesse (Art. 6 Abs. 1 lit. b und f DSGVO).",
+              "**Newsletter:** E-Mail-Adresse und Sprache. Zweck: Versand von Werbemitteilungen. Rechtsgrundlage: Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit widerrufen können. Die Anmeldung erfolgt im Double-Opt-in-Verfahren: Sie erhalten eine E-Mail mit einem Bestätigungslink, und bis zur Bestätigung werden keine Mitteilungen versandt. Nicht bestätigte Anfragen werden nach 30 Tagen automatisch gelöscht; das Bestätigungsdatum bewahren wir als Nachweis der Einwilligung auf.",
+              "**Anonyme Website-Statistiken:** besuchte Seiten, Klicks auf Schaltflächen und Links, Gerätetyp, Land, Sprache und Verkehrsquelle. Wir verwenden keine Cookies und speichern nichts auf Ihrem Gerät. Die Besucherkennung ist ein anonymer, täglich neu berechneter Code, der nicht zu Ihrer Identifizierung verwendet werden kann. Wir respektieren die Signale „Do Not Track“ und „Global Privacy Control“. Zweck: die Website verstehen und verbessern. Rechtsgrundlage: berechtigtes Interesse. Detaillierte Ereignisse werden nach 3 Tagen gelöscht; es bleiben nur aggregierte Summen.",
+              "**Technische Daten:** Ihre IP-Adresse wird vorübergehend zur Sicherheit und zur Missbrauchsabwehr (Begrenzung von Anfragen) verwendet. Rechtsgrundlage: berechtigtes Interesse."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Empfänger",
+        "blocks": [
+          { "p": "Die Daten werden von Dienstleistern verarbeitet, die als Auftragsverarbeiter tätig sind:" },
+          {
+            "ul": [
+              "Convex, Inc. — Speicherung von Nachrichten, Abonnenten und anonymen Statistiken;",
+              "Resend, Inc. — Versand und Zustellung von E-Mails;",
+              "unser Hosting-Anbieter;",
+              "OneSpec — nur wenn Sie den Online-Konfigurator nutzen, nach dessen eigener Richtlinie."
+            ]
+          },
+          { "p": "Einige Anbieter können Daten außerhalb des Europäischen Wirtschaftsraums verarbeiten; Übermittlungen stützen sich je nach Fall auf Standardvertragsklauseln und/oder den EU-US-Datenschutzrahmen." }
+        ]
+      },
+      {
+        "title": "4. Speicherdauer",
+        "blocks": [
+          { "p": "Kontaktnachrichten: bis zu 24 Monate nach der letzten Interaktion, sofern kein Vertrag zustande kommt. Newsletter: bis zum Widerruf der Einwilligung. Daten aus Vertragsbeziehungen: gemäß den gesetzlichen Pflichten (einschließlich buchhalterischer und steuerlicher)." }
+        ]
+      },
+      {
+        "title": "5. Ihre Rechte",
+        "blocks": [
+          { "p": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch sowie das Recht, Ihre Einwilligung zu widerrufen. Sie können uns unter {email} schreiben. Außerdem haben Sie das Recht, sich bei der Datenschutzaufsichtsbehörde Ihres Landes oder bei der [rumänischen Nationalen Aufsichtsbehörde für die Verarbeitung personenbezogener Daten (ANSPDCP)](https://www.dataprotection.ro) zu beschweren." }
+        ]
+      },
+      {
+        "title": "6. Sicherheit",
+        "blocks": [{ "p": "Wir setzen verschlüsselte Verbindungen (HTTPS), beschränkten Datenzugriff und technische Maßnahmen gegen Missbrauch ein. Wir verkaufen Ihre Daten nicht." }]
+      },
+      {
+        "title": "7. Änderungen",
+        "blocks": [{ "p": "Wir können diese Erklärung aktualisieren; maßgeblich ist stets die auf dieser Seite veröffentlichte aktuelle Fassung." }]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. Über die Website",
+        "blocks": [{ "p": "Diese Website ({domain}) wird betrieben von **{identity}**. Mit der Nutzung der Website akzeptieren Sie diese Bedingungen." }]
+      },
+      {
+        "title": "2. Produktinformationen",
+        "blocks": [{ "p": "Die Inhalte dieser Website dienen ausschließlich der Information und stellen kein verbindliches Angebot dar. Abbildungen, Farben und Spezifikationen können vom endgültigen Produkt abweichen. Angebote und Verträge werden individuell und schriftlich vereinbart." }]
+      },
+      {
+        "title": "3. Der Konfigurator",
+        "blocks": [{ "p": "Mit dem Konfigurator erstellte Konfigurationen sind unverbindlich, bis Winex das Angebot schriftlich bestätigt hat. Der Konfigurator wird in Zusammenarbeit mit OneSpec bereitgestellt; seine Nutzung kann zusätzlich den Bedingungen dieses Anbieters unterliegen." }]
+      },
+      {
+        "title": "4. Geistiges Eigentum",
+        "blocks": [{ "p": "Texte, Bilder, Logos und das Design dieser Website gehören Winex oder seinen Lizenzgebern und dürfen ohne schriftliche Genehmigung weder kopiert noch verwendet werden." }]
+      },
+      {
+        "title": "5. Haftungsbeschränkung",
+        "blocks": [{ "p": "Wir bemühen uns um korrekte Informationen, gewährleisten jedoch weder Fehlerfreiheit noch ununterbrochene Verfügbarkeit der Website. Die Haftung ist im gesetzlich zulässigen Umfang beschränkt." }]
+      },
+      {
+        "title": "6. Personenbezogene Daten",
+        "blocks": [{ "p": "Die Verarbeitung personenbezogener Daten ist in der [Datenschutzerklärung](internal:/privacy) und der [Cookie-Richtlinie](internal:/cookies) beschrieben." }]
+      },
+      {
+        "title": "7. Anwendbares Recht und Streitigkeiten",
+        "blocks": [{ "p": "Diese Bedingungen unterliegen rumänischem Recht. Verbraucher können zudem die [alternative Streitbeilegung der ANPC (SAL)](https://anpc.ro/ce-este-sal/) sowie die Gerichte und Verbraucherorganisationen ihres Wohnsitzlandes in Anspruch nehmen." }]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. Was Cookies sind",
+        "blocks": [{ "p": "Cookies sind kleine Dateien, die in Ihrem Browser gespeichert werden und dazu dienen, eine Website zu betreiben und zu verbessern." }]
+      },
+      {
+        "title": "2. Was wir auf {domain} verwenden",
+        "blocks": [
+          { "p": "Die Website **verwendet derzeit keine Analyse- oder Marketing-Cookies**. Wir messen Besuche mit einem eigenen System, ohne Cookies und ohne Informationen auf Ihrem Gerät zu speichern (Details in der [Datenschutzerklärung](internal:/privacy)). Für den technischen Betrieb der Website ist keine Einwilligung erforderlich." }
+        ]
+      },
+      {
+        "title": "3. Dienste Dritter",
+        "blocks": [{ "p": "Die Konfigurator-Seite lädt einen externen Dienst (OneSpec) in einem eingebetteten Frame. Dieser kann eigene Cookies setzen oder ähnliche Technologien verwenden, gemäß der Richtlinie seines Anbieters." }]
+      },
+      {
+        "title": "4. Cookies verwalten",
+        "blocks": [{ "p": "Sie können Cookies in den Einstellungen Ihres Browsers löschen oder blockieren. Das Blockieren kann die Funktion von Diensten Dritter beeinträchtigen." }]
+      },
+      {
+        "title": "5. Änderungen",
+        "blocks": [{ "p": "Sollten wir Analyse- oder Marketing-Werkzeuge einführen, holen wir Ihre Einwilligung ein, bevor wir sie aktivieren." }]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Nachricht von Winex"
+  }
+}

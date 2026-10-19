@@ -2,6 +2,7 @@ import { v, ConvexError } from "convex/values";
 import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { subscriberStatus } from "./schema";
 import { assertIngestSecret, audit, randomToken, requireAdmin } from "./lib/admin";
+import { LOCALES, normalizeLocale } from "./lib/locales";
 
 const CONFIRM_THROTTLE_MS = 10 * 60_000; // max 1 email di conferma ogni 10 minuti per indirizzo
 const CONFIRM_TTL_MS = 7 * 24 * 60 * 60_000; // il link di conferma vale 7 giorni
@@ -14,10 +15,11 @@ const PENDING_RETENTION_MS = 30 * 24 * 60 * 60_000; // richieste non confermate:
  * La risposta non rivela se l'indirizzo era già iscritto (anti-enumerazione): il chiamante risponde sempre uguale.
  */
 export const subscribe = mutation({
-  args: { secret: v.string(), email: v.string(), source: v.string(), consent: v.boolean() },
-  handler: async (ctx, { secret, email, source, consent }): Promise<{ send: boolean; confirmToken?: string }> => {
+  args: { secret: v.string(), email: v.string(), source: v.string(), consent: v.boolean(), locale: v.string() },
+  handler: async (ctx, { secret, email, source, consent, locale: rawLocale }): Promise<{ send: boolean; confirmToken?: string }> => {
     assertIngestSecret(secret);
     if (!consent) throw new ConvexError("CONSENT_REQUIRED");
+    const locale = normalizeLocale(rawLocale);
     const normalized = email.trim().toLowerCase();
     const now = Date.now();
     const existing = await ctx.db
@@ -30,6 +32,7 @@ export const subscribe = mutation({
       await ctx.db.insert("subscribers", {
         email: normalized,
         source,
+        locale,
         consent: true,
         status: "pending",
         unsubToken: randomToken(),
@@ -49,6 +52,7 @@ export const subscribe = mutation({
     const confirmToken = randomToken();
     await ctx.db.patch(existing._id, {
       status: "pending",
+      locale,
       consent: true,
       confirmToken,
       confirmSentAt: now,
@@ -65,7 +69,7 @@ export const confirmByToken = mutation({
   handler: async (
     ctx,
     { secret, token },
-  ): Promise<{ ok: boolean; reason?: "invalid" | "expired"; firstTime?: boolean; email?: string; unsubToken?: string }> => {
+  ): Promise<{ ok: boolean; reason?: "invalid" | "expired"; firstTime?: boolean; email?: string; unsubToken?: string; locale?: string }> => {
     assertIngestSecret(secret);
     if (token.length < 16 || token.length > 64) return { ok: false, reason: "invalid" };
     const sub = await ctx.db
@@ -75,7 +79,7 @@ export const confirmByToken = mutation({
     if (!sub || sub.status !== "pending") return { ok: false, reason: "invalid" };
     if (!sub.confirmSentAt || Date.now() - sub.confirmSentAt > CONFIRM_TTL_MS) return { ok: false, reason: "expired" };
     await ctx.db.patch(sub._id, { status: "subscribed", confirmedAt: Date.now(), confirmToken: undefined });
-    return { ok: true, firstTime: true, email: sub.email, unsubToken: sub.unsubToken };
+    return { ok: true, firstTime: true, email: sub.email, unsubToken: sub.unsubToken, locale: sub.locale };
   },
 });
 
@@ -143,6 +147,7 @@ export const list = query({
       email: r.email,
       status: r.status,
       source: r.source,
+      locale: r.locale,
       consent: r.consent,
       subscribedAt: r.subscribedAt,
       confirmedAt: r.confirmedAt,
@@ -167,8 +172,8 @@ export const stats = query({
 });
 
 export const adminAdd = mutation({
-  args: { email: v.string(), consentConfirmed: v.boolean() },
-  handler: async (ctx, { email, consentConfirmed }) => {
+  args: { email: v.string(), consentConfirmed: v.boolean(), locale: v.optional(v.string()) },
+  handler: async (ctx, { email, consentConfirmed, locale }) => {
     const admin = await requireAdmin(ctx);
     if (!consentConfirmed) throw new ConvexError("CONSENT_REQUIRED");
     const normalized = email.trim().toLowerCase();
@@ -178,6 +183,7 @@ export const adminAdd = mutation({
     await ctx.db.insert("subscribers", {
       email: normalized,
       source: "admin",
+      locale: normalizeLocale(locale ?? "ro"),
       consent: true,
       status: "subscribed",
       unsubToken: randomToken(),
@@ -209,13 +215,18 @@ export const adminRemove = mutation({
 
 /** Pagina di destinatari attivi (per l'invio campagne). */
 export const recipientsPage = internalQuery({
-  args: { after: v.optional(v.number()), limit: v.number() },
-  handler: async (ctx, { after, limit }) => {
-    const rows = await ctx.db
-      .query("subscribers")
-      .withIndex("by_status", (i) => i.eq("status", "subscribed").gt("_creationTime", after ?? 0))
-      .take(limit);
-    return rows.map((r) => ({ email: r.email, token: r.unsubToken, ct: r._creationTime }));
+  args: { after: v.optional(v.number()), limit: v.number(), locale: v.optional(v.string()) },
+  handler: async (ctx, { after, limit, locale }) => {
+    const rows = locale
+      ? await ctx.db
+          .query("subscribers")
+          .withIndex("by_status_locale", (i) => i.eq("status", "subscribed").eq("locale", locale).gt("_creationTime", after ?? 0))
+          .take(limit)
+      : await ctx.db
+          .query("subscribers")
+          .withIndex("by_status", (i) => i.eq("status", "subscribed").gt("_creationTime", after ?? 0))
+          .take(limit);
+    return rows.map((r) => ({ email: r.email, token: r.unsubToken, ct: r._creationTime, locale: r.locale }));
   },
 });
 
@@ -224,5 +235,26 @@ export const activeCount = query({
   handler: async (ctx) => {
     await requireAdmin(ctx);
     return (await ctx.db.query("subscribers").withIndex("by_status", (i) => i.eq("status", "subscribed")).take(20000)).length;
+  },
+});
+
+/** Iscritti attivi per lingua (per scegliere il pubblico di una campagna). */
+export const activeByLocale = query({
+  args: {},
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    const out: Record<string, number> = {};
+    let total = 0;
+    for (const l of LOCALES) {
+      const n = (
+        await ctx.db
+          .query("subscribers")
+          .withIndex("by_status_locale", (i) => i.eq("status", "subscribed").eq("locale", l))
+          .take(20000)
+      ).length;
+      out[l] = n;
+      total += n;
+    }
+    return { total, byLocale: out };
   },
 });

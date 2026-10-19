@@ -1,0 +1,484 @@
+{
+  "meta": {
+    "title": "Winex — PVC, aluminium and timber windows and doors",
+    "description": "Winex supplies windows, doors and joinery systems in PVC, aluminium and timber. Energy-efficient, precision-built and delivered direct from the factory yard.",
+    "pages": {
+      "about": {
+        "title": "About us",
+        "description": "Winex supplies PVC, aluminium and timber joinery, direct from the factory yard."
+      },
+      "factory": {
+        "title": "The factory",
+        "description": "Where it is made: cutting, welding, assembly and quality control of PVC, aluminium and timber joinery."
+      },
+      "configurator": {
+        "title": "Configurator",
+        "description": "Configure Winex windows and doors online: material, colour, opening type and glazing."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Contact Winex for quotes on PVC, aluminium and timber windows and doors."
+      },
+      "privacy": {
+        "title": "Privacy Policy",
+        "description": "How Winex processes personal data."
+      },
+      "terms": {
+        "title": "Terms and Conditions",
+        "description": "Terms of use of the Winex website."
+      },
+      "cookies": {
+        "title": "Cookie Policy",
+        "description": "Cookies and similar technologies on the Winex website."
+      },
+      "unsubscribe": {
+        "title": "Unsubscribe from the newsletter",
+        "description": "Unsubscribe from the Winex newsletter."
+      },
+      "confirm": {
+        "title": "Confirm your subscription",
+        "description": "Confirm your subscription to the Winex newsletter."
+      }
+    }
+  },
+  "common": {
+    "skip": "Skip to content",
+    "tagline": "Direct from the factory yard",
+    "home": "Winex — home page",
+    "language": "Language",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "scrollDown": "Scroll to the next section",
+    "photoAlt": "Photograph: {caption}"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "mobileLabel": "Mobile navigation",
+    "about": "About us",
+    "factory": "Factory",
+    "configurator": "Configurator",
+    "contact": "Contact",
+    "cta": "Configure"
+  },
+  "hero": {
+    "eyebrow": "Windows, doors and systems",
+    "titleLine1": "Energy-efficient joinery,",
+    "titleLine2": "direct from the factory yard.",
+    "lead": "Our joinery is designed for insulation, durability and a design that stands out.",
+    "primary": "Configure your joinery",
+    "secondary": "Explore the factory",
+    "diagramLabel": "Schematic cross-section of a window (illustrative)",
+    "interior": "Interior",
+    "exterior": "Exterior",
+    "item1Title": "Multi-chamber profile",
+    "item1Text": "Internal chambers slow the flow of heat through the frame.",
+    "item2Title": "Insulating glazing unit",
+    "item2Text": "Sealed panes separated by a spacer reduce heat loss.",
+    "item3Title": "Continuous sealing gasket",
+    "item3Text": "Seals the joint between sash and frame against air and water.",
+    "trust1": "Technical data sheets on request",
+    "trust2": "PVC · Aluminium · Timber",
+    "trust3": "Online configurator",
+    "trust4": "Professional installation"
+  },
+  "materials": {
+    "eyebrow": "Materials",
+    "title": "Three materials, one quality standard.",
+    "lead": "The same quality standard across every material, so the specification follows the project, not the supplier’s limits.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "The balanced choice for residential and commercial buildings: strong thermal and acoustic insulation, minimal maintenance and a sound return on investment.",
+      "p1": "Multi-chamber profiles",
+      "p2": "Minimal maintenance",
+      "p3": "Energy efficiency"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Aluminium",
+      "text": "Slim, rigid profiles for large glazed areas, clean architectural lines and commercial projects.",
+      "p1": "Slim sightlines, more daylight",
+      "p2": "Structural strength",
+      "p3": "Durable finishes"
+    },
+    "timber": {
+      "label": "TIMBER",
+      "title": "Timber",
+      "text": "The warmth of a natural material, delivered with the precision of industrial production, for projects where appearance matters as much as performance.",
+      "p1": "Natural aesthetics",
+      "p2": "Made-to-order detailing",
+      "p3": "For houses and restorations"
+    }
+  },
+  "energy": {
+    "eyebrow": "Energy efficiency",
+    "title": "Thermal performance you notice on the bill and in the room.",
+    "lead": "Good joinery is judged by what it saves and how it feels, not only by how it looks.",
+    "chambersTitle": "Multi-chamber profiles",
+    "chambersText": "Internal air chambers slow heat transfer between interior and exterior.",
+    "heatTitle": "Heat stays inside",
+    "heatText": "Less energy lost in winter, less heat gained in summer.",
+    "acousticTitle": "Acoustic comfort",
+    "acousticText": "Glazing and seals that attenuate exterior noise.",
+    "airtightTitle": "Airtight and secure",
+    "airtightText": "Continuous gaskets and quality hardware for a precise closure.",
+    "note": "Performance values depend on the selected system and glazing. Technical data sheets are available on request."
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "From specification to installed unit.",
+    "s1Title": "Consultation",
+    "s1Text": "We define the requirements of the project: dimensions, material, performance and budget.",
+    "s2Title": "Configuration",
+    "s2Text": "You select profile, colour, glazing and hardware in the online configurator.",
+    "s3Title": "Production",
+    "s3Text": "Your joinery is produced to order, with checks at every stage.",
+    "s4Title": "Installation",
+    "s4Text": "Delivery and professional installation, so the performance reaches the building."
+  },
+  "cta": {
+    "eyebrow": "Configurator",
+    "title": "Specify your joinery online.",
+    "text": "Choose material, colour, opening type and glazing, then send the configuration directly to our team.",
+    "button": "Open the configurator"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Stay informed.",
+    "text": "Product news, projects and offers. No spam — unsubscribe at any time."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "Email address",
+      "placeholder": "name@company.com",
+      "submit": "Subscribe",
+      "consent": "I agree to receive emails from Winex (a confirmation email will be sent) and have read the <link>Privacy Policy</link>.",
+      "success": "Almost there. Check your inbox and click the confirmation link."
+    },
+    "contact": {
+      "name": "Name",
+      "namePh": "Your name",
+      "email": "Email",
+      "emailPh": "name@company.com",
+      "phone": "Phone",
+      "phonePh": "+00 …",
+      "subject": "Subject",
+      "subjectPh": "e.g. Quote for PVC windows",
+      "message": "Message",
+      "messagePh": "Tell us about your project…",
+      "consent": "I agree to the processing of my data in accordance with the <link>Privacy Policy</link>.",
+      "submit": "Send message",
+      "successTitle": "Message sent",
+      "successText": "Thank you. We will get back to you as soon as possible."
+    },
+    "unsubscribe": {
+      "title": "Unsubscribe",
+      "invalid": "Invalid link. Please use the unsubscribe link from the latest email you received.",
+      "ask": "Please confirm that you no longer wish to receive the Winex newsletter.",
+      "button": "Confirm unsubscribe",
+      "done": "You have been unsubscribed. You will not receive further emails from us.",
+      "error": "The link is invalid or an error occurred. Please try again."
+    },
+    "confirm": {
+      "title": "Confirm your subscription",
+      "invalid": "Invalid link. Please use the link from the confirmation email.",
+      "ask": "Press the button to confirm that you wish to receive the Winex newsletter.",
+      "button": "Confirm subscription",
+      "done": "Thank you. Your subscription is confirmed. A welcome email is on its way.",
+      "expired": "This link has expired. Please subscribe again from the home page.",
+      "used": "This link is invalid or has already been used.",
+      "error": "An error occurred. Please try again."
+    },
+    "errors": {
+      "invalid_name": "Please enter your name.",
+      "invalid_email": "The email address is not valid.",
+      "invalid_phone": "The phone number is not valid.",
+      "invalid_message": "Your message is too short.",
+      "consent_required": "You must accept the data-processing terms.",
+      "rate_limited": "Too many attempts. Please try again in a few minutes.",
+      "unavailable": "The service is temporarily unavailable. Please call or write to us directly.",
+      "failed": "We could not send your request. Please try again.",
+      "forbidden": "Request rejected.",
+      "network": "Connection unavailable. Check your internet connection and try again.",
+      "generic": "An error occurred. Please try again."
+    }
+  },
+  "about": {
+    "eyebrow": "About us",
+    "titleLine1": "A standard of quality,",
+    "titleLine2": "applied to every opening.",
+    "lead": "Winex supplies PVC, aluminium and timber joinery. We work to order, verify quality at each stage and supply directly from the factory yard.",
+    "storyTitle": "What we do",
+    "story1": "Our offer is built around three materials — PVC, aluminium and timber — so every project receives the solution that suits it, not merely the one that happens to be available.",
+    "story2": "By working directly with the factory and supplying straight from the factory yard, we keep specification, lead times and quality under close control.",
+    "photoCaption": "The team",
+    "valuesEyebrow": "Principles",
+    "valuesTitle": "How we work.",
+    "precisionTitle": "Precision",
+    "precisionText": "Every element is specified to size, with tight tolerances and checks along the way.",
+    "efficiencyTitle": "Efficiency",
+    "efficiencyText": "We treat joinery as a system that saves energy, not only as a product.",
+    "craftTitle": "Craftsmanship",
+    "craftText": "Modern technology combined with the experience of people who know the material.",
+    "reliabilityTitle": "Reliability",
+    "reliabilityText": "Clear communication, realistic lead times and support before and after installation."
+  },
+  "factory": {
+    "eyebrow": "The factory",
+    "titleLine1": "Where every unit",
+    "titleLine2": "takes shape.",
+    "lead": "Joinery produced to order, checked step by step and dispatched ready for installation — straight from the factory yard.",
+    "exterior": "Factory exterior",
+    "cutting": "Cutting line",
+    "welding": "Profile welding",
+    "assembly": "Assembly",
+    "quality": "Quality control",
+    "dispatch": "Warehouse and dispatch",
+    "stagesEyebrow": "Production",
+    "stagesTitle": "From profile to finished unit.",
+    "raw": "Raw materials",
+    "rawText": "Selection of profiles, glazing and hardware.",
+    "cut": "Cutting and machining",
+    "cutText": "Cut to the millimetre, according to the order.",
+    "assemble": "Assembly",
+    "assembleText": "Welding, hardware fitting and glazing.",
+    "qc": "Quality control",
+    "qcText": "Checks before packing and dispatch."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "titleLine1": "Let’s discuss",
+    "titleLine2": "your project.",
+    "lead": "Write or call us. We reply with a clear quote and a realistic lead time.",
+    "infoTitle": "Contact details",
+    "formTitle": "Send us a message",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Opening hours",
+    "noDetails": "Please use the form to reach us."
+  },
+  "configurator": {
+    "eyebrow": "Configurator",
+    "titleLine1": "Specify your",
+    "titleLine2": "joinery.",
+    "lead": "Configure the windows and doors for your project and send us your quote request.",
+    "step1": "Choose type and material",
+    "step2": "Set dimensions",
+    "step3": "Colour, glazing, accessories",
+    "step4": "Send the configuration",
+    "iframeTitle": "Winex quote configurator",
+    "openNew": "Open in a new window",
+    "help": "Prefer to talk to someone?",
+    "helpLink": "Contact our team"
+  },
+  "footer": {
+    "tagline": "PVC, aluminium and timber joinery. Direct from the factory yard.",
+    "navigate": "Navigate",
+    "legal": "Legal",
+    "contact": "Contact",
+    "anpc": "ANPC — alternative dispute resolution",
+    "rights": "All rights reserved.",
+    "cui": "Tax ID",
+    "regCom": "Trade Register"
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "titleLine1": "Page not",
+    "titleLine2": "found.",
+    "text": "The address does not exist or has been moved.",
+    "back": "Back to the home page"
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "translationNotice": "This translation is provided for convenience. In case of any discrepancy, the Romanian version prevails.",
+    "idCui": "Tax ID {v}",
+    "idRegCom": "Trade Register {v}",
+    "idAddress": "registered office: {v}",
+    "idEmail": "email: {v}",
+    "idPhone": "phone: {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Data controller",
+        "blocks": [
+          {
+            "p": "The controller of personal data is **{identity}**."
+          }
+        ]
+      },
+      {
+        "title": "2. What we process and why",
+        "blocks": [
+          {
+            "ul": [
+              "**Contact and quote request forms:** name, email, phone (optional), message content and the language of the page. Purpose: replying to your request and preparing a quote. Legal basis: pre-contractual steps at your request and our legitimate interest (Art. 6(1)(b) and (f) GDPR).",
+              "**Newsletter:** email address and language. Purpose: sending commercial communications. Legal basis: your consent (Art. 6(1)(a) GDPR), which you may withdraw at any time. Subscription uses double confirmation: you receive an email with a confirmation link and no communications are sent until you confirm. Unconfirmed requests are deleted automatically after 30 days; we keep the confirmation date as proof of consent.",
+              "**Anonymous site statistics:** pages visited, clicks on buttons and links, device type, country, language and traffic source. We use no cookies and store nothing on your device. The visitor identifier is an anonymous code recalculated every day that cannot be used to identify you. We respect the “Do Not Track” and “Global Privacy Control” signals. Purpose: understanding and improving the site. Legal basis: legitimate interest. Detailed events are deleted after 3 days; only aggregate totals remain.",
+              "**Technical data:** your IP address is used temporarily for security and abuse prevention (rate limiting). Legal basis: legitimate interest."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Recipients",
+        "blocks": [
+          {
+            "p": "Data is processed by service providers acting as processors:"
+          },
+          {
+            "ul": [
+              "Convex, Inc. — storage of messages, subscribers and anonymous statistics;",
+              "Resend, Inc. — sending and delivery of emails;",
+              "our web hosting provider;",
+              "OneSpec — only if you use the online configurator, under its own policy."
+            ]
+          },
+          {
+            "p": "Some providers may process data outside the European Economic Area; transfers rely on Standard Contractual Clauses and/or the EU–US Data Privacy Framework, as applicable."
+          }
+        ]
+      },
+      {
+        "title": "4. Retention",
+        "blocks": [
+          {
+            "p": "Contact messages: up to 24 months from the last interaction, unless a contract is concluded. Newsletter: until you withdraw consent. Data arising from contractual relationships: as required by law (including accounting and tax obligations)."
+          }
+        ]
+      },
+      {
+        "title": "5. Your rights",
+        "blocks": [
+          {
+            "p": "You have the right of access, rectification, erasure, restriction, portability and objection, and the right to withdraw consent. You can write to us at {email}. You also have the right to lodge a complaint with your national data protection authority or with the Romanian [National Supervisory Authority for Personal Data Processing (ANSPDCP)](https://www.dataprotection.ro)."
+          }
+        ]
+      },
+      {
+        "title": "6. Security",
+        "blocks": [
+          {
+            "p": "We use encrypted connections (HTTPS), restricted access to data and technical measures against abuse. We do not sell your data."
+          }
+        ]
+      },
+      {
+        "title": "7. Changes",
+        "blocks": [
+          {
+            "p": "We may update this policy; the current version is always the one published on this page."
+          }
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. About the website",
+        "blocks": [
+          {
+            "p": "This website ({domain}) is operated by **{identity}**. By using the website you accept these terms."
+          }
+        ]
+      },
+      {
+        "title": "2. Product information",
+        "blocks": [
+          {
+            "p": "The content of this website is for information only and does not constitute a binding offer. Images, colours and specifications may differ from the final product. Offers and contracts are agreed individually, in writing."
+          }
+        ]
+      },
+      {
+        "title": "3. The configurator",
+        "blocks": [
+          {
+            "p": "Configurations created with the configurator are indicative until the offer is confirmed in writing by Winex. The configurator is provided in cooperation with OneSpec; its use may also be subject to that provider’s terms."
+          }
+        ]
+      },
+      {
+        "title": "4. Intellectual property",
+        "blocks": [
+          {
+            "p": "Texts, images, logos and the design of this website belong to Winex or its licensors and may not be copied or used without written permission."
+          }
+        ]
+      },
+      {
+        "title": "5. Limitation of liability",
+        "blocks": [
+          {
+            "p": "We make every effort to keep the information accurate, but we do not guarantee that it is free of errors or that the website is available without interruption. Liability is limited to the extent permitted by law."
+          }
+        ]
+      },
+      {
+        "title": "6. Personal data",
+        "blocks": [
+          {
+            "p": "The processing of personal data is described in the [Privacy Policy](internal:/privacy) and the [Cookie Policy](internal:/cookies)."
+          }
+        ]
+      },
+      {
+        "title": "7. Governing law and disputes",
+        "blocks": [
+          {
+            "p": "These terms are governed by Romanian law. Consumers may also have recourse to the [ANPC alternative dispute resolution (SAL)](https://anpc.ro/ce-este-sal/) and to the courts and consumer bodies of their country of residence."
+          }
+        ]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. What cookies are",
+        "blocks": [
+          {
+            "p": "Cookies are small files stored in your browser, used to operate and improve a website."
+          }
+        ]
+      },
+      {
+        "title": "2. What we use on {domain}",
+        "blocks": [
+          {
+            "p": "The website **does not currently use analytics or marketing cookies**. We measure visits with our own system, without cookies and without storing information on your device (details in the [Privacy Policy](internal:/privacy)). No consent is required for the technical operation of the website."
+          }
+        ]
+      },
+      {
+        "title": "3. Third-party services",
+        "blocks": [
+          {
+            "p": "The configurator page loads an external service (OneSpec) in an embedded frame. It may set its own cookies or use similar technologies, in accordance with its provider’s policy."
+          }
+        ]
+      },
+      {
+        "title": "4. Managing cookies",
+        "blocks": [
+          {
+            "p": "You can delete or block cookies in your browser settings. Blocking may affect the operation of third-party services."
+          }
+        ]
+      },
+      {
+        "title": "5. Changes",
+        "blocks": [
+          {
+            "p": "If we introduce analytics or marketing tools, we will ask for your consent before activating them."
+          }
+        ]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Message from Winex"
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "title": "Winex — Ramen en deuren van PVC, aluminium en hout",
+    "description": "Winex levert ramen, deuren en schrijnwerksystemen in PVC, aluminium en hout. Energiezuinig, nauwkeurig uitgevoerd en rechtstreeks geleverd van het fabrieksterrein.",
+    "pages": {
+      "about": { "title": "Over ons", "description": "Winex levert schrijnwerk in PVC, aluminium en hout, rechtstreeks van het fabrieksterrein." },
+      "factory": { "title": "De fabriek", "description": "Waar het ontstaat: zagen, lassen, assemblage en kwaliteitscontrole van schrijnwerk in PVC, aluminium en hout." },
+      "configurator": { "title": "Configurator", "description": "Configureer online uw Winex-ramen en -deuren: materiaal, kleur, openingstype en beglazing." },
+      "contact": { "title": "Contact", "description": "Neem contact op met Winex voor een offerte voor ramen en deuren in PVC, aluminium en hout." },
+      "privacy": { "title": "Privacybeleid", "description": "Hoe Winex persoonsgegevens verwerkt." },
+      "terms": { "title": "Algemene voorwaarden", "description": "Gebruiksvoorwaarden van de Winex-website." },
+      "cookies": { "title": "Cookiebeleid", "description": "Cookies en vergelijkbare technologieën op de Winex-website." },
+      "unsubscribe": { "title": "Uitschrijven van de nieuwsbrief", "description": "Uitschrijven van de Winex-nieuwsbrief." },
+      "confirm": { "title": "Bevestig uw inschrijving", "description": "Bevestig uw inschrijving voor de Winex-nieuwsbrief." }
+    }
+  },
+  "common": {
+    "skip": "Ga naar de inhoud",
+    "tagline": "Rechtstreeks van het fabrieksterrein",
+    "home": "Winex — startpagina",
+    "language": "Taal",
+    "menuOpen": "Menu openen",
+    "menuClose": "Menu sluiten",
+    "scrollDown": "Naar de volgende sectie",
+    "photoAlt": "Foto: {caption}"
+  },
+  "nav": {
+    "label": "Hoofdnavigatie",
+    "mobileLabel": "Mobiele navigatie",
+    "about": "Over ons",
+    "factory": "Fabriek",
+    "configurator": "Configurator",
+    "contact": "Contact",
+    "cta": "Configureren"
+  },
+  "hero": {
+    "eyebrow": "Ramen, deuren en systemen",
+    "titleLine1": "Energiezuinig schrijnwerk,",
+    "titleLine2": "rechtstreeks van het fabrieksterrein.",
+    "lead": "Ons schrijnwerk is ontworpen voor isolatie, duurzaamheid en een design dat opvalt.",
+    "primary": "Configureer uw schrijnwerk",
+    "secondary": "Ontdek de fabriek",
+    "diagramLabel": "Schematische doorsnede van een raam (illustratief)",
+    "interior": "Binnen",
+    "exterior": "Buiten",
+    "item1Title": "Profiel met meerdere kamers",
+    "item1Text": "Interne kamers vertragen de warmtestroom door het kozijn.",
+    "item2Title": "Isolerende beglazing",
+    "item2Text": "Afgesloten ruiten met een afstandhouder beperken het warmteverlies.",
+    "item3Title": "Doorlopende afdichting",
+    "item3Text": "Dicht de aansluiting tussen vleugel en kozijn af tegen lucht en water.",
+    "trust1": "Technische fiches op aanvraag",
+    "trust2": "PVC · Aluminium · Hout",
+    "trust3": "Online configurator",
+    "trust4": "Professionele plaatsing"
+  },
+  "materials": {
+    "eyebrow": "Materialen",
+    "title": "Drie materialen, één kwaliteitsstandaard.",
+    "lead": "Dezelfde kwaliteitsstandaard voor elk materiaal, zodat de specificatie het project volgt en niet de beperkingen van de leverancier.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "De evenwichtige keuze voor woon- en utiliteitsgebouwen: sterke thermische en akoestische isolatie, minimaal onderhoud en een goede verhouding tussen prestaties en investering.",
+      "p1": "Profielen met meerdere kamers",
+      "p2": "Minimaal onderhoud",
+      "p3": "Energie-efficiëntie"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Aluminium",
+      "text": "Slanke, stijve profielen voor grote beglaasde vlakken, zuivere architecturale lijnen en utiliteitsprojecten.",
+      "p1": "Slanke profielen, meer daglicht",
+      "p2": "Constructieve sterkte",
+      "p3": "Duurzame afwerkingen"
+    },
+    "timber": {
+      "label": "HOUT",
+      "title": "Hout",
+      "text": "De warmte van een natuurlijk materiaal, geleverd met de precisie van industriële productie, voor projecten waarin uitstraling even belangrijk is als prestaties.",
+      "p1": "Natuurlijke uitstraling",
+      "p2": "Details op maat",
+      "p3": "Voor woningen en restauraties"
+    }
+  },
+  "energy": {
+    "eyebrow": "Energie-efficiëntie",
+    "title": "Thermische prestaties die u merkt op de rekening en in de kamer.",
+    "lead": "Goed schrijnwerk wordt beoordeeld op wat het bespaart en hoe het aanvoelt, niet alleen op hoe het eruitziet.",
+    "chambersTitle": "Profielen met meerdere kamers",
+    "chambersText": "Luchtkamers in het profiel vertragen de warmteoverdracht tussen binnen en buiten.",
+    "heatTitle": "De warmte blijft binnen",
+    "heatText": "Minder energieverlies in de winter, minder warmtewinst in de zomer.",
+    "acousticTitle": "Akoestisch comfort",
+    "acousticText": "Beglazing en afdichtingen die geluid van buiten dempen.",
+    "airtightTitle": "Luchtdicht en veilig",
+    "airtightText": "Doorlopende afdichtingen en kwaliteitsbeslag voor een nauwkeurige sluiting.",
+    "note": "Prestatiewaarden hangen af van het gekozen systeem en de beglazing. Technische fiches zijn op aanvraag beschikbaar."
+  },
+  "process": {
+    "eyebrow": "Onze werkwijze",
+    "title": "Van specificatie tot geplaatst schrijnwerk.",
+    "s1Title": "Advies",
+    "s1Text": "Wij bepalen de eisen van het project: afmetingen, materiaal, prestaties en budget.",
+    "s2Title": "Configuratie",
+    "s2Text": "U kiest profiel, kleur, beglazing en beslag in de online configurator.",
+    "s3Title": "Productie",
+    "s3Text": "Uw schrijnwerk wordt op bestelling gemaakt, met controles in elke fase.",
+    "s4Title": "Plaatsing",
+    "s4Text": "Levering en professionele plaatsing, zodat de prestaties ook in het gebouw tot hun recht komen."
+  },
+  "cta": {
+    "eyebrow": "Configurator",
+    "title": "Specificeer uw schrijnwerk online.",
+    "text": "Kies materiaal, kleur, openingstype en beglazing en stuur de configuratie rechtstreeks naar ons team.",
+    "button": "Open de configurator"
+  },
+  "newsletter": {
+    "eyebrow": "Nieuwsbrief",
+    "title": "Blijf op de hoogte.",
+    "text": "Nieuws over producten, projecten en aanbiedingen. Geen spam — u kunt zich op elk moment uitschrijven."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "E-mailadres",
+      "placeholder": "naam@bedrijf.nl",
+      "submit": "Inschrijven",
+      "consent": "Ik ga akkoord met het ontvangen van e-mails van Winex (u ontvangt een bevestigingsmail) en heb het <link>Privacybeleid</link> gelezen.",
+      "success": "Bijna klaar. Controleer uw inbox en klik op de bevestigingslink."
+    },
+    "contact": {
+      "name": "Naam",
+      "namePh": "Uw naam",
+      "email": "E-mail",
+      "emailPh": "naam@bedrijf.nl",
+      "phone": "Telefoon",
+      "phonePh": "+32 …",
+      "subject": "Onderwerp",
+      "subjectPh": "Bijv. offerte voor PVC-ramen",
+      "message": "Bericht",
+      "messagePh": "Vertel ons over uw project…",
+      "consent": "Ik ga akkoord met de verwerking van mijn gegevens volgens het <link>Privacybeleid</link>.",
+      "submit": "Bericht verzenden",
+      "successTitle": "Bericht verzonden",
+      "successText": "Dank u. Wij nemen zo snel mogelijk contact met u op."
+    },
+    "unsubscribe": {
+      "title": "Uitschrijven",
+      "invalid": "Ongeldige link. Gebruik de uitschrijflink uit de laatste e-mail die u ontving.",
+      "ask": "Bevestig dat u de Winex-nieuwsbrief niet meer wilt ontvangen.",
+      "button": "Uitschrijving bevestigen",
+      "done": "U bent uitgeschreven. U ontvangt geen e-mails meer van ons.",
+      "error": "De link is ongeldig of er is een fout opgetreden. Probeer het opnieuw."
+    },
+    "confirm": {
+      "title": "Bevestig uw inschrijving",
+      "invalid": "Ongeldige link. Gebruik de link uit de bevestigingsmail.",
+      "ask": "Klik op de knop om te bevestigen dat u de Winex-nieuwsbrief wilt ontvangen.",
+      "button": "Inschrijving bevestigen",
+      "done": "Dank u. Uw inschrijving is bevestigd. Een welkomstmail is onderweg.",
+      "expired": "Deze link is verlopen. Schrijf u opnieuw in via de startpagina.",
+      "used": "Deze link is ongeldig of is al gebruikt.",
+      "error": "Er is een fout opgetreden. Probeer het opnieuw."
+    },
+    "errors": {
+      "invalid_name": "Vul uw naam in.",
+      "invalid_email": "Het e-mailadres is ongeldig.",
+      "invalid_phone": "Het telefoonnummer is ongeldig.",
+      "invalid_message": "Uw bericht is te kort.",
+      "consent_required": "U moet akkoord gaan met de gegevensverwerking.",
+      "rate_limited": "Te veel pogingen. Probeer het over enkele minuten opnieuw.",
+      "unavailable": "De dienst is tijdelijk niet beschikbaar. Bel of schrijf ons rechtstreeks.",
+      "failed": "Wij konden uw aanvraag niet verzenden. Probeer het opnieuw.",
+      "forbidden": "Verzoek geweigerd.",
+      "network": "Geen verbinding. Controleer uw internetverbinding en probeer het opnieuw.",
+      "generic": "Er is een fout opgetreden. Probeer het opnieuw."
+    }
+  },
+  "about": {
+    "eyebrow": "Over ons",
+    "titleLine1": "Een kwaliteitsstandaard,",
+    "titleLine2": "toegepast op elke opening.",
+    "lead": "Winex levert schrijnwerk in PVC, aluminium en hout. Wij werken op bestelling, controleren de kwaliteit in elke fase en leveren rechtstreeks van het fabrieksterrein.",
+    "storyTitle": "Wat wij doen",
+    "story1": "Ons aanbod is gebouwd rond drie materialen — PVC, aluminium en hout — zodat elk project de oplossing krijgt die erbij past, en niet alleen de oplossing die beschikbaar is.",
+    "story2": "Door rechtstreeks met de fabriek samen te werken en vanaf het fabrieksterrein te leveren, houden wij specificatie, levertijden en kwaliteit nauwgezet onder controle.",
+    "photoCaption": "Het team",
+    "valuesEyebrow": "Principes",
+    "valuesTitle": "Onze werkwijze.",
+    "precisionTitle": "Precisie",
+    "precisionText": "Elk element wordt op maat gespecificeerd, met kleine toleranties en controles onderweg.",
+    "efficiencyTitle": "Efficiëntie",
+    "efficiencyText": "Wij beschouwen schrijnwerk als een systeem dat energie bespaart, niet alleen als product.",
+    "craftTitle": "Vakmanschap",
+    "craftText": "Moderne technologie gecombineerd met de ervaring van mensen die het materiaal kennen.",
+    "reliabilityTitle": "Betrouwbaarheid",
+    "reliabilityText": "Duidelijke communicatie, realistische levertijden en ondersteuning vóór en na de plaatsing."
+  },
+  "factory": {
+    "eyebrow": "De fabriek",
+    "titleLine1": "Waar elk element",
+    "titleLine2": "vorm krijgt.",
+    "lead": "Schrijnwerk op bestelling gemaakt, stap voor stap gecontroleerd en montageklaar verzonden — rechtstreeks van het fabrieksterrein.",
+    "exterior": "Buitenkant van de fabriek",
+    "cutting": "Zaaglijn",
+    "welding": "Lassen van profielen",
+    "assembly": "Assemblage",
+    "quality": "Kwaliteitscontrole",
+    "dispatch": "Magazijn en verzending",
+    "stagesEyebrow": "Productie",
+    "stagesTitle": "Van profiel tot eindproduct.",
+    "raw": "Grondstoffen",
+    "rawText": "Selectie van profielen, beglazing en beslag.",
+    "cut": "Zagen en bewerken",
+    "cutText": "Op de millimeter gezaagd, volgens de bestelling.",
+    "assemble": "Assemblage",
+    "assembleText": "Lassen, beslag monteren en beglazen.",
+    "qc": "Kwaliteitscontrole",
+    "qcText": "Controles vóór verpakking en verzending."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "titleLine1": "Laten we praten",
+    "titleLine2": "over uw project.",
+    "lead": "Schrijf of bel ons. Wij antwoorden met een duidelijke offerte en een realistische levertijd.",
+    "infoTitle": "Contactgegevens",
+    "formTitle": "Stuur ons een bericht",
+    "address": "Adres",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "hours": "Openingstijden",
+    "noDetails": "Gebruik het formulier om contact met ons op te nemen."
+  },
+  "configurator": {
+    "eyebrow": "Configurator",
+    "titleLine1": "Specificeer uw",
+    "titleLine2": "schrijnwerk.",
+    "lead": "Configureer de ramen en deuren voor uw project en stuur ons uw offerteaanvraag.",
+    "step1": "Kies type en materiaal",
+    "step2": "Stel de afmetingen in",
+    "step3": "Kleur, beglazing, accessoires",
+    "step4": "Verstuur de configuratie",
+    "iframeTitle": "Winex-offerteconfigurator",
+    "openNew": "Openen in een nieuw venster",
+    "help": "Liever met iemand praten?",
+    "helpLink": "Neem contact op met ons team"
+  },
+  "footer": {
+    "tagline": "Schrijnwerk in PVC, aluminium en hout. Rechtstreeks van het fabrieksterrein.",
+    "navigate": "Navigatie",
+    "legal": "Juridisch",
+    "contact": "Contact",
+    "anpc": "ANPC — alternatieve geschillenbeslechting",
+    "rights": "Alle rechten voorbehouden.",
+    "cui": "Fiscaal nummer",
+    "regCom": "Handelsregister"
+  },
+  "notFound": {
+    "eyebrow": "Fout 404",
+    "titleLine1": "Pagina niet",
+    "titleLine2": "gevonden.",
+    "text": "Dit adres bestaat niet of is verplaatst.",
+    "back": "Terug naar de startpagina"
+  },
+  "legal": {
+    "updated": "Laatst bijgewerkt: {date}",
+    "translationNotice": "Deze vertaling wordt ter informatie verstrekt. Bij verschillen prevaleert de Roemeense versie.",
+    "idCui": "Fiscaal nummer {v}",
+    "idRegCom": "Handelsregister {v}",
+    "idAddress": "maatschappelijke zetel: {v}",
+    "idEmail": "e-mail: {v}",
+    "idPhone": "telefoon: {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Verwerkingsverantwoordelijke",
+        "blocks": [{ "p": "De verwerkingsverantwoordelijke voor persoonsgegevens is **{identity}**." }]
+      },
+      {
+        "title": "2. Welke gegevens wij verwerken en waarom",
+        "blocks": [
+          {
+            "ul": [
+              "**Contact- en offerteformulieren:** naam, e-mail, telefoon (optioneel), inhoud van het bericht en de taal van de pagina. Doel: uw verzoek beantwoorden en een offerte opstellen. Rechtsgrond: precontractuele maatregelen op uw verzoek en ons gerechtvaardigd belang (art. 6, lid 1, onder b en f AVG).",
+              "**Nieuwsbrief:** e-mailadres en taal. Doel: het verzenden van commerciële communicatie. Rechtsgrond: uw toestemming (art. 6, lid 1, onder a AVG), die u op elk moment kunt intrekken. De inschrijving verloopt in twee stappen: u ontvangt een e-mail met een bevestigingslink en tot uw bevestiging wordt er geen communicatie verzonden. Onbevestigde aanvragen worden na 30 dagen automatisch verwijderd; wij bewaren de bevestigingsdatum als bewijs van toestemming.",
+              "**Anonieme websitestatistieken:** bezochte pagina’s, klikken op knoppen en links, type apparaat, land, taal en verkeersbron. Wij gebruiken geen cookies en slaan niets op uw apparaat op. De bezoekersidentificatie is een anonieme code die dagelijks opnieuw wordt berekend en niet kan worden gebruikt om u te identificeren. Wij respecteren de signalen “Do Not Track” en “Global Privacy Control”. Doel: de website begrijpen en verbeteren. Rechtsgrond: gerechtvaardigd belang. Gedetailleerde gebeurtenissen worden na 3 dagen verwijderd; alleen geaggregeerde totalen blijven bestaan.",
+              "**Technische gegevens:** uw IP-adres wordt tijdelijk gebruikt voor beveiliging en misbruikpreventie (beperking van het aantal verzoeken). Rechtsgrond: gerechtvaardigd belang."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Ontvangers",
+        "blocks": [
+          { "p": "Gegevens worden verwerkt door dienstverleners die als verwerkers optreden:" },
+          {
+            "ul": [
+              "Convex, Inc. — opslag van berichten, abonnees en anonieme statistieken;",
+              "Resend, Inc. — verzending en bezorging van e-mails;",
+              "onze hostingprovider;",
+              "OneSpec — alleen als u de online configurator gebruikt, volgens eigen beleid."
+            ]
+          },
+          { "p": "Sommige aanbieders kunnen gegevens buiten de Europese Economische Ruimte verwerken; doorgiften zijn gebaseerd op standaardcontractbepalingen en/of het EU-VS-privacykader, al naargelang het geval." }
+        ]
+      },
+      {
+        "title": "4. Bewaartermijn",
+        "blocks": [
+          { "p": "Contactberichten: maximaal 24 maanden na de laatste interactie, tenzij een overeenkomst wordt gesloten. Nieuwsbrief: tot u uw toestemming intrekt. Gegevens uit contractuele relaties: volgens wettelijke verplichtingen (waaronder boekhoudkundige en fiscale)." }
+        ]
+      },
+      {
+        "title": "5. Uw rechten",
+        "blocks": [
+          { "p": "U hebt recht op inzage, rectificatie, verwijdering, beperking, overdraagbaarheid en bezwaar, en het recht uw toestemming in te trekken. U kunt ons schrijven via {email}. U hebt ook het recht een klacht in te dienen bij de nationale gegevensbeschermingsautoriteit van uw land of bij de [Roemeense nationale toezichthoudende autoriteit voor de verwerking van persoonsgegevens (ANSPDCP)](https://www.dataprotection.ro)." }
+        ]
+      },
+      {
+        "title": "6. Beveiliging",
+        "blocks": [{ "p": "Wij gebruiken versleutelde verbindingen (HTTPS), beperkte toegang tot gegevens en technische maatregelen tegen misbruik. Wij verkopen uw gegevens niet." }]
+      },
+      {
+        "title": "7. Wijzigingen",
+        "blocks": [{ "p": "Wij kunnen dit beleid bijwerken; de geldende versie is altijd de versie die op deze pagina is gepubliceerd." }]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. Over de website",
+        "blocks": [{ "p": "Deze website ({domain}) wordt beheerd door **{identity}**. Door de website te gebruiken, aanvaardt u deze voorwaarden." }]
+      },
+      {
+        "title": "2. Productinformatie",
+        "blocks": [{ "p": "De inhoud van deze website is uitsluitend informatief en vormt geen bindend aanbod. Afbeeldingen, kleuren en specificaties kunnen afwijken van het uiteindelijke product. Aanbiedingen en overeenkomsten worden individueel en schriftelijk overeengekomen." }]
+      },
+      {
+        "title": "3. De configurator",
+        "blocks": [{ "p": "Met de configurator samengestelde configuraties zijn indicatief tot Winex het aanbod schriftelijk heeft bevestigd. De configurator wordt aangeboden in samenwerking met OneSpec; het gebruik ervan kan ook onderworpen zijn aan de voorwaarden van die aanbieder." }]
+      },
+      {
+        "title": "4. Intellectuele eigendom",
+        "blocks": [{ "p": "Teksten, afbeeldingen, logo’s en het ontwerp van deze website behoren toe aan Winex of zijn licentiegevers en mogen niet zonder schriftelijke toestemming worden gekopieerd of gebruikt." }]
+      },
+      {
+        "title": "5. Beperking van aansprakelijkheid",
+        "blocks": [{ "p": "Wij doen ons best om de informatie juist te houden, maar garanderen niet dat deze foutloos is of dat de website ononderbroken beschikbaar is. Aansprakelijkheid is beperkt voor zover de wet dat toestaat." }]
+      },
+      {
+        "title": "6. Persoonsgegevens",
+        "blocks": [{ "p": "De verwerking van persoonsgegevens wordt beschreven in het [Privacybeleid](internal:/privacy) en het [Cookiebeleid](internal:/cookies)." }]
+      },
+      {
+        "title": "7. Toepasselijk recht en geschillen",
+        "blocks": [{ "p": "Op deze voorwaarden is het Roemeense recht van toepassing. Consumenten kunnen ook een beroep doen op de [alternatieve geschillenbeslechting van de ANPC (SAL)](https://anpc.ro/ce-este-sal/) en op de rechtbanken en consumentenorganisaties van hun land van verblijf." }]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. Wat cookies zijn",
+        "blocks": [{ "p": "Cookies zijn kleine bestanden die in uw browser worden opgeslagen en worden gebruikt om een website te laten werken en te verbeteren." }]
+      },
+      {
+        "title": "2. Wat wij gebruiken op {domain}",
+        "blocks": [
+          { "p": "De website **gebruikt momenteel geen analytische of marketingcookies**. Wij meten bezoeken met een eigen systeem, zonder cookies en zonder informatie op uw apparaat op te slaan (details in het [Privacybeleid](internal:/privacy)). Voor de technische werking van de website is geen toestemming nodig." }
+        ]
+      },
+      {
+        "title": "3. Diensten van derden",
+        "blocks": [{ "p": "De configuratorpagina laadt een externe dienst (OneSpec) in een ingebed kader. Deze kan eigen cookies plaatsen of vergelijkbare technologieën gebruiken, volgens het beleid van de aanbieder." }]
+      },
+      {
+        "title": "4. Cookies beheren",
+        "blocks": [{ "p": "U kunt cookies verwijderen of blokkeren in de instellingen van uw browser. Blokkeren kan de werking van diensten van derden beïnvloeden." }]
+      },
+      {
+        "title": "5. Wijzigingen",
+        "blocks": [{ "p": "Als wij analytische of marketingtools invoeren, vragen wij uw toestemming voordat wij ze activeren." }]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Bericht van Winex"
+  }
+}

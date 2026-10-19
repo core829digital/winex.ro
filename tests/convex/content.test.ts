@@ -7,19 +7,28 @@ describe("blog", () => {
   it("slug da titolo (diacritici), unicità, publishedAt stabile", async () => {
     const t = makeT();
     const { client } = await asUser(t, "stefan@core829.ro");
-    const id = await client.mutation(api.posts.save, { title: "Ferestre eficiente — iarna în Roman!", content: "# x", status: "draft" });
+    const id = await client.mutation(api.posts.save, { title: "Ferestre eficiente — iarna în Roman!", locale: "ro", content: "# x", status: "draft" });
     const p = await client.query(api.posts.get, { id });
     expect(p?.slug).toBe("ferestre-eficiente-iarna-in-roman");
     expect(p?.publishedAt).toBeUndefined();
 
-    await expect(client.mutation(api.posts.save, { title: "Altul", slug: "ferestre-eficiente-iarna-in-roman", content: "x", status: "draft" })).rejects.toThrow(/SLUG_TAKEN/);
-    await expect(client.mutation(api.posts.save, { title: "   ", content: "x", status: "draft" })).rejects.toThrow(/TITLE_REQUIRED/);
+    await expect(client.mutation(api.posts.save, { title: "Altul", locale: "ro", slug: "ferestre-eficiente-iarna-in-roman", content: "x", status: "draft" })).rejects.toThrow(/SLUG_TAKEN/);
+    await expect(client.mutation(api.posts.save, { title: "   ", locale: "ro", content: "x", status: "draft" })).rejects.toThrow(/TITLE_REQUIRED/);
 
-    await client.mutation(api.posts.save, { id, title: "Ferestre eficiente — iarna în Roman!", content: "# x", status: "published" });
+    await client.mutation(api.posts.save, { id, title: "Ferestre eficiente — iarna în Roman!", locale: "ro", content: "# x", status: "published" });
     const first = (await client.query(api.posts.get, { id }))?.publishedAt;
     expect(first).toBeTypeOf("number");
-    await client.mutation(api.posts.save, { id, title: "Titlu schimbat", content: "# y", status: "published", slug: "ferestre-eficiente-iarna-in-roman" });
+    await client.mutation(api.posts.save, { id, title: "Titlu schimbat", locale: "ro", content: "# y", status: "published", slug: "ferestre-eficiente-iarna-in-roman" });
     expect((await client.query(api.posts.get, { id }))?.publishedAt).toBe(first);
+  });
+
+  it("lo slug è univoco per lingua: lo stesso slug può esistere in lingue diverse", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    await client.mutation(api.posts.save, { title: "Windows", locale: "en", slug: "windows", content: "x", status: "draft" });
+    await client.mutation(api.posts.save, { title: "Fenster", locale: "de", slug: "windows", content: "x", status: "draft" }); // altra lingua: ok
+    await expect(client.mutation(api.posts.save, { title: "Windows 2", locale: "en", slug: "windows", content: "x", status: "draft" })).rejects.toThrow(/SLUG_TAKEN/);
+    await expect(client.mutation(api.posts.save, { title: "X", locale: "xx", content: "x", status: "draft" })).rejects.toThrow(/INVALID_LOCALE/);
   });
 });
 

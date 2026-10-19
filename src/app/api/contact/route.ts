@@ -14,19 +14,20 @@ import {
   resendReady,
 } from "@/lib/server";
 import { notifyAdmins } from "@/lib/push";
+import { contactReplyEmail } from "@/lib/newsletter-mail";
 import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const g = guard(req);
-  if (!g.ok) return NextResponse.json({ error: "Cerere respinsă." }, { status: 403 });
+  if (!g.ok) return NextResponse.json({ error: "forbidden" }, { status: 403 });
   if (!rateLimit(`contact:${g.ip}`, 5, 10 * 60_000))
-    return NextResponse.json({ error: "Prea multe încercări. Reîncearcă peste câteva minute." }, { status: 429 });
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
   const parsed = contactSchema.safeParse(await readJson(req));
   if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "Date invalide." }, { status: 400 });
+    return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "generic" }, { status: 400 });
   }
   const { website, ...data } = parsed.data;
   if (website) return NextResponse.json({ ok: true }); // honeypot
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
 
   if (!convexReady && !(resendReady && teamTo)) {
     console.error("[contact] Nessun canale configurato (Convex / Resend).");
-    return NextResponse.json({ error: "Serviciul nu este disponibil momentan. Ne poți suna sau scrie direct." }, { status: 503 });
+    return NextResponse.json({ error: "unavailable" }, { status: 503 });
   }
 
   let stored = false;
@@ -53,6 +54,7 @@ export async function POST(req: Request) {
         subject: data.subject,
         message: data.message,
         source: "contact",
+        locale: data.locale,
         consent: true,
       });
       stored = true;
@@ -69,7 +71,7 @@ export async function POST(req: Request) {
         replyTo: data.email,
         subject: `[Winex.ro] ${data.subject || "Mesaj nou"} — ${data.name}`,
         html: `<h2>Mesaj nou de pe winex.ro</h2>
-<p><b>Nume:</b> ${esc(data.name)}<br><b>E-mail:</b> ${esc(data.email)}<br><b>Telefon:</b> ${esc(data.phone ?? "—")}</p>
+<p><b>Nume:</b> ${esc(data.name)}<br><b>E-mail:</b> ${esc(data.email)}<br><b>Telefon:</b> ${esc(data.phone ?? "—")}<br><b>Limba paginii:</b> ${esc((data.locale ?? "—").toUpperCase())}</p>
 <p style="white-space:pre-wrap">${esc(data.message)}</p>`,
       });
       if (error) throw error;
@@ -80,19 +82,15 @@ export async function POST(req: Request) {
   }
 
   if (!stored && !mailed) {
-    return NextResponse.json({ error: "Nu am putut trimite mesajul. Te rugăm să reîncerci." }, { status: 502 });
+    return NextResponse.json({ error: "failed" }, { status: 502 });
   }
 
   // Dopo la risposta: conferma al cliente e notifica push (non rallentano il form).
   after(async () => {
     if (resendReady) {
+      const reply = contactReplyEmail(site.url, data.name, data.locale ?? "en");
       await resend()
-        .emails.send({
-          from: env.from!,
-          to: data.email,
-          subject: `Am primit mesajul tău — ${site.name}`,
-          html: `<p>Bună, ${esc(data.name)},</p><p>Am primit mesajul tău și revenim cât mai curând.</p><p>— Echipa ${site.name}</p>`,
-        })
+        .emails.send({ from: env.from!, to: data.email, subject: reply.subject, html: reply.html, text: reply.text })
         .catch(() => undefined);
     }
     if (notif.pushOnLead !== false) {

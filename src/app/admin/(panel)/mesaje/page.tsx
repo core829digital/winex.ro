@@ -66,6 +66,7 @@ export default function MessagesPage() {
                     <div className="mt-2 flex items-center gap-2">
                       <Badge tone={TONE[l.status]}>{LABEL[l.status]}</Badge>
                       {l.source === "configurator" && <Badge tone="blue">Configurator</Badge>}
+                      {l.locale && <Badge>{l.locale.toUpperCase()}</Badge>}
                     </div>
                   </button>
                 </li>
@@ -121,6 +122,7 @@ function Detail({ lead, onBack, onError }: { lead: Doc<"leads">; onBack: () => v
       <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
         <div><dt className="text-xs font-bold uppercase tracking-[0.08em] text-ink-mute">E-mail</dt><dd className="mt-1 break-all">{lead.email}</dd></div>
         <div><dt className="text-xs font-bold uppercase tracking-[0.08em] text-ink-mute">Subiect</dt><dd className="mt-1">{lead.subject || "—"}</dd></div>
+        <div><dt className="text-xs font-bold uppercase tracking-[0.08em] text-ink-mute">Limba paginii</dt><dd className="mt-1">{lead.locale ? lead.locale.toUpperCase() : "—"} <span className="text-xs text-ink-mute">(răspunde în această limbă)</span></dd></div>
       </dl>
 
       <div className="mt-5 rounded-xl bg-bg-soft p-4">

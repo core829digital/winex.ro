@@ -4,10 +4,12 @@ import { useEffect, useRef, type ElementType, type ReactNode } from "react";
 import { clsx } from "clsx";
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
   as?: ElementType;
   delay?: number;
   className?: string;
+  /** "group": i figli entrano in sequenza (stagger). "rule": linea che si disegna. Default: singolo elemento. */
+  variant?: "single" | "group" | "rule";
 };
 
 // Un solo observer condiviso da tutte le istanze (meno overhead su mobile).
@@ -23,14 +25,14 @@ function observer() {
           }
         }
       },
-      { rootMargin: "0px 0px -6% 0px", threshold: 0.05 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.06 },
     );
   }
   return shared;
 }
 
 /** Rivela il contenuto quando entra nel viewport (una sola volta; solo opacity/transform). */
-export function Reveal({ children, as: Tag = "div", delay = 0, className }: Props) {
+export function Reveal({ children, as: Tag = "div", delay = 0, className, variant = "single" }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export function Reveal({ children, as: Tag = "div", delay = 0, className }: Prop
   return (
     <Tag
       ref={ref}
-      className={clsx("reveal", className)}
+      className={clsx(variant === "group" ? "reveal-group" : variant === "rule" ? "rule-draw" : "reveal", className)}
       style={{ "--d": `${delay}ms` } as React.CSSProperties}
     >
       {children}

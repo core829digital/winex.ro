@@ -27,7 +27,7 @@ export default function BlogPage() {
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate font-display text-lg font-bold">{p.title}</p>
-                    <p className="truncate text-sm text-ink-soft">/{p.slug} · {fmtDate(p.updatedAt)}</p>
+                    <p className="truncate text-sm text-ink-soft">{p.locale.toUpperCase()} · /{p.slug} · {fmtDate(p.updatedAt)}</p>
                   </div>
                   <Badge tone={p.status === "published" ? "green" : "gray"}>{p.status === "published" ? "Publicat" : "Ciornă"}</Badge>
                 </div>

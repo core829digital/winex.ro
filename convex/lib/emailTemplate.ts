@@ -53,7 +53,11 @@ export function markdownToText(md: string): string {
     .replace(/^#\s+/gm, "");
 }
 
+import { emailStrings } from "./emailStrings";
+
 export type EmailInput = {
+  /** lingua del destinatario: determina il piè di pagina (default: en) */
+  locale?: string;
   subject: string;
   preheader?: string;
   body: string;
@@ -65,13 +69,14 @@ export type EmailInput = {
 };
 
 export function renderEmailHtml(i: EmailInput): string {
+  const str = emailStrings(i.locale).campaign;
   const cta = safeUrl(i.ctaUrl);
   const button =
     cta && i.ctaLabel
       ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 24px"><tr><td style="border-radius:999px;background:#dc2430"><a href="${escapeHtml(cta)}" style="display:inline-block;padding:14px 28px;font-weight:700;font-size:15px;color:#ffffff;text-decoration:none;border-radius:999px">${escapeHtml(i.ctaLabel)}</a></td></tr></table>`
       : "";
   return `<!doctype html>
-<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(i.subject)}</title></head>
+<html lang="${escapeHtml(i.locale ?? "en")}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(i.subject)}</title></head>
 <body style="margin:0;padding:0;background:#f6f6f7;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#25282d">
 <span style="display:none;visibility:hidden;opacity:0;height:0;width:0;overflow:hidden;color:transparent">${escapeHtml(i.preheader ?? "")}</span>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f6f7"><tr><td align="center" style="padding:24px 12px">
@@ -79,19 +84,20 @@ export function renderEmailHtml(i: EmailInput): string {
 <tr><td style="padding:28px 32px 8px"><a href="${escapeHtml(i.siteUrl)}" style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#25282d;text-decoration:none">win<span style="color:#dc2430">ex</span></a></td></tr>
 <tr><td style="padding:12px 32px 8px;font-size:16px;line-height:1.65;color:#4a5059">${markdownToHtml(i.body)}${button}</td></tr>
 <tr><td style="padding:20px 32px 28px;border-top:1px solid #eeeff1;font-size:12px;line-height:1.6;color:#6f7681">
-${i.companyLine ? `${escapeHtml(i.companyLine)}<br>` : ""}Primești acest e-mail pentru că te-ai abonat la newsletterul Winex.<br>
-<a href="${escapeHtml(i.unsubscribeUrl)}" style="color:#6f7681;text-decoration:underline">Dezabonează-te</a></td></tr>
+${i.companyLine ? `${escapeHtml(i.companyLine)}<br>` : ""}${escapeHtml(str.received)}<br>
+<a href="${escapeHtml(i.unsubscribeUrl)}" style="color:#6f7681;text-decoration:underline">${escapeHtml(str.unsubscribe)}</a></td></tr>
 </table></td></tr></table></body></html>`;
 }
 
 export function renderEmailText(i: EmailInput): string {
   const cta = safeUrl(i.ctaUrl);
+  const str = emailStrings(i.locale).campaign;
   return [
     markdownToText(i.body),
     cta && i.ctaLabel ? `${i.ctaLabel}: ${cta}` : "",
     "—",
     i.companyLine ?? "",
-    `Dezabonare: ${i.unsubscribeUrl}`,
+    `${str.unsubscribe}: ${i.unsubscribeUrl}`,
   ]
     .filter(Boolean)
     .join("\n\n");

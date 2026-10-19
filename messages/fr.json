@@ -1,0 +1,484 @@
+{
+  "meta": {
+    "title": "Winex — Fenêtres et portes en PVC, aluminium et bois",
+    "description": "Winex propose des fenêtres, des portes et des systèmes de menuiserie en PVC, aluminium et bois. Efficacité énergétique, précision de fabrication et livraison directement depuis la cour de l’usine.",
+    "pages": {
+      "about": {
+        "title": "À propos",
+        "description": "Winex propose des menuiseries en PVC, aluminium et bois, directement depuis la cour de l’usine."
+      },
+      "factory": {
+        "title": "L’usine",
+        "description": "Là où elles sont réalisées : découpe, soudure, assemblage et contrôle qualité des menuiseries en PVC, aluminium et bois."
+      },
+      "configurator": {
+        "title": "Configurateur",
+        "description": "Configurez en ligne vos fenêtres et portes Winex : matériau, couleur, type d’ouverture et vitrage."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Contactez Winex pour obtenir un devis pour vos fenêtres et portes en PVC, aluminium et bois."
+      },
+      "privacy": {
+        "title": "Politique de confidentialité",
+        "description": "Comment Winex traite les données personnelles."
+      },
+      "terms": {
+        "title": "Conditions générales",
+        "description": "Conditions d’utilisation du site web Winex."
+      },
+      "cookies": {
+        "title": "Politique de cookies",
+        "description": "Cookies et technologies similaires sur le site web Winex."
+      },
+      "unsubscribe": {
+        "title": "Se désinscrire de la newsletter",
+        "description": "Se désinscrire de la newsletter Winex."
+      },
+      "confirm": {
+        "title": "Confirmez votre inscription",
+        "description": "Confirmez votre inscription à la newsletter Winex."
+      }
+    }
+  },
+  "common": {
+    "skip": "Aller au contenu",
+    "tagline": "Directement depuis la cour de l’usine",
+    "home": "Winex — page d’accueil",
+    "language": "Langue",
+    "menuOpen": "Ouvrir le menu",
+    "menuClose": "Fermer le menu",
+    "scrollDown": "Aller à la section suivante",
+    "photoAlt": "Photographie : {caption}"
+  },
+  "nav": {
+    "label": "Navigation principale",
+    "mobileLabel": "Navigation mobile",
+    "about": "À propos",
+    "factory": "L’usine",
+    "configurator": "Configurateur",
+    "contact": "Contact",
+    "cta": "Configurer"
+  },
+  "hero": {
+    "eyebrow": "Fenêtres, portes et systèmes",
+    "titleLine1": "Des menuiseries à haute efficacité énergétique,",
+    "titleLine2": "directement depuis la cour de l’usine.",
+    "lead": "Nos menuiseries sont conçues pour l’isolation, la durabilité et un design qui se remarque.",
+    "primary": "Configurer vos menuiseries",
+    "secondary": "Découvrir l’usine",
+    "diagramLabel": "Coupe schématique d’une fenêtre (illustrative)",
+    "interior": "Intérieur",
+    "exterior": "Extérieur",
+    "item1Title": "Profilé multichambre",
+    "item1Text": "Les chambres internes ralentissent la transmission de la chaleur à travers le cadre.",
+    "item2Title": "Vitrage isolant",
+    "item2Text": "Des vitres scellées, séparées par un intercalaire, réduisent les déperditions de chaleur.",
+    "item3Title": "Joint d’étanchéité continu",
+    "item3Text": "Assure l’étanchéité à l’air et à l’eau entre l’ouvrant et le dormant.",
+    "trust1": "Fiches techniques sur demande",
+    "trust2": "PVC · Aluminium · Bois",
+    "trust3": "Configurateur en ligne",
+    "trust4": "Pose professionnelle"
+  },
+  "materials": {
+    "eyebrow": "Matériaux",
+    "title": "Trois matériaux, un même standard de qualité.",
+    "lead": "Le même standard de qualité pour chaque matériau, afin que la spécification suive le projet et non les limites du fournisseur.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "Le choix équilibré pour les bâtiments résidentiels et tertiaires : isolation thermique et acoustique élevée, entretien minimal et excellent rapport entre performance et investissement.",
+      "p1": "Profilés multichambres",
+      "p2": "Entretien minimal",
+      "p3": "Efficacité énergétique"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Aluminium",
+      "text": "Des profilés fins et rigides pour les grandes surfaces vitrées, des lignes architecturales épurées et les projets tertiaires.",
+      "p1": "Profilés fins, plus de lumière naturelle",
+      "p2": "Résistance structurelle",
+      "p3": "Finitions durables"
+    },
+    "timber": {
+      "label": "BOIS",
+      "title": "Bois",
+      "text": "La chaleur d’un matériau naturel, livré avec la précision de la production industrielle, pour les projets où l’aspect compte autant que la performance.",
+      "p1": "Esthétique naturelle",
+      "p2": "Détails réalisés sur mesure",
+      "p3": "Pour maisons et rénovations"
+    }
+  },
+  "energy": {
+    "eyebrow": "Efficacité énergétique",
+    "title": "Une performance thermique que l’on perçoit sur la facture et dans la pièce.",
+    "lead": "Une bonne menuiserie se juge à ce qu’elle économise et au confort qu’elle procure, pas seulement à son apparence.",
+    "chambersTitle": "Profilés multichambres",
+    "chambersText": "Les chambres d’air intégrées au profilé ralentissent le transfert de chaleur entre l’intérieur et l’extérieur.",
+    "heatTitle": "La chaleur reste à l’intérieur",
+    "heatText": "Moins d’énergie perdue en hiver, moins de chaleur accumulée en été.",
+    "acousticTitle": "Confort acoustique",
+    "acousticText": "Des vitrages et des joints qui atténuent le bruit extérieur.",
+    "airtightTitle": "Étanchéité et sécurité",
+    "airtightText": "Des joints continus et une quincaillerie de qualité pour une fermeture précise.",
+    "note": "Les valeurs de performance dépendent du système et du vitrage choisis. Les fiches techniques sont disponibles sur demande."
+  },
+  "process": {
+    "eyebrow": "Notre méthode",
+    "title": "De la spécification à la menuiserie posée.",
+    "s1Title": "Conseil",
+    "s1Text": "Nous définissons les exigences du projet : dimensions, matériau, performances et budget.",
+    "s2Title": "Configuration",
+    "s2Text": "Vous choisissez le profilé, la couleur, le vitrage et la quincaillerie dans le configurateur en ligne.",
+    "s3Title": "Fabrication",
+    "s3Text": "Vos menuiseries sont réalisées sur commande, avec des contrôles à chaque étape.",
+    "s4Title": "Pose",
+    "s4Text": "Livraison et pose professionnelle, pour que la performance se retrouve dans le bâtiment."
+  },
+  "cta": {
+    "eyebrow": "Configurateur",
+    "title": "Spécifiez vos menuiseries en ligne.",
+    "text": "Choisissez le matériau, la couleur, le type d’ouverture et le vitrage, puis envoyez la configuration directement à notre équipe.",
+    "button": "Ouvrir le configurateur"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Restez informé.",
+    "text": "Actualités produits, projets et offres. Pas de spam : vous pouvez vous désinscrire à tout moment."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "Adresse e-mail",
+      "placeholder": "nom@entreprise.fr",
+      "submit": "S’inscrire",
+      "consent": "J’accepte de recevoir des e-mails de Winex (un e-mail de confirmation vous sera envoyé) et j’ai lu la <link>Politique de confidentialité</link>.",
+      "success": "Presque terminé. Consultez votre boîte de réception et cliquez sur le lien de confirmation."
+    },
+    "contact": {
+      "name": "Nom",
+      "namePh": "Votre nom",
+      "email": "E-mail",
+      "emailPh": "nom@entreprise.fr",
+      "phone": "Téléphone",
+      "phonePh": "+33 …",
+      "subject": "Objet",
+      "subjectPh": "Ex. : devis pour des fenêtres en PVC",
+      "message": "Message",
+      "messagePh": "Parlez-nous de votre projet…",
+      "consent": "J’accepte le traitement de mes données conformément à la <link>Politique de confidentialité</link>.",
+      "submit": "Envoyer le message",
+      "successTitle": "Message envoyé",
+      "successText": "Merci. Nous vous répondrons dans les meilleurs délais."
+    },
+    "unsubscribe": {
+      "title": "Désinscription",
+      "invalid": "Lien invalide. Utilisez le lien de désinscription figurant dans le dernier e-mail reçu.",
+      "ask": "Confirmez que vous ne souhaitez plus recevoir la newsletter Winex.",
+      "button": "Confirmer la désinscription",
+      "done": "Vous êtes désinscrit. Vous ne recevrez plus d’e-mails de notre part.",
+      "error": "Le lien n’est pas valide ou une erreur s’est produite. Veuillez réessayer."
+    },
+    "confirm": {
+      "title": "Confirmez votre inscription",
+      "invalid": "Lien invalide. Utilisez le lien figurant dans l’e-mail de confirmation.",
+      "ask": "Cliquez sur le bouton pour confirmer que vous souhaitez recevoir la newsletter Winex.",
+      "button": "Confirmer l’inscription",
+      "done": "Merci. Votre inscription est confirmée. Un e-mail de bienvenue est en route.",
+      "expired": "Ce lien a expiré. Veuillez vous inscrire à nouveau depuis la page d’accueil.",
+      "used": "Ce lien n’est pas valide ou a déjà été utilisé.",
+      "error": "Une erreur s’est produite. Veuillez réessayer."
+    },
+    "errors": {
+      "invalid_name": "Veuillez saisir votre nom.",
+      "invalid_email": "L’adresse e-mail n’est pas valide.",
+      "invalid_phone": "Le numéro de téléphone n’est pas valide.",
+      "invalid_message": "Votre message est trop court.",
+      "consent_required": "Vous devez accepter le traitement des données.",
+      "rate_limited": "Trop de tentatives. Veuillez réessayer dans quelques minutes.",
+      "unavailable": "Le service est momentanément indisponible. Appelez-nous ou écrivez-nous directement.",
+      "failed": "Nous n’avons pas pu envoyer votre demande. Veuillez réessayer.",
+      "forbidden": "Requête refusée.",
+      "network": "Connexion indisponible. Vérifiez votre connexion internet et réessayez.",
+      "generic": "Une erreur s’est produite. Veuillez réessayer."
+    }
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "titleLine1": "Un standard de qualité,",
+    "titleLine2": "appliqué à chaque ouverture.",
+    "lead": "Winex propose des menuiseries en PVC, aluminium et bois. Nous travaillons sur commande, contrôlons la qualité à chaque étape et livrons directement depuis la cour de l’usine.",
+    "storyTitle": "Ce que nous faisons",
+    "story1": "Notre offre repose sur trois matériaux — PVC, aluminium et bois — afin que chaque projet reçoive la solution qui lui convient, et pas seulement celle qui est disponible.",
+    "story2": "En travaillant directement avec l’usine et en livrant depuis sa cour, nous gardons la spécification, les délais et la qualité sous un contrôle étroit.",
+    "photoCaption": "L’équipe",
+    "valuesEyebrow": "Principes",
+    "valuesTitle": "Notre manière de travailler.",
+    "precisionTitle": "Précision",
+    "precisionText": "Chaque élément est spécifié sur mesure, avec des tolérances serrées et des contrôles en cours de route.",
+    "efficiencyTitle": "Efficacité",
+    "efficiencyText": "Nous considérons la menuiserie comme un système qui économise l’énergie, pas seulement comme un produit.",
+    "craftTitle": "Savoir-faire",
+    "craftText": "Une technologie moderne alliée à l’expérience de personnes qui connaissent le matériau.",
+    "reliabilityTitle": "Fiabilité",
+    "reliabilityText": "Une communication claire, des délais réalistes et un accompagnement avant et après la pose."
+  },
+  "factory": {
+    "eyebrow": "L’usine",
+    "titleLine1": "Là où chaque menuiserie",
+    "titleLine2": "prend forme.",
+    "lead": "Des menuiseries réalisées sur commande, contrôlées étape par étape et expédiées prêtes à poser — directement depuis la cour de l’usine.",
+    "exterior": "Extérieur de l’usine",
+    "cutting": "Ligne de découpe",
+    "welding": "Soudure des profilés",
+    "assembly": "Assemblage",
+    "quality": "Contrôle qualité",
+    "dispatch": "Stockage et expédition",
+    "stagesEyebrow": "Production",
+    "stagesTitle": "Du profilé au produit fini.",
+    "raw": "Matières premières",
+    "rawText": "Sélection des profilés, des vitrages et de la quincaillerie.",
+    "cut": "Découpe et usinage",
+    "cutText": "Découpe au millimètre, selon la commande.",
+    "assemble": "Assemblage",
+    "assembleText": "Soudure, montage de la quincaillerie et vitrage.",
+    "qc": "Contrôle qualité",
+    "qcText": "Vérifications avant l’emballage et l’expédition."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "titleLine1": "Parlons de",
+    "titleLine2": "votre projet.",
+    "lead": "Écrivez-nous ou appelez-nous. Nous répondons avec un devis clair et un délai réaliste.",
+    "infoTitle": "Coordonnées",
+    "formTitle": "Envoyez-nous un message",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "hours": "Horaires d’ouverture",
+    "noDetails": "Utilisez le formulaire pour nous contacter."
+  },
+  "configurator": {
+    "eyebrow": "Configurateur",
+    "titleLine1": "Spécifiez vos",
+    "titleLine2": "menuiseries.",
+    "lead": "Configurez les fenêtres et les portes de votre projet et envoyez-nous votre demande de devis.",
+    "step1": "Choisir le type et le matériau",
+    "step2": "Définir les dimensions",
+    "step3": "Couleur, vitrage, accessoires",
+    "step4": "Envoyer la configuration",
+    "iframeTitle": "Configurateur de devis Winex",
+    "openNew": "Ouvrir dans une nouvelle fenêtre",
+    "help": "Vous préférez parler à quelqu’un ?",
+    "helpLink": "Contacter notre équipe"
+  },
+  "footer": {
+    "tagline": "Menuiseries en PVC, aluminium et bois. Directement depuis la cour de l’usine.",
+    "navigate": "Navigation",
+    "legal": "Mentions légales",
+    "contact": "Contact",
+    "anpc": "ANPC — règlement alternatif des litiges",
+    "rights": "Tous droits réservés.",
+    "cui": "N° fiscal",
+    "regCom": "Registre du commerce"
+  },
+  "notFound": {
+    "eyebrow": "Erreur 404",
+    "titleLine1": "Page",
+    "titleLine2": "introuvable.",
+    "text": "Cette adresse n’existe pas ou a été déplacée.",
+    "back": "Retour à la page d’accueil"
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {date}",
+    "translationNotice": "Cette traduction est fournie à titre de commodité. En cas de divergence, la version en langue roumaine prévaut.",
+    "idCui": "N° fiscal {v}",
+    "idRegCom": "Registre du commerce {v}",
+    "idAddress": "siège social : {v}",
+    "idEmail": "e-mail : {v}",
+    "idPhone": "téléphone : {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Responsable du traitement",
+        "blocks": [
+          {
+            "p": "Le responsable du traitement des données personnelles est **{identity}**."
+          }
+        ]
+      },
+      {
+        "title": "2. Les données que nous traitons et pourquoi",
+        "blocks": [
+          {
+            "ul": [
+              "**Formulaires de contact et de demande de devis :** nom, e-mail, téléphone (facultatif), contenu du message et langue de la page. Finalité : répondre à votre demande et préparer un devis. Base juridique : mesures précontractuelles prises à votre demande et intérêt légitime (art. 6, par. 1, points b et f du RGPD).",
+              "**Newsletter :** adresse e-mail et langue. Finalité : envoi de communications commerciales. Base juridique : votre consentement (art. 6, par. 1, point a du RGPD), que vous pouvez retirer à tout moment. L’inscription se fait en deux étapes : vous recevez un e-mail contenant un lien de confirmation et aucune communication n’est envoyée tant que vous n’avez pas confirmé. Les demandes non confirmées sont supprimées automatiquement après 30 jours ; nous conservons la date de confirmation comme preuve du consentement.",
+              "**Statistiques anonymes du site :** pages consultées, clics sur les boutons et les liens, type d’appareil, pays, langue et source du trafic. Nous n’utilisons aucun cookie et ne stockons rien sur votre appareil. L’identifiant de visiteur est un code anonyme recalculé chaque jour, qui ne permet pas de vous identifier. Nous respectons les signaux « Do Not Track » et « Global Privacy Control ». Finalité : comprendre et améliorer le site. Base juridique : intérêt légitime. Les événements détaillés sont supprimés après 3 jours ; seuls les totaux agrégés sont conservés.",
+              "**Données techniques :** votre adresse IP est utilisée temporairement pour la sécurité et la prévention des abus (limitation du nombre de requêtes). Base juridique : intérêt légitime."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Destinataires",
+        "blocks": [
+          {
+            "p": "Les données sont traitées par des prestataires agissant en qualité de sous-traitants :"
+          },
+          {
+            "ul": [
+              "Convex, Inc. — stockage des messages, des abonnés et des statistiques anonymes ;",
+              "Resend, Inc. — envoi et distribution des e-mails ;",
+              "notre hébergeur web ;",
+              "OneSpec — uniquement si vous utilisez le configurateur en ligne, selon sa propre politique."
+            ]
+          },
+          {
+            "p": "Certains prestataires peuvent traiter des données en dehors de l’Espace économique européen ; les transferts reposent sur les clauses contractuelles types et/ou sur le cadre de protection des données UE–États-Unis, selon le cas."
+          }
+        ]
+      },
+      {
+        "title": "4. Durée de conservation",
+        "blocks": [
+          {
+            "p": "Messages de contact : jusqu’à 24 mois après la dernière interaction, sauf conclusion d’un contrat. Newsletter : jusqu’au retrait du consentement. Données issues de relations contractuelles : conformément aux obligations légales (y compris comptables et fiscales)."
+          }
+        ]
+      },
+      {
+        "title": "5. Vos droits",
+        "blocks": [
+          {
+            "p": "Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition, ainsi que du droit de retirer votre consentement. Vous pouvez nous écrire à {email}. Vous avez également le droit d’introduire une réclamation auprès de l’autorité nationale de protection des données de votre pays ou auprès de l’[Autorité nationale roumaine de contrôle du traitement des données à caractère personnel (ANSPDCP)](https://www.dataprotection.ro)."
+          }
+        ]
+      },
+      {
+        "title": "6. Sécurité",
+        "blocks": [
+          {
+            "p": "Nous utilisons des connexions chiffrées (HTTPS), un accès restreint aux données et des mesures techniques contre les abus. Nous ne vendons pas vos données."
+          }
+        ]
+      },
+      {
+        "title": "7. Modifications",
+        "blocks": [
+          {
+            "p": "Nous pouvons mettre à jour la présente politique ; la version en vigueur est toujours celle publiée sur cette page."
+          }
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. À propos du site",
+        "blocks": [
+          {
+            "p": "Ce site web ({domain}) est exploité par **{identity}**. En utilisant le site, vous acceptez les présentes conditions."
+          }
+        ]
+      },
+      {
+        "title": "2. Informations sur les produits",
+        "blocks": [
+          {
+            "p": "Le contenu de ce site est fourni à titre purement informatif et ne constitue pas une offre ferme. Les images, les couleurs et les spécifications peuvent différer du produit final. Les offres et les contrats sont convenus individuellement, par écrit."
+          }
+        ]
+      },
+      {
+        "title": "3. Le configurateur",
+        "blocks": [
+          {
+            "p": "Les configurations créées avec le configurateur sont données à titre indicatif jusqu’à la confirmation écrite de l’offre par Winex. Le configurateur est fourni en collaboration avec OneSpec ; son utilisation peut également être soumise aux conditions de ce prestataire."
+          }
+        ]
+      },
+      {
+        "title": "4. Propriété intellectuelle",
+        "blocks": [
+          {
+            "p": "Les textes, images, logos et le design de ce site appartiennent à Winex ou à ses concédants et ne peuvent être copiés ou utilisés sans autorisation écrite."
+          }
+        ]
+      },
+      {
+        "title": "5. Limitation de responsabilité",
+        "blocks": [
+          {
+            "p": "Nous nous efforçons de maintenir l’exactitude des informations, mais nous ne garantissons ni l’absence d’erreurs ni la disponibilité ininterrompue du site. La responsabilité est limitée dans la mesure permise par la loi."
+          }
+        ]
+      },
+      {
+        "title": "6. Données personnelles",
+        "blocks": [
+          {
+            "p": "Le traitement des données personnelles est décrit dans la [Politique de confidentialité](internal:/privacy) et la [Politique de cookies](internal:/cookies)."
+          }
+        ]
+      },
+      {
+        "title": "7. Droit applicable et litiges",
+        "blocks": [
+          {
+            "p": "Les présentes conditions sont régies par le droit roumain. Les consommateurs peuvent également recourir au [règlement alternatif des litiges de l’ANPC (SAL)](https://anpc.ro/ce-este-sal/) ainsi qu’aux juridictions et aux organismes de protection des consommateurs de leur pays de résidence."
+          }
+        ]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. Qu’est-ce qu’un cookie",
+        "blocks": [
+          {
+            "p": "Les cookies sont de petits fichiers stockés dans votre navigateur, utilisés pour faire fonctionner et améliorer un site web."
+          }
+        ]
+      },
+      {
+        "title": "2. Ce que nous utilisons sur {domain}",
+        "blocks": [
+          {
+            "p": "Actuellement, le site **n’utilise ni cookies d’analyse ni cookies publicitaires**. Nous mesurons les visites avec notre propre système, sans cookies et sans stocker d’informations sur votre appareil (détails dans la [Politique de confidentialité](internal:/privacy)). Aucun consentement n’est requis pour le fonctionnement technique du site."
+          }
+        ]
+      },
+      {
+        "title": "3. Services tiers",
+        "blocks": [
+          {
+            "p": "La page du configurateur charge un service externe (OneSpec) dans un cadre intégré. Celui-ci peut déposer ses propres cookies ou utiliser des technologies similaires, conformément à la politique de son fournisseur."
+          }
+        ]
+      },
+      {
+        "title": "4. Gestion des cookies",
+        "blocks": [
+          {
+            "p": "Vous pouvez supprimer ou bloquer les cookies dans les paramètres de votre navigateur. Le blocage peut affecter le fonctionnement de services tiers."
+          }
+        ]
+      },
+      {
+        "title": "5. Modifications",
+        "blocks": [
+          {
+            "p": "Si nous introduisons des outils d’analyse ou de marketing, nous demanderons votre consentement avant de les activer."
+          }
+        ]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Message de Winex"
+  }
+}

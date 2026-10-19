@@ -2,6 +2,7 @@ import { v, ConvexError } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { postStatus } from "./schema";
 import { audit, requireAdmin } from "./lib/admin";
+import { LOCALES } from "./lib/locales";
 
 const slugify = (s: string) =>
   s
@@ -32,6 +33,7 @@ export const save = mutation({
   args: {
     id: v.optional(v.id("posts")),
     title: v.string(),
+    locale: v.string(),
     slug: v.optional(v.string()),
     excerpt: v.optional(v.string()),
     content: v.string(),
@@ -45,15 +47,18 @@ export const save = mutation({
     const title = f.title.trim();
     if (!title) throw new ConvexError("TITLE_REQUIRED");
     if (f.content.length > 200000) throw new ConvexError("TOO_LONG");
+    if (!(LOCALES as readonly string[]).includes(f.locale)) throw new ConvexError("INVALID_LOCALE");
     const slug = slugify(f.slug?.trim() || title);
     if (!slug) throw new ConvexError("INVALID_SLUG");
-    const clash = await ctx.db.query("posts").withIndex("by_slug", (q) => q.eq("slug", slug)).first();
+    // lo slug è univoco all'interno della stessa lingua
+    const clash = await ctx.db.query("posts").withIndex("by_locale_slug", (q) => q.eq("locale", f.locale).eq("slug", slug)).first();
     if (clash && clash._id !== id) throw new ConvexError("SLUG_TAKEN");
 
     const prev = id ? await ctx.db.get(id) : null;
     const now = Date.now();
     const data = {
       title,
+      locale: f.locale,
       slug,
       excerpt: f.excerpt?.trim() || undefined,
       content: f.content,

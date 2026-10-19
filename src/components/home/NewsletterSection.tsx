@@ -1,19 +1,21 @@
+import { getTranslations } from "next-intl/server";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function NewsletterSection() {
+export async function NewsletterSection() {
+  const t = await getTranslations("newsletter");
   return (
-    <section className="cv-auto relative px-4 py-16 sm:px-6 lg:py-24">
-      <Reveal className="mx-auto max-w-3xl text-center">
-        <p className="eyebrow">Newsletter</p>
-        <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] font-extrabold">Rămâi la curent cu Winex.</h2>
-        <p className="mx-auto mt-4 max-w-xl text-ink-soft">
-          Noutăți despre produse, proiecte și oferte. Fără spam, te poți dezabona oricând.
-        </p>
-        <div className="mx-auto mt-8 max-w-lg">
+    <section className="section cv-auto border-t border-line">
+      <div className="container-x">
+        <Reveal className="mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          <div>
+            <p className="eyebrow">{t("eyebrow")}</p>
+            <h2 className="h-section mt-5">{t("title")}</h2>
+            <p className="lead mt-4">{t("text")}</p>
+          </div>
           <NewsletterForm />
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

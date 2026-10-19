@@ -2,6 +2,7 @@ import { v, ConvexError } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { leadStatus } from "./schema";
 import { assertIngestSecret, audit, requireAdmin } from "./lib/admin";
+import { normalizeLocale } from "./lib/locales";
 
 /** Chiamata solo dal server Next.js (segreto condiviso). */
 export const create = mutation({
@@ -13,11 +14,12 @@ export const create = mutation({
     subject: v.optional(v.string()),
     message: v.string(),
     source: v.string(),
+    locale: v.optional(v.string()),
     consent: v.boolean(),
   },
-  handler: async (ctx, { secret, ...lead }) => {
+  handler: async (ctx, { secret, locale, ...lead }) => {
     assertIngestSecret(secret);
-    return await ctx.db.insert("leads", { ...lead, status: "new", createdAt: Date.now() });
+    return await ctx.db.insert("leads", { ...lead, locale: locale ? normalizeLocale(locale) : undefined, status: "new", createdAt: Date.now() });
   },
 });
 

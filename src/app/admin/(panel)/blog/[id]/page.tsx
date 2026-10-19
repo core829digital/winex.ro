@@ -9,6 +9,7 @@ import { api } from "@convex/_generated/api";
 import type { Doc, Id } from "@convex/_generated/dataModel";
 import { Btn, Card, ConfirmBtn, Field, Input, PageHeader, Skeleton, Textarea, inputCls } from "@/components/admin/ui";
 import { errMsg, useToast } from "@/components/admin/toast";
+import { localeMeta, locales } from "@/i18n/routing";
 
 export default function PostEditor({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -26,6 +27,7 @@ function Editor({ id, doc }: { id: Id<"posts"> | null; doc: Doc<"posts"> | null 
   const remove = useMutation(api.posts.remove);
   const [f, setF] = useState({
     title: doc?.title ?? "",
+    locale: doc?.locale ?? "ro",
     slug: doc?.slug ?? "",
     excerpt: doc?.excerpt ?? "",
     content: doc?.content ?? "",
@@ -73,6 +75,11 @@ function Editor({ id, doc }: { id: Id<"posts"> | null; doc: Doc<"posts"> | null 
           </Card>
           <Card title="SEO & imagine">
             <div className="space-y-4">
+              <Field label="Limba articolului" hint="Slug-ul este unic în cadrul aceleiași limbi.">
+                <select value={f.locale} onChange={set("locale")} className={inputCls}>
+                  {locales.map((l) => <option key={l} value={l}>{localeMeta[l].name} ({localeMeta[l].short})</option>)}
+                </select>
+              </Field>
               <Field label="Slug (URL)" hint="Se generează din titlu dacă e gol."><Input value={f.slug} onChange={set("slug")} /></Field>
               <Field label="Imagine copertă (URL)"><Input value={f.coverUrl} onChange={set("coverUrl")} placeholder="https://…" /></Field>
               <Field label="Titlu SEO"><Input value={f.seoTitle} onChange={set("seoTitle")} maxLength={70} /></Field>

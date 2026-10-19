@@ -24,7 +24,7 @@ export function EnergyFlow() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const lite = window.matchMedia("(hover: none), (max-width: 767px)").matches;
 
-    const LINES = lite ? 4 : 7;
+    const LINES = lite ? 3 : 5;
     const STEP = lite ? 34 : 18;
     const FRAME_MS = lite ? 1000 / 24 : 1000 / 45;
     const MAX_COST_MS = lite ? 6 : 9; // costo medio massimo accettato per frame
@@ -53,10 +53,11 @@ export function EnergyFlow() {
       for (let i = 0; i < LINES; i++) {
         const k = i / (LINES - 1);
         const g = ctx.createLinearGradient(0, 0, w, 0);
-        g.addColorStop(0, "rgba(220,36,48,0)");
-        g.addColorStop(0.3, `rgba(220,36,48,${0.16 - k * 0.05})`);
-        g.addColorStop(0.65, `rgba(255,112,64,${0.14 - k * 0.04})`);
-        g.addColorStop(1, "rgba(220,36,48,0)");
+        // una sola tinta (rosso brand) a bassa opacità: presenza discreta, non decorativa
+        g.addColorStop(0, "rgba(204,31,43,0)");
+        g.addColorStop(0.35, `rgba(204,31,43,${0.105 - k * 0.04})`);
+        g.addColorStop(0.7, `rgba(204,31,43,${0.075 - k * 0.03})`);
+        g.addColorStop(1, "rgba(204,31,43,0)");
         grads.push(g);
       }
     };
@@ -69,12 +70,13 @@ export function EnergyFlow() {
       for (let i = 0; i < LINES; i++) {
         const k = i / (LINES - 1);
         const baseY = h * (0.12 + k * 0.78);
-        const amp = 38 + k * 46;
-        const freq = 0.0016 + k * 0.0007;
-        const speed = 0.22 + k * 0.1;
-        const phase = i * 1.7 + (spx - 0.5) * 1.2;
+        const amp = 34 + k * 40;
+        const freq = 0.0015 + k * 0.0006;
+        const speed = 0.13 + k * 0.06;
+        // leggero parallax con lo scroll (solo fase: nessun costo aggiuntivo)
+        const phase = i * 1.7 + (spx - 0.5) * 1.0 + window.scrollY * 0.0007;
         ctx.strokeStyle = grads[i];
-        ctx.lineWidth = 1.2 + (1 - k) * 1.6;
+        ctx.lineWidth = 0.9 + (1 - k) * 1.1;
         ctx.beginPath();
         for (let x = -20; x <= w + 20; x += STEP) {
           const y =

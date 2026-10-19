@@ -1,0 +1,484 @@
+{
+  "meta": {
+    "title": "Winex — Ferestre și uși din PVC, aluminiu și lemn",
+    "description": "Winex oferă ferestre, uși și sisteme de tâmplărie din PVC, aluminiu și lemn. Eficiență energetică, precizie de execuție și livrare direct din curtea fabricii.",
+    "pages": {
+      "about": {
+        "title": "Despre noi",
+        "description": "Winex oferă tâmplărie din PVC, aluminiu și lemn, direct din curtea fabricii."
+      },
+      "factory": {
+        "title": "Fabrica",
+        "description": "Unde se realizează: tăiere, sudare, asamblare și control al calității pentru tâmplăria din PVC, aluminiu și lemn."
+      },
+      "configurator": {
+        "title": "Configurator",
+        "description": "Configurează online ferestre și uși Winex: material, culoare, tip de deschidere și geam."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Contactează Winex pentru oferte la ferestre și uși din PVC, aluminiu și lemn."
+      },
+      "privacy": {
+        "title": "Politica de confidențialitate",
+        "description": "Cum prelucrează Winex datele cu caracter personal."
+      },
+      "terms": {
+        "title": "Termeni și condiții",
+        "description": "Condițiile de utilizare a site-ului Winex."
+      },
+      "cookies": {
+        "title": "Politica de cookie-uri",
+        "description": "Cookie-uri și tehnologii similare pe site-ul Winex."
+      },
+      "unsubscribe": {
+        "title": "Dezabonare de la newsletter",
+        "description": "Dezabonare de la newsletterul Winex."
+      },
+      "confirm": {
+        "title": "Confirmă abonarea",
+        "description": "Confirmă abonarea la newsletterul Winex."
+      }
+    }
+  },
+  "common": {
+    "skip": "Sari la conținut",
+    "tagline": "Direct din curtea fabricii",
+    "home": "Winex — pagina principală",
+    "language": "Limba",
+    "menuOpen": "Deschide meniul",
+    "menuClose": "Închide meniul",
+    "scrollDown": "Derulează la secțiunea următoare",
+    "photoAlt": "Fotografie: {caption}"
+  },
+  "nav": {
+    "label": "Navigare principală",
+    "mobileLabel": "Navigare mobil",
+    "about": "Despre noi",
+    "factory": "Fabrica",
+    "configurator": "Configurator",
+    "contact": "Contact",
+    "cta": "Configurează"
+  },
+  "hero": {
+    "eyebrow": "Ferestre, uși și sisteme",
+    "titleLine1": "Tâmplărie eficientă energetic,",
+    "titleLine2": "direct din curtea fabricii.",
+    "lead": "Tâmplăria noastră este gândită pentru izolare, durabilitate și un design care se vede.",
+    "primary": "Configurează tâmplăria",
+    "secondary": "Descoperă fabrica",
+    "diagramLabel": "Secțiune schematică printr-o fereastră (ilustrativ)",
+    "interior": "Interior",
+    "exterior": "Exterior",
+    "item1Title": "Profil multicameră",
+    "item1Text": "Camerele interioare încetinesc transferul de căldură prin ramă.",
+    "item2Title": "Geam termoizolant",
+    "item2Text": "Foi de sticlă etanșate, separate printr-un distanțier, reduc pierderile de căldură.",
+    "item3Title": "Garnitură de etanșare continuă",
+    "item3Text": "Etanșează îmbinarea dintre cercevea și ramă împotriva aerului și a apei.",
+    "trust1": "Fișe tehnice la cerere",
+    "trust2": "PVC · Aluminiu · Lemn",
+    "trust3": "Configurator online",
+    "trust4": "Montaj profesionist"
+  },
+  "materials": {
+    "eyebrow": "Materiale",
+    "title": "Trei materiale, un singur standard de calitate.",
+    "lead": "Același standard de calitate pentru fiecare material, astfel încât specificația urmează proiectul, nu limitele furnizorului.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "Alegerea echilibrată pentru clădiri rezidențiale și comerciale: izolare termică și fonică ridicată, întreținere minimă și un raport bun între performanță și investiție.",
+      "p1": "Profile multicameră",
+      "p2": "Întreținere minimă",
+      "p3": "Eficiență energetică"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Aluminiu",
+      "text": "Profile suple și rigide pentru suprafețe vitrate mari, linii arhitecturale curate și proiecte comerciale.",
+      "p1": "Profile subțiri, mai multă lumină",
+      "p2": "Rezistență structurală",
+      "p3": "Finisaje durabile"
+    },
+    "timber": {
+      "label": "LEMN",
+      "title": "Lemn",
+      "text": "Căldura unui material natural, livrat cu precizia producției industriale, pentru proiecte în care aspectul contează la fel de mult ca performanța.",
+      "p1": "Estetică naturală",
+      "p2": "Detalii executate la comandă",
+      "p3": "Pentru case și restaurări"
+    }
+  },
+  "energy": {
+    "eyebrow": "Eficiență energetică",
+    "title": "Performanță termică pe care o simți în factură și în cameră.",
+    "lead": "Tâmplăria bună se judecă după ce economisește și cum se simte, nu doar după cum arată.",
+    "chambersTitle": "Profile multicameră",
+    "chambersText": "Camerele de aer din profil încetinesc transferul de căldură între interior și exterior.",
+    "heatTitle": "Căldura rămâne în interior",
+    "heatText": "Mai puțină energie pierdută iarna, mai puțină căldură acumulată vara.",
+    "acousticTitle": "Confort acustic",
+    "acousticText": "Geamuri și etanșări care atenuează zgomotul din exterior.",
+    "airtightTitle": "Etanșeitate și siguranță",
+    "airtightText": "Garnituri continue și feronerie de calitate pentru o închidere precisă.",
+    "note": "Valorile de performanță depind de sistemul și geamul ales. Fișele tehnice sunt disponibile la cerere."
+  },
+  "process": {
+    "eyebrow": "Cum lucrăm",
+    "title": "De la specificație la produsul montat.",
+    "s1Title": "Consultanță",
+    "s1Text": "Stabilim cerințele proiectului: dimensiuni, material, performanță și buget.",
+    "s2Title": "Configurare",
+    "s2Text": "Alegi profilul, culoarea, geamul și feroneria în configuratorul online.",
+    "s3Title": "Producție",
+    "s3Text": "Tâmplăria este realizată la comandă, cu verificări la fiecare etapă.",
+    "s4Title": "Montaj",
+    "s4Text": "Livrare și montaj profesionist, astfel încât performanța să ajungă și în clădire."
+  },
+  "cta": {
+    "eyebrow": "Configurator",
+    "title": "Specifică tâmplăria online.",
+    "text": "Alege materialul, culoarea, tipul de deschidere și geamul, apoi trimite configurația direct echipei noastre.",
+    "button": "Deschide configuratorul"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Rămâi informat.",
+    "text": "Noutăți despre produse, proiecte și oferte. Fără spam — te poți dezabona oricând."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "Adresa de e-mail",
+      "placeholder": "nume@companie.ro",
+      "submit": "Abonează-te",
+      "consent": "Sunt de acord să primesc e-mailuri de la Winex (vei primi un e-mail de confirmare) și am citit <link>Politica de confidențialitate</link>.",
+      "success": "Aproape gata. Verifică-ți e-mailul și apasă linkul de confirmare."
+    },
+    "contact": {
+      "name": "Nume",
+      "namePh": "Numele tău",
+      "email": "E-mail",
+      "emailPh": "nume@companie.ro",
+      "phone": "Telefon",
+      "phonePh": "+40 …",
+      "subject": "Subiect",
+      "subjectPh": "Ex.: Ofertă ferestre PVC",
+      "message": "Mesaj",
+      "messagePh": "Spune-ne despre proiectul tău…",
+      "consent": "Sunt de acord cu prelucrarea datelor mele conform <link>Politicii de confidențialitate</link>.",
+      "submit": "Trimite mesajul",
+      "successTitle": "Mesaj trimis",
+      "successText": "Mulțumim. Revenim către tine cât mai curând posibil."
+    },
+    "unsubscribe": {
+      "title": "Dezabonare",
+      "invalid": "Link invalid. Folosește linkul de dezabonare din ultimul e-mail primit.",
+      "ask": "Confirmă că nu mai dorești să primești newsletterul Winex.",
+      "button": "Confirmă dezabonarea",
+      "done": "Te-ai dezabonat cu succes. Nu vei mai primi e-mailuri de la noi.",
+      "error": "Linkul nu este valid sau a apărut o eroare. Încearcă din nou."
+    },
+    "confirm": {
+      "title": "Confirmă abonarea",
+      "invalid": "Link invalid. Folosește linkul din e-mailul de confirmare.",
+      "ask": "Apasă butonul pentru a confirma că dorești să primești newsletterul Winex.",
+      "button": "Confirmă abonarea",
+      "done": "Mulțumim. Abonarea ta este confirmată. Un e-mail de bun venit este pe drum.",
+      "expired": "Linkul a expirat. Te rugăm să te abonezi din nou din pagina principală.",
+      "used": "Linkul nu este valid sau a fost deja folosit.",
+      "error": "A apărut o eroare. Încearcă din nou."
+    },
+    "errors": {
+      "invalid_name": "Introdu numele tău.",
+      "invalid_email": "Adresa de e-mail nu este validă.",
+      "invalid_phone": "Numărul de telefon nu este valid.",
+      "invalid_message": "Mesajul este prea scurt.",
+      "consent_required": "Trebuie să accepți prelucrarea datelor.",
+      "rate_limited": "Prea multe încercări. Reîncearcă peste câteva minute.",
+      "unavailable": "Serviciul nu este disponibil momentan. Ne poți suna sau scrie direct.",
+      "failed": "Nu am putut trimite solicitarea. Te rugăm să reîncerci.",
+      "forbidden": "Cerere respinsă.",
+      "network": "Conexiune indisponibilă. Verifică internetul și reîncearcă.",
+      "generic": "A apărut o eroare. Reîncearcă."
+    }
+  },
+  "about": {
+    "eyebrow": "Despre noi",
+    "titleLine1": "Un standard de calitate,",
+    "titleLine2": "aplicat fiecărui gol de fereastră.",
+    "lead": "Winex oferă tâmplărie din PVC, aluminiu și lemn. Lucrăm la comandă, verificăm calitatea la fiecare etapă și livrăm direct din curtea fabricii.",
+    "storyTitle": "Ce facem",
+    "story1": "Oferta noastră se construiește în jurul a trei materiale — PVC, aluminiu și lemn — astfel încât fiecare proiect primește soluția potrivită, nu doar pe cea disponibilă.",
+    "story2": "Lucrând direct cu fabrica și livrând chiar din curtea fabricii, păstrăm sub control strict specificația, termenele și calitatea.",
+    "photoCaption": "Echipa",
+    "valuesEyebrow": "Principii",
+    "valuesTitle": "Cum lucrăm.",
+    "precisionTitle": "Precizie",
+    "precisionText": "Fiecare element este specificat la dimensiune, cu toleranțe strânse și verificări pe parcurs.",
+    "efficiencyTitle": "Eficiență",
+    "efficiencyText": "Tratăm tâmplăria ca pe un sistem care economisește energie, nu doar ca pe un produs.",
+    "craftTitle": "Măiestrie",
+    "craftText": "Tehnologie modernă îmbinată cu experiența oamenilor care cunosc materialul.",
+    "reliabilityTitle": "Încredere",
+    "reliabilityText": "Comunicare clară, termene realiste și suport înainte și după montaj."
+  },
+  "factory": {
+    "eyebrow": "Fabrica",
+    "titleLine1": "Locul în care fiecare produs",
+    "titleLine2": "capătă formă.",
+    "lead": "Tâmplărie realizată la comandă, verificată pas cu pas și expediată gata de montaj — direct din curtea fabricii.",
+    "exterior": "Exteriorul fabricii",
+    "cutting": "Linia de tăiere",
+    "welding": "Sudarea profilelor",
+    "assembly": "Asamblare",
+    "quality": "Control al calității",
+    "dispatch": "Depozit și expediere",
+    "stagesEyebrow": "Producție",
+    "stagesTitle": "De la profil la produsul finit.",
+    "raw": "Materie primă",
+    "rawText": "Selecția profilelor, a geamurilor și a feroneriei.",
+    "cut": "Tăiere și prelucrare",
+    "cutText": "Debitare la milimetru, conform comenzii.",
+    "assemble": "Asamblare",
+    "assembleText": "Sudare, montaj feronerie și vitrare.",
+    "qc": "Control al calității",
+    "qcText": "Verificări înainte de ambalare și expediere."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "titleLine1": "Să discutăm",
+    "titleLine2": "despre proiectul tău.",
+    "lead": "Scrie-ne sau sună-ne. Îți răspundem cu o ofertă clară și un termen realist.",
+    "infoTitle": "Date de contact",
+    "formTitle": "Trimite-ne un mesaj",
+    "address": "Adresă",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "hours": "Program",
+    "noDetails": "Folosește formularul pentru a ne contacta."
+  },
+  "configurator": {
+    "eyebrow": "Configurator",
+    "titleLine1": "Specifică-ți",
+    "titleLine2": "tâmplăria.",
+    "lead": "Configurează ferestrele și ușile potrivite proiectului tău și trimite-ne cererea de ofertă.",
+    "step1": "Alege tipul și materialul",
+    "step2": "Setează dimensiunile",
+    "step3": "Culoare, geam, accesorii",
+    "step4": "Trimite configurația",
+    "iframeTitle": "Configurator de oferte Winex",
+    "openNew": "Deschide într-o fereastră nouă",
+    "help": "Preferi să vorbești cu cineva?",
+    "helpLink": "Contactează echipa noastră"
+  },
+  "footer": {
+    "tagline": "Tâmplărie din PVC, aluminiu și lemn. Direct din curtea fabricii.",
+    "navigate": "Navigare",
+    "legal": "Legal",
+    "contact": "Contact",
+    "anpc": "ANPC — soluționarea alternativă a litigiilor",
+    "rights": "Toate drepturile rezervate.",
+    "cui": "CUI",
+    "regCom": "Reg. Com."
+  },
+  "notFound": {
+    "eyebrow": "Eroare 404",
+    "titleLine1": "Pagina nu a fost",
+    "titleLine2": "găsită.",
+    "text": "Adresa nu există sau a fost mutată.",
+    "back": "Înapoi la pagina principală"
+  },
+  "legal": {
+    "updated": "Ultima actualizare: {date}",
+    "translationNotice": "Această traducere este oferită pentru comoditate. În caz de neconcordanță, prevalează versiunea în limba română.",
+    "idCui": "CUI {v}",
+    "idRegCom": "Reg. Com. {v}",
+    "idAddress": "sediul: {v}",
+    "idEmail": "e-mail: {v}",
+    "idPhone": "telefon: {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Operatorul de date",
+        "blocks": [
+          {
+            "p": "Operatorul datelor cu caracter personal este **{identity}**."
+          }
+        ]
+      },
+      {
+        "title": "2. Ce date prelucrăm și de ce",
+        "blocks": [
+          {
+            "ul": [
+              "**Formularele de contact și de cerere de ofertă:** nume, e-mail, telefon (opțional), conținutul mesajului și limba paginii. Scop: răspunsul la solicitare și pregătirea ofertei. Temei: măsuri precontractuale la cererea persoanei vizate și interesul legitim (art. 6 alin. 1 lit. b și f GDPR).",
+              "**Newsletter:** adresa de e-mail și limba. Scop: trimiterea de comunicări comerciale. Temei: consimțământul tău (art. 6 alin. 1 lit. a GDPR), pe care îl poți retrage oricând. Abonarea se face prin dublă confirmare: primești un e-mail cu un link de confirmare, iar până la confirmare nu primești nicio comunicare. Cererile neconfirmate se șterg automat după 30 de zile; păstrăm data confirmării ca dovadă a consimțământului.",
+              "**Statistici anonime ale site-ului:** paginile vizitate, clicurile pe butoane și linkuri, tipul dispozitivului, țara, limba și sursa de trafic. Nu folosim cookie-uri și nu stocăm nimic pe dispozitivul tău. Identificatorul de vizitator este un cod anonim, recalculat zilnic, care nu poate fi folosit pentru a te identifica. Respectăm semnalele „Do Not Track” și „Global Privacy Control”. Scop: înțelegerea și îmbunătățirea site-ului. Temei: interes legitim. Evenimentele detaliate se șterg după 3 zile; rămân doar totaluri agregate.",
+              "**Date tehnice:** adresa IP este folosită temporar pentru securitate și prevenirea abuzurilor (limitarea cererilor). Temei: interes legitim."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Destinatari",
+        "blocks": [
+          {
+            "p": "Datele sunt prelucrate prin furnizori care acționează ca persoane împuternicite:"
+          },
+          {
+            "ul": [
+              "Convex, Inc. — stocarea mesajelor, a abonaților și a statisticilor anonime;",
+              "Resend, Inc. — trimiterea și livrarea e-mailurilor;",
+              "furnizorul de găzduire a site-ului;",
+              "OneSpec — doar dacă folosești configuratorul online, conform politicii proprii."
+            ]
+          },
+          {
+            "p": "Unii furnizori pot prelucra date în afara Spațiului Economic European; transferurile se bazează pe Clauze Contractuale Standard și/sau pe Cadrul de confidențialitate UE–SUA, după caz."
+          }
+        ]
+      },
+      {
+        "title": "4. Perioada de stocare",
+        "blocks": [
+          {
+            "p": "Mesajele de contact: până la 24 de luni de la ultima interacțiune, dacă nu se încheie un contract. Newsletterul: până la retragerea consimțământului. Datele din relații contractuale: conform obligațiilor legale (inclusiv contabile și fiscale)."
+          }
+        ]
+      },
+      {
+        "title": "5. Drepturile tale",
+        "blocks": [
+          {
+            "p": "Ai dreptul de acces, rectificare, ștergere, restricționare, portabilitate și opoziție, precum și dreptul de a retrage consimțământul. Ne poți scrie la {email}. Ai dreptul de a depune plângere la autoritatea națională de protecție a datelor din țara ta sau la [Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP)](https://www.dataprotection.ro)."
+          }
+        ]
+      },
+      {
+        "title": "6. Securitate",
+        "blocks": [
+          {
+            "p": "Folosim conexiuni criptate (HTTPS), acces restricționat la date și măsuri tehnice împotriva abuzurilor. Nu vindem datele tale."
+          }
+        ]
+      },
+      {
+        "title": "7. Modificări",
+        "blocks": [
+          {
+            "p": "Putem actualiza această politică; versiunea curentă este întotdeauna cea publicată pe această pagină."
+          }
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. Despre site",
+        "blocks": [
+          {
+            "p": "Acest site ({domain}) este operat de **{identity}**. Prin utilizarea site-ului accepți acești termeni."
+          }
+        ]
+      },
+      {
+        "title": "2. Informații despre produse",
+        "blocks": [
+          {
+            "p": "Conținutul site-ului are caracter informativ și nu constituie ofertă fermă. Imaginile, culorile și specificațiile pot diferi de produsul final. Oferta și contractul se stabilesc individual, în scris."
+          }
+        ]
+      },
+      {
+        "title": "3. Configuratorul",
+        "blocks": [
+          {
+            "p": "Configurațiile create prin configurator sunt orientative până la confirmarea scrisă a ofertei de către Winex. Configuratorul este furnizat în colaborare cu OneSpec; utilizarea lui poate fi supusă și termenilor acestui furnizor."
+          }
+        ]
+      },
+      {
+        "title": "4. Proprietate intelectuală",
+        "blocks": [
+          {
+            "p": "Textele, imaginile, logo-urile și designul site-ului aparțin Winex sau licențiatorilor săi și nu pot fi copiate sau folosite fără acord scris."
+          }
+        ]
+      },
+      {
+        "title": "5. Limitarea răspunderii",
+        "blocks": [
+          {
+            "p": "Depunem eforturi pentru acuratețea informațiilor, dar nu garantăm lipsa erorilor sau disponibilitatea neîntreruptă a site-ului. Răspunderea este limitată în măsura permisă de lege."
+          }
+        ]
+      },
+      {
+        "title": "6. Date personale",
+        "blocks": [
+          {
+            "p": "Prelucrarea datelor este descrisă în [Politica de confidențialitate](internal:/privacy) și în [Politica de cookie-uri](internal:/cookies)."
+          }
+        ]
+      },
+      {
+        "title": "7. Legea aplicabilă și litigii",
+        "blocks": [
+          {
+            "p": "Legea aplicabilă este legea română. Consumatorii pot apela și la [soluționarea alternativă a litigiilor ANPC (SAL)](https://anpc.ro/ce-este-sal/), precum și la instanțele și organismele de protecție a consumatorilor din țara lor de reședință."
+          }
+        ]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. Ce sunt cookie-urile",
+        "blocks": [
+          {
+            "p": "Cookie-urile sunt fișiere mici stocate în browser, folosite pentru funcționarea și îmbunătățirea unui site."
+          }
+        ]
+      },
+      {
+        "title": "2. Ce folosim pe {domain}",
+        "blocks": [
+          {
+            "p": "În prezent, site-ul **nu folosește cookie-uri de analiză sau de marketing**. Măsurăm vizitele cu un sistem propriu, fără cookie-uri și fără a stoca informații pe dispozitivul tău (detalii în [Politica de confidențialitate](internal:/privacy)). Nu este necesar un consimțământ pentru funcționarea tehnică a site-ului."
+          }
+        ]
+      },
+      {
+        "title": "3. Servicii terțe",
+        "blocks": [
+          {
+            "p": "Pagina de configurator încarcă un serviciu extern (OneSpec) într-un cadru încorporat. Acesta poate seta propriile cookie-uri sau tehnologii similare, conform politicii furnizorului."
+          }
+        ]
+      },
+      {
+        "title": "4. Gestionarea cookie-urilor",
+        "blocks": [
+          {
+            "p": "Poți șterge sau bloca cookie-urile din setările browserului. Blocarea poate afecta funcționarea unor servicii terțe."
+          }
+        ]
+      },
+      {
+        "title": "5. Modificări",
+        "blocks": [
+          {
+            "p": "Dacă vom introduce instrumente de analiză sau marketing, vom solicita consimțământul înainte de activare."
+          }
+        ]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Mesaj de la Winex"
+  }
+}

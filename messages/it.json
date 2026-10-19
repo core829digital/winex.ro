@@ -1,0 +1,484 @@
+{
+  "meta": {
+    "title": "Winex — Finestre e porte in PVC, alluminio e legno",
+    "description": "Winex offre finestre, porte e sistemi di serramenti in PVC, alluminio e legno. Efficienza energetica, precisione costruttiva e consegna diretta dal cortile della fabbrica.",
+    "pages": {
+      "about": {
+        "title": "Chi siamo",
+        "description": "Winex offre serramenti in PVC, alluminio e legno, direttamente dal cortile della fabbrica."
+      },
+      "factory": {
+        "title": "La fabbrica",
+        "description": "Dove nasce il prodotto: taglio, saldatura, assemblaggio e controllo qualità dei serramenti in PVC, alluminio e legno."
+      },
+      "configurator": {
+        "title": "Configuratore",
+        "description": "Configura online finestre e porte Winex: materiale, colore, tipo di apertura e vetro."
+      },
+      "contact": {
+        "title": "Contatti",
+        "description": "Contatta Winex per preventivi su finestre e porte in PVC, alluminio e legno."
+      },
+      "privacy": {
+        "title": "Informativa sulla privacy",
+        "description": "Come Winex tratta i dati personali."
+      },
+      "terms": {
+        "title": "Termini e condizioni",
+        "description": "Condizioni di utilizzo del sito web Winex."
+      },
+      "cookies": {
+        "title": "Cookie policy",
+        "description": "Cookie e tecnologie simili sul sito web Winex."
+      },
+      "unsubscribe": {
+        "title": "Annulla l’iscrizione alla newsletter",
+        "description": "Annulla l’iscrizione alla newsletter di Winex."
+      },
+      "confirm": {
+        "title": "Conferma la tua iscrizione",
+        "description": "Conferma l’iscrizione alla newsletter di Winex."
+      }
+    }
+  },
+  "common": {
+    "skip": "Vai al contenuto",
+    "tagline": "Direttamente dal cortile della fabbrica",
+    "home": "Winex — pagina principale",
+    "language": "Lingua",
+    "menuOpen": "Apri il menu",
+    "menuClose": "Chiudi il menu",
+    "scrollDown": "Scorri alla sezione successiva",
+    "photoAlt": "Fotografia: {caption}"
+  },
+  "nav": {
+    "label": "Navigazione principale",
+    "mobileLabel": "Navigazione mobile",
+    "about": "Chi siamo",
+    "factory": "Fabbrica",
+    "configurator": "Configuratore",
+    "contact": "Contatti",
+    "cta": "Configura"
+  },
+  "hero": {
+    "eyebrow": "Finestre, porte e sistemi",
+    "titleLine1": "Serramenti ad alta efficienza energetica,",
+    "titleLine2": "direttamente dal cortile della fabbrica.",
+    "lead": "I nostri serramenti sono pensati per l’isolamento, la durata e un design che si fa notare.",
+    "primary": "Configura i tuoi serramenti",
+    "secondary": "Scopri la fabbrica",
+    "diagramLabel": "Sezione schematica di una finestra (illustrativa)",
+    "interior": "Interno",
+    "exterior": "Esterno",
+    "item1Title": "Profilo a più camere",
+    "item1Text": "Le camere interne rallentano il passaggio del calore attraverso il telaio.",
+    "item2Title": "Vetrocamera isolante",
+    "item2Text": "Lastre sigillate, separate da un distanziale, riducono la dispersione di calore.",
+    "item3Title": "Guarnizione di tenuta continua",
+    "item3Text": "Sigilla il giunto tra anta e telaio contro aria e acqua.",
+    "trust1": "Schede tecniche su richiesta",
+    "trust2": "PVC · Alluminio · Legno",
+    "trust3": "Configuratore online",
+    "trust4": "Posa professionale"
+  },
+  "materials": {
+    "eyebrow": "Materiali",
+    "title": "Tre materiali, un unico standard di qualità.",
+    "lead": "Lo stesso standard di qualità per ogni materiale, così la specifica segue il progetto e non i limiti del fornitore.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "La scelta equilibrata per edifici residenziali e commerciali: elevato isolamento termico e acustico, manutenzione minima e un ottimo rapporto tra prestazioni e investimento.",
+      "p1": "Profili a più camere",
+      "p2": "Manutenzione minima",
+      "p3": "Efficienza energetica"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Alluminio",
+      "text": "Profili sottili e rigidi per grandi superfici vetrate, linee architettoniche pulite e progetti commerciali.",
+      "p1": "Profili sottili, più luce naturale",
+      "p2": "Resistenza strutturale",
+      "p3": "Finiture durevoli"
+    },
+    "timber": {
+      "label": "LEGNO",
+      "title": "Legno",
+      "text": "Il calore di un materiale naturale, offerto con la precisione della produzione industriale, per progetti in cui l’aspetto conta quanto le prestazioni.",
+      "p1": "Estetica naturale",
+      "p2": "Dettagli realizzati su misura",
+      "p3": "Per case e restauri"
+    }
+  },
+  "energy": {
+    "eyebrow": "Efficienza energetica",
+    "title": "Prestazioni termiche che si notano in bolletta e in casa.",
+    "lead": "Un buon serramento si giudica da quanto fa risparmiare e da come si vive, non solo da come appare.",
+    "chambersTitle": "Profili a più camere",
+    "chambersText": "Le camere d’aria interne al profilo rallentano il trasferimento di calore tra interno ed esterno.",
+    "heatTitle": "Il calore resta all’interno",
+    "heatText": "Meno energia dispersa d’inverno, meno calore accumulato d’estate.",
+    "acousticTitle": "Comfort acustico",
+    "acousticText": "Vetri e guarnizioni che attenuano il rumore esterno.",
+    "airtightTitle": "Tenuta e sicurezza",
+    "airtightText": "Guarnizioni continue e ferramenta di qualità per una chiusura precisa.",
+    "note": "I valori prestazionali dipendono dal sistema e dal vetro scelti. Le schede tecniche sono disponibili su richiesta."
+  },
+  "process": {
+    "eyebrow": "Come lavoriamo",
+    "title": "Dalla specifica al serramento installato.",
+    "s1Title": "Consulenza",
+    "s1Text": "Definiamo i requisiti del progetto: dimensioni, materiale, prestazioni e budget.",
+    "s2Title": "Configurazione",
+    "s2Text": "Scegli profilo, colore, vetro e ferramenta nel configuratore online.",
+    "s3Title": "Produzione",
+    "s3Text": "I serramenti vengono realizzati su ordinazione, con controlli a ogni fase.",
+    "s4Title": "Posa",
+    "s4Text": "Consegna e posa professionale, perché le prestazioni arrivino fino all’edificio."
+  },
+  "cta": {
+    "eyebrow": "Configuratore",
+    "title": "Specifica i tuoi serramenti online.",
+    "text": "Scegli materiale, colore, tipo di apertura e vetro, poi invia la configurazione direttamente al nostro team.",
+    "button": "Apri il configuratore"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Resta aggiornato.",
+    "text": "Novità su prodotti, progetti e offerte. Niente spam: puoi annullare l’iscrizione in qualsiasi momento."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "Indirizzo email",
+      "placeholder": "nome@azienda.it",
+      "submit": "Iscriviti",
+      "consent": "Acconsento a ricevere email da Winex (riceverai un’email di conferma) e ho letto l’<link>Informativa sulla privacy</link>.",
+      "success": "Quasi fatto. Controlla la tua casella di posta e clicca sul link di conferma."
+    },
+    "contact": {
+      "name": "Nome",
+      "namePh": "Il tuo nome",
+      "email": "Email",
+      "emailPh": "nome@azienda.it",
+      "phone": "Telefono",
+      "phonePh": "+39 …",
+      "subject": "Oggetto",
+      "subjectPh": "Es.: Preventivo finestre in PVC",
+      "message": "Messaggio",
+      "messagePh": "Raccontaci il tuo progetto…",
+      "consent": "Acconsento al trattamento dei miei dati secondo l’<link>Informativa sulla privacy</link>.",
+      "submit": "Invia messaggio",
+      "successTitle": "Messaggio inviato",
+      "successText": "Grazie. Ti risponderemo il prima possibile."
+    },
+    "unsubscribe": {
+      "title": "Annulla l’iscrizione",
+      "invalid": "Link non valido. Usa il link di cancellazione contenuto nell’ultima email ricevuta.",
+      "ask": "Conferma di non voler più ricevere la newsletter di Winex.",
+      "button": "Conferma la cancellazione",
+      "done": "Iscrizione annullata. Non riceverai più email da parte nostra.",
+      "error": "Il link non è valido oppure si è verificato un errore. Riprova."
+    },
+    "confirm": {
+      "title": "Conferma la tua iscrizione",
+      "invalid": "Link non valido. Usa il link contenuto nell’email di conferma.",
+      "ask": "Premi il pulsante per confermare di voler ricevere la newsletter di Winex.",
+      "button": "Conferma iscrizione",
+      "done": "Grazie. La tua iscrizione è confermata. Un’email di benvenuto è in arrivo.",
+      "expired": "Questo link è scaduto. Iscriviti di nuovo dalla pagina principale.",
+      "used": "Questo link non è valido o è già stato utilizzato.",
+      "error": "Si è verificato un errore. Riprova."
+    },
+    "errors": {
+      "invalid_name": "Inserisci il tuo nome.",
+      "invalid_email": "L’indirizzo email non è valido.",
+      "invalid_phone": "Il numero di telefono non è valido.",
+      "invalid_message": "Il messaggio è troppo breve.",
+      "consent_required": "Devi accettare il trattamento dei dati.",
+      "rate_limited": "Troppi tentativi. Riprova tra qualche minuto.",
+      "unavailable": "Il servizio non è al momento disponibile. Chiamaci o scrivici direttamente.",
+      "failed": "Non siamo riusciti a inviare la richiesta. Riprova.",
+      "forbidden": "Richiesta rifiutata.",
+      "network": "Connessione non disponibile. Controlla la rete e riprova.",
+      "generic": "Si è verificato un errore. Riprova."
+    }
+  },
+  "about": {
+    "eyebrow": "Chi siamo",
+    "titleLine1": "Uno standard di qualità,",
+    "titleLine2": "applicato a ogni apertura.",
+    "lead": "Winex offre serramenti in PVC, alluminio e legno. Lavoriamo su ordinazione, verifichiamo la qualità a ogni fase e forniamo direttamente dal cortile della fabbrica.",
+    "storyTitle": "Cosa facciamo",
+    "story1": "La nostra offerta si basa su tre materiali — PVC, alluminio e legno — così ogni progetto riceve la soluzione più adatta, non semplicemente quella disponibile.",
+    "story2": "Lavorando direttamente con la fabbrica e fornendo dal suo cortile, manteniamo specifica, tempi e qualità sotto stretto controllo.",
+    "photoCaption": "Il team",
+    "valuesEyebrow": "Principi",
+    "valuesTitle": "Come lavoriamo.",
+    "precisionTitle": "Precisione",
+    "precisionText": "Ogni elemento è specificato su misura, con tolleranze ridotte e controlli lungo il percorso.",
+    "efficiencyTitle": "Efficienza",
+    "efficiencyText": "Consideriamo il serramento un sistema che fa risparmiare energia, non solo un prodotto.",
+    "craftTitle": "Maestria",
+    "craftText": "Tecnologia moderna unita all’esperienza di chi conosce il materiale.",
+    "reliabilityTitle": "Affidabilità",
+    "reliabilityText": "Comunicazione chiara, tempi realistici e assistenza prima e dopo la posa."
+  },
+  "factory": {
+    "eyebrow": "La fabbrica",
+    "titleLine1": "Dove ogni serramento",
+    "titleLine2": "prende forma.",
+    "lead": "Serramenti realizzati su ordinazione, controllati passo dopo passo e spediti pronti per la posa — direttamente dal cortile della fabbrica.",
+    "exterior": "Esterno della fabbrica",
+    "cutting": "Linea di taglio",
+    "welding": "Saldatura dei profili",
+    "assembly": "Assemblaggio",
+    "quality": "Controllo qualità",
+    "dispatch": "Magazzino e spedizione",
+    "stagesEyebrow": "Produzione",
+    "stagesTitle": "Dal profilo al prodotto finito.",
+    "raw": "Materie prime",
+    "rawText": "Selezione di profili, vetri e ferramenta.",
+    "cut": "Taglio e lavorazione",
+    "cutText": "Taglio al millimetro, secondo l’ordine.",
+    "assemble": "Assemblaggio",
+    "assembleText": "Saldatura, montaggio della ferramenta e vetratura.",
+    "qc": "Controllo qualità",
+    "qcText": "Verifiche prima dell’imballaggio e della spedizione."
+  },
+  "contact": {
+    "eyebrow": "Contatti",
+    "titleLine1": "Parliamo",
+    "titleLine2": "del tuo progetto.",
+    "lead": "Scrivici o chiamaci. Rispondiamo con un preventivo chiaro e tempi realistici.",
+    "infoTitle": "Dati di contatto",
+    "formTitle": "Inviaci un messaggio",
+    "address": "Indirizzo",
+    "phone": "Telefono",
+    "email": "Email",
+    "hours": "Orari di apertura",
+    "noDetails": "Usa il modulo per contattarci."
+  },
+  "configurator": {
+    "eyebrow": "Configuratore",
+    "titleLine1": "Specifica i tuoi",
+    "titleLine2": "serramenti.",
+    "lead": "Configura finestre e porte per il tuo progetto e inviaci la richiesta di preventivo.",
+    "step1": "Scegli tipo e materiale",
+    "step2": "Imposta le dimensioni",
+    "step3": "Colore, vetro, accessori",
+    "step4": "Invia la configurazione",
+    "iframeTitle": "Configuratore di preventivi Winex",
+    "openNew": "Apri in una nuova finestra",
+    "help": "Preferisci parlare con qualcuno?",
+    "helpLink": "Contatta il nostro team"
+  },
+  "footer": {
+    "tagline": "Serramenti in PVC, alluminio e legno. Direttamente dal cortile della fabbrica.",
+    "navigate": "Navigazione",
+    "legal": "Informazioni legali",
+    "contact": "Contatti",
+    "anpc": "ANPC — risoluzione alternativa delle controversie",
+    "rights": "Tutti i diritti riservati.",
+    "cui": "Partita IVA / ID fiscale",
+    "regCom": "Registro delle imprese"
+  },
+  "notFound": {
+    "eyebrow": "Errore 404",
+    "titleLine1": "Pagina non",
+    "titleLine2": "trovata.",
+    "text": "L’indirizzo non esiste oppure è stato spostato.",
+    "back": "Torna alla pagina principale"
+  },
+  "legal": {
+    "updated": "Ultimo aggiornamento: {date}",
+    "translationNotice": "Questa traduzione è fornita per comodità. In caso di discrepanza prevale la versione in lingua rumena.",
+    "idCui": "ID fiscale {v}",
+    "idRegCom": "Registro delle imprese {v}",
+    "idAddress": "sede legale: {v}",
+    "idEmail": "email: {v}",
+    "idPhone": "telefono: {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Titolare del trattamento",
+        "blocks": [
+          {
+            "p": "Il titolare del trattamento dei dati personali è **{identity}**."
+          }
+        ]
+      },
+      {
+        "title": "2. Quali dati trattiamo e perché",
+        "blocks": [
+          {
+            "ul": [
+              "**Moduli di contatto e di richiesta preventivo:** nome, email, telefono (facoltativo), contenuto del messaggio e lingua della pagina. Finalità: rispondere alla tua richiesta e predisporre un preventivo. Base giuridica: misure precontrattuali adottate su tua richiesta e legittimo interesse (art. 6, par. 1, lett. b e f GDPR).",
+              "**Newsletter:** indirizzo email e lingua. Finalità: invio di comunicazioni commerciali. Base giuridica: il tuo consenso (art. 6, par. 1, lett. a GDPR), che puoi revocare in qualsiasi momento. L’iscrizione prevede una doppia conferma: ricevi un’email con un link di conferma e non viene inviata alcuna comunicazione finché non confermi. Le richieste non confermate vengono eliminate automaticamente dopo 30 giorni; conserviamo la data di conferma come prova del consenso.",
+              "**Statistiche anonime del sito:** pagine visitate, clic su pulsanti e link, tipo di dispositivo, paese, lingua e fonte del traffico. Non utilizziamo cookie e non memorizziamo nulla sul tuo dispositivo. L’identificativo del visitatore è un codice anonimo ricalcolato ogni giorno che non può essere usato per identificarti. Rispettiamo i segnali “Do Not Track” e “Global Privacy Control”. Finalità: comprendere e migliorare il sito. Base giuridica: legittimo interesse. Gli eventi dettagliati vengono eliminati dopo 3 giorni; restano solo i totali aggregati.",
+              "**Dati tecnici:** il tuo indirizzo IP viene utilizzato temporaneamente per sicurezza e per prevenire abusi (limitazione delle richieste). Base giuridica: legittimo interesse."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Destinatari",
+        "blocks": [
+          {
+            "p": "I dati sono trattati da fornitori di servizi che agiscono in qualità di responsabili del trattamento:"
+          },
+          {
+            "ul": [
+              "Convex, Inc. — archiviazione di messaggi, iscritti e statistiche anonime;",
+              "Resend, Inc. — invio e consegna delle email;",
+              "il nostro fornitore di hosting;",
+              "OneSpec — solo se utilizzi il configuratore online, secondo la propria informativa."
+            ]
+          },
+          {
+            "p": "Alcuni fornitori possono trattare i dati al di fuori dello Spazio economico europeo; i trasferimenti si basano sulle Clausole contrattuali standard e/o sul Quadro per la protezione dei dati UE–USA, a seconda dei casi."
+          }
+        ]
+      },
+      {
+        "title": "4. Conservazione",
+        "blocks": [
+          {
+            "p": "Messaggi di contatto: fino a 24 mesi dall’ultima interazione, salvo la conclusione di un contratto. Newsletter: fino alla revoca del consenso. Dati derivanti da rapporti contrattuali: secondo gli obblighi di legge (inclusi quelli contabili e fiscali)."
+          }
+        ]
+      },
+      {
+        "title": "5. I tuoi diritti",
+        "blocks": [
+          {
+            "p": "Hai il diritto di accesso, rettifica, cancellazione, limitazione, portabilità e opposizione, nonché il diritto di revocare il consenso. Puoi scriverci a {email}. Hai inoltre il diritto di proporre reclamo all’autorità nazionale per la protezione dei dati del tuo paese o all’[Autorità nazionale rumena di controllo del trattamento dei dati personali (ANSPDCP)](https://www.dataprotection.ro)."
+          }
+        ]
+      },
+      {
+        "title": "6. Sicurezza",
+        "blocks": [
+          {
+            "p": "Utilizziamo connessioni cifrate (HTTPS), accesso ristretto ai dati e misure tecniche contro gli abusi. Non vendiamo i tuoi dati."
+          }
+        ]
+      },
+      {
+        "title": "7. Modifiche",
+        "blocks": [
+          {
+            "p": "Possiamo aggiornare questa informativa; la versione in vigore è sempre quella pubblicata in questa pagina."
+          }
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. Informazioni sul sito",
+        "blocks": [
+          {
+            "p": "Questo sito web ({domain}) è gestito da **{identity}**. Utilizzando il sito accetti i presenti termini."
+          }
+        ]
+      },
+      {
+        "title": "2. Informazioni sui prodotti",
+        "blocks": [
+          {
+            "p": "I contenuti di questo sito hanno carattere puramente informativo e non costituiscono un’offerta vincolante. Immagini, colori e specifiche possono differire dal prodotto finale. Offerte e contratti sono concordati individualmente, per iscritto."
+          }
+        ]
+      },
+      {
+        "title": "3. Il configuratore",
+        "blocks": [
+          {
+            "p": "Le configurazioni create con il configuratore hanno valore indicativo fino alla conferma scritta dell’offerta da parte di Winex. Il configuratore è fornito in collaborazione con OneSpec; il suo utilizzo può essere soggetto anche ai termini di tale fornitore."
+          }
+        ]
+      },
+      {
+        "title": "4. Proprietà intellettuale",
+        "blocks": [
+          {
+            "p": "Testi, immagini, loghi e design di questo sito appartengono a Winex o ai suoi licenzianti e non possono essere copiati o utilizzati senza autorizzazione scritta."
+          }
+        ]
+      },
+      {
+        "title": "5. Limitazione di responsabilità",
+        "blocks": [
+          {
+            "p": "Ci impegniamo a mantenere le informazioni accurate, ma non garantiamo l’assenza di errori né la disponibilità ininterrotta del sito. La responsabilità è limitata nella misura consentita dalla legge."
+          }
+        ]
+      },
+      {
+        "title": "6. Dati personali",
+        "blocks": [
+          {
+            "p": "Il trattamento dei dati personali è descritto nell’[Informativa sulla privacy](internal:/privacy) e nella [Cookie policy](internal:/cookies)."
+          }
+        ]
+      },
+      {
+        "title": "7. Legge applicabile e controversie",
+        "blocks": [
+          {
+            "p": "I presenti termini sono disciplinati dalla legge rumena. I consumatori possono inoltre rivolgersi alla [risoluzione alternativa delle controversie ANPC (SAL)](https://anpc.ro/ce-este-sal/) e ai tribunali e agli organismi di tutela dei consumatori del proprio paese di residenza."
+          }
+        ]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. Che cosa sono i cookie",
+        "blocks": [
+          {
+            "p": "I cookie sono piccoli file memorizzati nel browser, utilizzati per far funzionare e migliorare un sito web."
+          }
+        ]
+      },
+      {
+        "title": "2. Che cosa utilizziamo su {domain}",
+        "blocks": [
+          {
+            "p": "Al momento il sito **non utilizza cookie analitici né di marketing**. Misuriamo le visite con un sistema proprio, senza cookie e senza memorizzare informazioni sul tuo dispositivo (dettagli nell’[Informativa sulla privacy](internal:/privacy)). Per il funzionamento tecnico del sito non è necessario alcun consenso."
+          }
+        ]
+      },
+      {
+        "title": "3. Servizi di terze parti",
+        "blocks": [
+          {
+            "p": "La pagina del configuratore carica un servizio esterno (OneSpec) in un riquadro incorporato. Tale servizio può impostare propri cookie o utilizzare tecnologie simili, secondo la politica del fornitore."
+          }
+        ]
+      },
+      {
+        "title": "4. Gestione dei cookie",
+        "blocks": [
+          {
+            "p": "Puoi eliminare o bloccare i cookie dalle impostazioni del browser. Il blocco può influire sul funzionamento di servizi di terze parti."
+          }
+        ]
+      },
+      {
+        "title": "5. Modifiche",
+        "blocks": [
+          {
+            "p": "Se introdurremo strumenti di analisi o di marketing, chiederemo il tuo consenso prima di attivarli."
+          }
+        ]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Messaggio da Winex"
+  }
+}

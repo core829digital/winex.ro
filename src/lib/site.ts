@@ -1,44 +1,46 @@
 /**
- * Configurazione centrale del sito.
- * I campi con "TODO" sono segnaposto: sostituire con i dati ufficiali di Winex
- * prima della messa online (compaiono anche nelle pagine legali).
+ * Configurazione centrale del sito (valori non traducibili).
+ * I dati societari ufficiali si inseriscono dall'admin («Conținut site») e hanno la precedenza su questi default:
+ * i campi vuoti non vengono mostrati sul sito pubblico.
  */
 export const site = {
   name: "Winex",
-  legalName: "TODO — Denumirea legală completă a societății (ex. S.C. WINEX S.R.L.)",
   domain: "winex.ro",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.winex.ro",
-  tagline: "Tâmplărie PVC, aluminiu și lemn, produsă la Roman.",
-  description:
-    "Winex produce ferestre, uși și sisteme de tâmplărie din PVC, aluminiu și lemn în fabrica din Roman, România. Eficiență energetică, precizie și montaj profesionist.",
-  locale: "ro_RO",
-  city: "Roman",
-  country: "România",
+  /** Data dell'ultima revisione dei testi legali (mostrata nelle pagine legali). */
+  legalUpdated: "2026-10-19",
+  country: "RO",
   company: {
-    cui: "TODO — CUI",
-    regCom: "TODO — Nr. Reg. Comerțului (J…)",
-    address: "TODO — Adresa sediului / fabricii, Roman, jud. Neamț",
-    phone: "TODO — telefon",
-    email: "TODO — contact@winex.ro",
-    hours: "TODO — program (ex. Luni–Vineri 08:00–17:00)",
+    legalName: "Winex",
+    cui: "",
+    regCom: "",
+    address: "",
+    phone: "",
+    email: "",
+    hours: "",
   },
-  social: {
-    facebook: "",
-    instagram: "",
-    linkedin: "",
-  },
-  oneSpecUrl: process.env.NEXT_PUBLIC_ONESPEC_URL ?? "",
+  social: { facebook: "", instagram: "", linkedin: "" },
 } as const;
 
-export const nav = [
-  { href: "/despre-noi", label: "Despre noi" },
-  { href: "/fabrica", label: "Fabrica" },
-  { href: "/configurator", label: "Configurator" },
-  { href: "/contact", label: "Contact" },
+/** Configuratore OneSpec (embed ufficiale). L'ID pubblico può essere sovrascritto da env. */
+const oneSpecId = process.env.NEXT_PUBLIC_ONESPEC_ID || "fwj8VMz94Z";
+export const oneSpec = {
+  origin: "https://platform.onespec.eu",
+  publicId: oneSpecId,
+  embedUrl: `https://platform.onespec.eu/w/${oneSpecId}`,
+  pageUrl: `https://platform.onespec.eu/c/${oneSpecId}`,
+} as const;
+
+/** Voci di navigazione principali (chiavi interne delle pathnames localizzate). */
+export const navItems = [
+  { href: "/about", key: "about" },
+  { href: "/factory", key: "factory" },
+  { href: "/configurator", key: "configurator" },
+  { href: "/contact", key: "contact" },
 ] as const;
 
-export const legalNav = [
-  { href: "/politica-confidentialitate", label: "Politica de confidențialitate" },
-  { href: "/termeni-si-conditii", label: "Termeni și condiții" },
-  { href: "/politica-cookies", label: "Politica de cookie-uri" },
+export const legalItems = [
+  { href: "/privacy", key: "privacy" },
+  { href: "/terms", key: "terms" },
+  { href: "/cookies", key: "cookies" },
 ] as const;

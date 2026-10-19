@@ -93,22 +93,34 @@ describe("validazione form", () => {
   });
 });
 
-import { confirmationEmail, confirmationUrl, welcomeEmail } from "../../src/lib/newsletter-mail";
+import { confirmationEmail, confirmationUrl, contactReplyEmail, welcomeEmail } from "../../src/lib/newsletter-mail";
+import { LOCALES } from "../../convex/lib/locales";
 
-describe("email newsletter (double opt-in)", () => {
-  it("link di conferma: URL corretto, token codificato, nessuna iniezione", () => {
-    expect(confirmationUrl("https://www.winex.ro/", "abc123")).toBe("https://www.winex.ro/confirma-abonare?t=abc123");
-    const m = confirmationEmail("https://www.winex.ro", 'x"><script>alert(1)</script>');
+describe("email newsletter (double opt-in) — tutte le lingue", () => {
+  it("link di conferma: URL con lingua, token codificato, nessuna iniezione", () => {
+    expect(confirmationUrl("https://www.winex.ro/", "abc123", "fr")).toBe("https://www.winex.ro/fr/confirm-subscription?t=abc123");
+    const m = confirmationEmail("https://www.winex.ro", 'x"><script>alert(1)</script>', "de");
     expect(m.html).not.toContain("<script>");
-    expect(m.html).toContain("/confirma-abonare?t=x%22%3E%3Cscript%3E");
-    expect(m.text).toContain("https://www.winex.ro/confirma-abonare?t=");
-    expect(m.html).toContain("ignoră acest mesaj");
-    expect(m.subject).toMatch(/Confirmă/);
+    expect(m.html).toContain("/de/confirm-subscription?t=x%22%3E%3Cscript%3E");
+    expect(m.html).toContain('<html lang="de">');
   });
-  it("benvenuto: disiscrizione con un click (header RFC 8058) e link pagina", () => {
-    const m = welcomeEmail("https://www.winex.ro", "tok123");
-    expect(m.headers["List-Unsubscribe"]).toBe("<https://www.winex.ro/api/unsubscribe?t=tok123>");
-    expect(m.headers["List-Unsubscribe-Post"]).toBe("List-Unsubscribe=One-Click");
-    expect(m.html).toContain("https://www.winex.ro/dezabonare?t=tok123");
+  it.each(LOCALES)("conferma, benvenuto e risposta contatti completi in %s", (loc) => {
+    const c = confirmationEmail("https://www.winex.ro", "tok", loc);
+    const w = welcomeEmail("https://www.winex.ro", "utok", loc);
+    const r = contactReplyEmail("https://www.winex.ro", "Anna <b>", loc);
+    for (const m of [c, w, r]) {
+      expect(m.subject.length).toBeGreaterThan(5);
+      expect(m.html.length).toBeGreaterThan(200);
+      expect(m.text.length).toBeGreaterThan(20);
+      expect(m.html).not.toContain("undefined");
+    }
+    expect(c.html).toContain(`/${loc}/confirm-subscription?t=tok`);
+    expect(w.html).toContain(`/${loc}/unsubscribe?t=utok`);
+    expect(w.headers["List-Unsubscribe"]).toBe("<https://www.winex.ro/api/unsubscribe?t=utok>");
+    expect(w.headers["List-Unsubscribe-Post"]).toBe("List-Unsubscribe=One-Click");
+    expect(r.html).toContain("Anna &lt;b&gt;"); // nome escapato
+  });
+  it("lingua sconosciuta → inglese", () => {
+    expect(confirmationEmail("https://www.winex.ro", "t", "xx").subject).toBe("Confirm your subscription to the Winex newsletter");
   });
 });

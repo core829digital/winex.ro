@@ -34,6 +34,7 @@ export default defineSchema({
     subject: v.optional(v.string()),
     message: v.string(),
     source: v.string(), // "contact" | "configurator"
+    locale: v.optional(v.string()), // lingua della pagina da cui è stato inviato
     consent: v.boolean(),
     status: leadStatus,
     note: v.optional(v.string()),
@@ -47,6 +48,7 @@ export default defineSchema({
     email: v.string(),
     consent: v.boolean(),
     source: v.string(),
+    locale: v.string(), // lingua del sito al momento dell'iscrizione (email nella stessa lingua)
     status: subscriberStatus,
     unsubToken: v.string(),
     confirmToken: v.optional(v.string()), // monouso: azzerato alla conferma
@@ -58,7 +60,8 @@ export default defineSchema({
     .index("by_email", ["email"])
     .index("by_token", ["unsubToken"])
     .index("by_confirmToken", ["confirmToken"])
-    .index("by_status", ["status"]),
+    .index("by_status", ["status"])
+    .index("by_status_locale", ["status", "locale"]),
 
   /* --------------------------------- Campagne email --------------------------------- */
   campaigns: defineTable({
@@ -68,6 +71,7 @@ export default defineSchema({
     body: v.string(), // mini-markdown
     ctaLabel: v.optional(v.string()),
     ctaUrl: v.optional(v.string()),
+    audience: v.optional(v.string()), // "all" oppure codice lingua (es. "fr")
     status: campaignStatus,
     scheduledAt: v.optional(v.number()),
     sentAt: v.optional(v.number()),
@@ -122,6 +126,7 @@ export default defineSchema({
   /* ----------------------------------- Blog ----------------------------------------- */
   posts: defineTable({
     title: v.string(),
+    locale: v.string(),
     slug: v.string(),
     excerpt: v.optional(v.string()),
     content: v.string(), // markdown
@@ -133,7 +138,7 @@ export default defineSchema({
     authorEmail: v.string(),
     updatedAt: v.number(),
   })
-    .index("by_slug", ["slug"])
+    .index("by_locale_slug", ["locale", "slug"])
     .index("by_status_publishedAt", ["status", "publishedAt"])
     .index("by_updatedAt", ["updatedAt"]),
 

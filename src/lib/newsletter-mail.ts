@@ -1,53 +1,64 @@
-/** Email transazionali della newsletter (funzioni pure, testabili). Tutto l'input è escapato. */
+/** Email transazionali della newsletter, nella lingua dell'iscritto (funzioni pure, testabili). Tutto l'input è escapato. */
+import { emailStrings } from "../../convex/lib/emailStrings";
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+const base = (u: string) => u.replace(/\/$/, "");
 
-const shell = (siteUrl: string, inner: string, footer: string) => `<!doctype html>
-<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f6f6f7;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#25282d">
+const shell = (siteUrl: string, lang: string, inner: string, footer: string) => `<!doctype html>
+<html lang="${esc(lang)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f5f6f8;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1f2328">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#fff;border-radius:20px">
-<tr><td style="padding:28px 32px 4px"><a href="${esc(siteUrl)}" style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#25282d;text-decoration:none">win<span style="color:#dc2430">ex</span></a></td></tr>
-<tr><td style="padding:12px 32px 8px;font-size:16px;line-height:1.65;color:#4a5059">${inner}</td></tr>
-<tr><td style="padding:16px 32px 28px;border-top:1px solid #eeeff1;font-size:12px;line-height:1.6;color:#6f7681">${footer}</td></tr>
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#fff;border-radius:10px;border:1px solid #e3e5e8">
+<tr><td style="padding:28px 32px 4px"><a href="${esc(siteUrl)}" style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#1f2328;text-decoration:none">win<span style="color:#cc1f2b">ex</span></a></td></tr>
+<tr><td style="padding:12px 32px 8px;font-size:16px;line-height:1.65;color:#454c55">${inner}</td></tr>
+<tr><td style="padding:16px 32px 28px;border-top:1px solid #eeeff1;font-size:12px;line-height:1.6;color:#667085">${footer}</td></tr>
 </table></td></tr></table></body></html>`;
 
-export function confirmationUrl(siteUrl: string, token: string) {
-  return `${siteUrl.replace(/\/$/, "")}/confirma-abonare?t=${encodeURIComponent(token)}`;
+export function confirmationUrl(siteUrl: string, token: string, locale: string) {
+  return `${base(siteUrl)}/${encodeURIComponent(locale)}/confirm-subscription?t=${encodeURIComponent(token)}`;
 }
 
 /** Email di conferma (double opt-in). Il link porta a una pagina che richiede un click esplicito. */
-export function confirmationEmail(siteUrl: string, token: string) {
-  const url = confirmationUrl(siteUrl, token);
+export function confirmationEmail(siteUrl: string, token: string, locale: string) {
+  const s = emailStrings(locale).confirm;
+  const url = confirmationUrl(siteUrl, token, locale);
   const html = shell(
     siteUrl,
-    `<h2 style="margin:8px 0 12px;font-size:22px;line-height:1.25;color:#25282d">Confirmă abonarea</h2>
-<p style="margin:0 0 16px">Ai cerut să primești newsletterul Winex. Apasă butonul de mai jos pentru a confirma adresa de e-mail.</p>
-<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 20px"><tr><td style="border-radius:999px;background:#dc2430"><a href="${esc(url)}" style="display:inline-block;padding:14px 28px;font-weight:700;font-size:15px;color:#ffffff;text-decoration:none;border-radius:999px">Confirmă abonarea</a></td></tr></table>
-<p style="margin:0;font-size:13px;color:#6f7681">Linkul este valabil 7 zile. Dacă butonul nu funcționează, copiază în browser: <br><span style="word-break:break-all">${esc(url)}</span></p>`,
-    "Dacă nu ai cerut tu această abonare, ignoră acest mesaj: nu vei primi nimic și adresa ta va fi ștearsă automat.",
+    locale,
+    `<h2 style="margin:8px 0 12px;font-size:22px;line-height:1.25;color:#1f2328">${esc(s.heading)}</h2>
+<p style="margin:0 0 16px">${esc(s.intro)}</p>
+<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 20px"><tr><td style="border-radius:6px;background:#cc1f2b"><a href="${esc(url)}" style="display:inline-block;padding:14px 28px;font-weight:700;font-size:15px;color:#ffffff;text-decoration:none;border-radius:6px">${esc(s.button)}</a></td></tr></table>
+<p style="margin:0;font-size:13px;color:#667085">${esc(s.hint)}<br><span style="word-break:break-all">${esc(url)}</span></p>`,
+    esc(s.ignore),
   );
-  const text = `Confirmă abonarea la newsletterul Winex:\n${url}\n\nLinkul este valabil 7 zile. Dacă nu ai cerut tu abonarea, ignoră acest mesaj.`;
-  return { subject: "Confirmă abonarea la newsletterul Winex", html, text };
+  return { subject: s.subject, html, text: `${s.heading}\n\n${s.intro}\n${url}\n\n${s.hint}\n${s.ignore}` };
 }
 
 /** Email di benvenuto, inviata solo DOPO la conferma. Include la disiscrizione con un click. */
-export function welcomeEmail(siteUrl: string, unsubToken: string) {
-  const base = siteUrl.replace(/\/$/, "");
-  const unsubPage = `${base}/dezabonare?t=${encodeURIComponent(unsubToken)}`;
+export function welcomeEmail(siteUrl: string, unsubToken: string, locale: string) {
+  const s = emailStrings(locale).welcome;
+  const root = base(siteUrl);
+  const unsubPage = `${root}/${encodeURIComponent(locale)}/unsubscribe?t=${encodeURIComponent(unsubToken)}`;
   const html = shell(
     siteUrl,
-    `<h2 style="margin:8px 0 12px;font-size:22px;line-height:1.25;color:#25282d">Bine ai venit!</h2>
-<p style="margin:0 0 16px">Abonarea ta a fost confirmată. Îți vom trimite noutăți despre produse, proiecte și oferte Winex.</p>`,
-    `Te poți dezabona oricând: <a href="${esc(unsubPage)}" style="color:#6f7681;text-decoration:underline">Dezabonează-te</a>`,
+    locale,
+    `<h2 style="margin:8px 0 12px;font-size:22px;line-height:1.25;color:#1f2328">${esc(s.heading)}</h2><p style="margin:0 0 16px">${esc(s.body)}</p>`,
+    `${esc(s.footerLead)} <a href="${esc(unsubPage)}" style="color:#667085;text-decoration:underline">${esc(s.unsubscribe)}</a>`,
   );
   return {
-    subject: "Bine ai venit la Winex",
+    subject: s.subject,
     html,
-    text: `Abonarea ta la newsletterul Winex a fost confirmată.\n\nDezabonare: ${unsubPage}`,
+    text: `${s.heading}\n\n${s.body}\n\n${s.footerLead} ${unsubPage}`,
     headers: {
-      "List-Unsubscribe": `<${base}/api/unsubscribe?t=${encodeURIComponent(unsubToken)}>`,
+      "List-Unsubscribe": `<${root}/api/unsubscribe?t=${encodeURIComponent(unsubToken)}>`,
       "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
     },
   };
+}
+
+/** Risposta automatica al cliente dopo il modulo contatti. */
+export function contactReplyEmail(siteUrl: string, name: string, locale: string) {
+  const s = emailStrings(locale).contactReply;
+  const html = shell(siteUrl, locale, `<p style="margin:8px 0 12px">${esc(s.greeting(name))}</p><p style="margin:0 0 16px">${esc(s.body)}</p><p style="margin:0">${esc(s.signature)}</p>`, "");
+  return { subject: s.subject, html, text: `${s.greeting(name)}\n\n${s.body}\n\n${s.signature}` };
 }

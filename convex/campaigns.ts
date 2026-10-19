@@ -3,6 +3,7 @@ import { internalAction, internalMutation, internalQuery, mutation, query } from
 import { internal } from "./_generated/api";
 import { assertIngestSecret, audit, isAdminEmail, requireAdmin } from "./lib/admin";
 import { renderEmailHtml, renderEmailText, safeUrl } from "./lib/emailTemplate";
+import { LOCALES, normalizeLocale } from "./lib/locales";
 
 const emptyStats = { recipients: 0, sent: 0, delivered: 0, opened: 0, clicked: 0, bounced: 0, complained: 0 };
 const EVENT_FIELDS = ["delivered", "opened", "clicked", "bounced", "complained"] as const;
@@ -34,9 +35,11 @@ export const save = mutation({
     body: v.string(),
     ctaLabel: v.optional(v.string()),
     ctaUrl: v.optional(v.string()),
+    audience: v.optional(v.string()),
   },
   handler: async (ctx, { id, ...f }) => {
     const admin = await requireAdmin(ctx);
+    if (f.audience && f.audience !== "all" && !(LOCALES as readonly string[]).includes(f.audience)) throw new ConvexError("INVALID_AUDIENCE");
     if (f.name.length > 120 || f.subject.length > 200 || (f.preheader?.length ?? 0) > 200 || f.body.length > 30000)
       throw new ConvexError("TOO_LONG");
     if (f.ctaUrl && !safeUrl(f.ctaUrl)) throw new ConvexError("INVALID_CTA_URL");
@@ -47,6 +50,7 @@ export const save = mutation({
       body: f.body,
       ctaLabel: f.ctaLabel?.trim() || undefined,
       ctaUrl: f.ctaUrl?.trim() || undefined,
+      audience: f.audience && f.audience !== "all" ? f.audience : undefined,
       updatedAt: Date.now(),
     };
     if (id) {
@@ -185,11 +189,12 @@ export const runSend = internalAction({
       let after: number | undefined;
       let batchNo = 0;
       for (;;) {
-        const page = await ctx.runQuery(internal.subscribers.recipientsPage, { after, limit: BATCH });
+        const page = await ctx.runQuery(internal.subscribers.recipientsPage, { after, limit: BATCH, locale: c.audience });
         if (page.length === 0) break;
         const emails = page.map((r) => {
-          const unsubscribeUrl = `${siteUrl()}/dezabonare?t=${r.token}`;
+          const unsubscribeUrl = `${siteUrl()}/${normalizeLocale(r.locale)}/unsubscribe?t=${r.token}`;
           const input = {
+            locale: r.locale,
             subject: c.subject,
             preheader: c.preheader,
             body: c.body,
@@ -246,7 +251,8 @@ export const runTest = internalAction({
         body: c.body,
         ctaLabel: c.ctaLabel,
         ctaUrl: c.ctaUrl,
-        unsubscribeUrl: `${siteUrl()}/dezabonare`,
+        locale: c.audience ?? "ro",
+        unsubscribeUrl: `${siteUrl()}/${normalizeLocale(c.audience ?? "ro")}/unsubscribe`,
         siteUrl: siteUrl(),
         companyLine: line,
       };

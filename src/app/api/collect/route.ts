@@ -2,6 +2,7 @@ import { z } from "zod";
 import { rateLimit } from "@/lib/rate-limit";
 import { api, convex, convexReady, env, guard } from "@/lib/server";
 import { bucharestKeys, deviceOf, isBot, visitorId } from "@/lib/analytics";
+import { isLocale } from "@/i18n/routing";
 
 export const runtime = "nodejs";
 
@@ -50,6 +51,7 @@ export async function POST(req: Request) {
       device: deviceOf(ua!),
       country: req.headers.get("x-vercel-ip-country") ?? req.headers.get("cf-ipcountry") ?? undefined,
       label: clean(p.data.label),
+      lang: isLocale(p.data.path.split("/")[1]) ? p.data.path.split("/")[1] : undefined,
     });
   } catch (e) {
     console.error("[collect] Convex error", e);

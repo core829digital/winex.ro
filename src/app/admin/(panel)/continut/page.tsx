@@ -31,7 +31,7 @@ function Form({ initial }: { initial: Partial<Record<Key, string>> }) {
   const save = useMutation(api.settings.saveCompany);
   const toast = useToast();
   const [v, setV] = useState<Record<Key, string>>(() => Object.fromEntries(FIELDS.map(([k]) => [k, initial[k] ?? ""])) as Record<Key, string>);
-  const defaults = { legalName: site.legalName, cui: site.company.cui, regCom: site.company.regCom, address: site.company.address, phone: site.company.phone, email: site.company.email, hours: site.company.hours } as Record<string, string>;
+  const defaults = { legalName: site.company.legalName, cui: site.company.cui, regCom: site.company.regCom, address: site.company.address, phone: site.company.phone, email: site.company.email, hours: site.company.hours } as Record<string, string>;
 
   return (
     <>

@@ -17,7 +17,7 @@ export type Company = {
 };
 
 const defaults: Company = {
-  legalName: site.legalName,
+  legalName: site.company.legalName,
   cui: site.company.cui,
   regCom: site.company.regCom,
   address: site.company.address,
@@ -29,7 +29,7 @@ const defaults: Company = {
   linkedin: site.social.linkedin,
 };
 
-/** Dati societari: modificabili da admin (Convex), con fallback ai default in site.ts. Cache 60s. */
+/** Dati societari: modificabili da admin (Convex), con fallback ai default in site.ts. I campi vuoti non vengono mostrati. Cache 60s. */
 export const getCompany = unstable_cache(
   async (): Promise<Company> => {
     const { company } = await getServerSettings();

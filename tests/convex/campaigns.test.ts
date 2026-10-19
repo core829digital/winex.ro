@@ -25,12 +25,12 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-async function seedSubs(t: T, active: number) {
+async function seedSubs(t: T, active: number, locale = "ro") {
   await t.run(async (ctx) => {
     for (let i = 0; i < active; i++)
-      await ctx.db.insert("subscribers", { email: `u${i}@x.ro`, consent: true, source: "t", status: "subscribed", unsubToken: `tok${String(i).padStart(29, "0")}`, subscribedAt: Date.now() });
-    await ctx.db.insert("subscribers", { email: "gone@x.ro", consent: true, source: "t", status: "unsubscribed", unsubToken: "g".repeat(32), subscribedAt: Date.now() });
-    await ctx.db.insert("subscribers", { email: "bounced@x.ro", consent: true, source: "t", status: "suppressed", unsubToken: "b".repeat(32), subscribedAt: Date.now() });
+      await ctx.db.insert("subscribers", { email: `u${i}@x.ro`, consent: true, source: "t", locale, status: "subscribed", unsubToken: `tok${String(i).padStart(29, "0")}`, subscribedAt: Date.now() });
+    await ctx.db.insert("subscribers", { email: "gone@x.ro", consent: true, source: "t", locale, status: "unsubscribed", unsubToken: "g".repeat(32), subscribedAt: Date.now() });
+    await ctx.db.insert("subscribers", { email: "bounced@x.ro", consent: true, source: "t", locale, status: "suppressed", unsubToken: "b".repeat(32), subscribedAt: Date.now() });
   });
 }
 
@@ -76,9 +76,10 @@ describe("campagne email", () => {
       expect(m.tags).toEqual([{ name: "campaign_id", value: String(id) }]);
       expect(m.headers["List-Unsubscribe"]).toMatch(/^<https:\/\/www\.winex\.ro\/api\/unsubscribe\?t=tok\d+>$/);
       expect(m.headers["List-Unsubscribe-Post"]).toBe("List-Unsubscribe=One-Click");
-      expect(m.html).toContain("https://www.winex.ro/dezabonare?t=tok");
+      expect(m.html).toContain("https://www.winex.ro/ro/unsubscribe?t=tok");
+      expect(m.html).toContain("Primești acest e-mail pentru că te-ai abonat"); // piè di pagina nella lingua del destinatario
       expect(m.html).toContain("<strong>Ofertă</strong>");
-      expect(m.text).toContain("Dezabonare:");
+      expect(m.text).toContain("Dezabonează-te:");
     }
     const done = await client.query(api.campaigns.get, { id });
     expect(done?.status).toBe("sent");
@@ -159,5 +160,29 @@ describe("campagne email", () => {
     await ev("weird");
     await ev("opened", "a@x.ro", "not-an-id");
     expect((await client.query(api.campaigns.get, { id }))?.stats).toMatchObject({ delivered: 1, opened: 2, clicked: 1, bounced: 1, complained: 0 });
+  });
+
+  it("pubblico per lingua: solo gli iscritti della lingua scelta, footer e link nella loro lingua", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    await seedSubs(t, 2, "ro");
+    await t.run(async (ctx) => {
+      for (const [i, l] of ["fr", "fr", "de"].entries())
+        await ctx.db.insert("subscribers", { email: `x${i}@${l}.eu`, consent: true, source: "t", locale: l, status: "subscribed", unsubToken: `${l}${i}`.padEnd(32, "0"), subscribedAt: Date.now() });
+    });
+    const id = await client.mutation(api.campaigns.save, { ...draft, audience: "fr" });
+    expect((await client.query(api.campaigns.get, { id }))?.audience).toBe("fr");
+    await client.mutation(api.campaigns.send, { id });
+    await t.finishAllScheduledFunctions(vi.runAllTimers);
+    const msgs = calls.flatMap((c) => c.body);
+    expect(msgs.map((m) => m.to[0]).sort()).toEqual(["x0@fr.eu", "x1@fr.eu"]);
+    for (const m of msgs) {
+      expect(m.html).toContain("https://www.winex.ro/fr/unsubscribe?t=fr");
+      expect(m.html).toContain("Vous recevez cet e-mail");
+      expect(m.html).toContain("Se désinscrire");
+      expect(m.html).toContain('<html lang="fr">');
+    }
+    expect((await client.query(api.campaigns.get, { id }))?.stats.sent).toBe(2);
+    await expect(client.mutation(api.campaigns.save, { ...draft, audience: "xx" })).rejects.toThrow(/INVALID_AUDIENCE/);
   });
 });

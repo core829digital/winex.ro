@@ -26,6 +26,7 @@ export const record = mutation({
     device: v.string(),
     country: v.optional(v.string()),
     label: v.optional(v.string()),
+    lang: v.optional(v.string()),
   },
   handler: async (ctx, a) => {
     assertIngestSecret(a.secret);
@@ -49,6 +50,7 @@ export const record = mutation({
       await bump(ctx, a.day, "visitors", "total");
       await bump(ctx, a.day, "device", a.device);
       if (a.country) await bump(ctx, a.day, "country", a.country);
+      if (a.lang) await bump(ctx, a.day, "lang", a.lang);
       await bump(ctx, a.day, "ref", a.ref ?? "direct");
     }
     if (a.type === "pv") {
@@ -98,7 +100,7 @@ export const overview = query({
     const read = async (kind: string) =>
       await ctx.db.query("counters").withIndex("by_kind_day", (q) => q.eq("kind", kind).gte("day", from)).take(3000);
 
-    const [views, visitors, paths, refs, devices, countries, clicks, hours] = await Promise.all([
+    const [views, visitors, paths, refs, devices, countries, clicks, langs, hours] = await Promise.all([
       read("views"),
       read("visitors"),
       read("path"),
@@ -106,6 +108,7 @@ export const overview = query({
       read("device"),
       read("country"),
       read("click"),
+      read("lang"),
       ctx.db.query("counters").withIndex("by_kind_day", (q) => q.eq("kind", "h").eq("day", today)).take(48),
     ]);
 
@@ -136,6 +139,7 @@ export const overview = query({
       devices: group(devices),
       countries: group(countries),
       clicks: group(clicks, 10),
+      langs: group(langs, 10),
     };
   },
 });

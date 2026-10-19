@@ -31,7 +31,7 @@ export async function POST(req: Request) {
   // Dopo la risposta: benvenuto, contatto nell'audience Resend (se configurata), push admin (se attiva).
   after(async () => {
     if (resendReady && res.email && res.unsubToken) {
-      const mail = welcomeEmail(site.url, res.unsubToken);
+      const mail = welcomeEmail(site.url, res.unsubToken, res.locale ?? "en");
       await resend()
         .emails.send({ from: env.from!, to: res.email, subject: mail.subject, html: mail.html, text: mail.text, headers: mail.headers })
         .catch((e) => console.error("[newsletter-confirm] welcome", e));

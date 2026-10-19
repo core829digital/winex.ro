@@ -33,8 +33,8 @@ describe("messaggi (leads)", () => {
 });
 
 describe("newsletter — double opt-in", () => {
-  const sub = (t: ReturnType<typeof makeT>, email: string) =>
-    t.mutation(api.subscribers.subscribe, { secret: SECRET, email, source: "website", consent: true });
+  const sub = (t: ReturnType<typeof makeT>, email: string, locale = "ro") =>
+    t.mutation(api.subscribers.subscribe, { secret: SECRET, email, source: "website", consent: true, locale });
   const row = (t: ReturnType<typeof makeT>, email: string) =>
     t.run(async (ctx) => ctx.db.query("subscribers").withIndex("by_email", (q) => q.eq("email", email)).first());
 
@@ -57,7 +57,7 @@ describe("newsletter — double opt-in", () => {
 
   it("senza consenso nessuna iscrizione", async () => {
     const t = makeT();
-    await expect(t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "a@b.ro", source: "w", consent: false })).rejects.toThrow(/CONSENT_REQUIRED/);
+    await expect(t.mutation(api.subscribers.subscribe, { secret: SECRET, email: "a@b.ro", source: "w", consent: false, locale: "ro" })).rejects.toThrow(/CONSENT_REQUIRED/);
     expect(await row(t, "a@b.ro")).toBeNull();
   });
 
@@ -176,5 +176,61 @@ describe("newsletter — double opt-in", () => {
     await expect(client.mutation(api.subscribers.adminAdd, { email: "not-an-email", consentConfirmed: true })).rejects.toThrow(/INVALID_EMAIL/);
     await client.mutation(api.subscribers.adminAdd, { email: "ok@b.ro", consentConfirmed: true });
     await expect(client.mutation(api.subscribers.adminAdd, { email: "OK@b.ro", consentConfirmed: true })).rejects.toThrow(/ALREADY_EXISTS/);
+  });
+});
+
+describe("newsletter — lingua", () => {
+  const sub = (t: ReturnType<typeof makeT>, email: string, locale: string) =>
+    t.mutation(api.subscribers.subscribe, { secret: SECRET, email, source: "website", consent: true, locale });
+
+  it("salva la lingua, la normalizza e la restituisce alla conferma (email nella lingua giusta)", async () => {
+    const t = makeT();
+    const a = await sub(t, "fr@x.fr", "fr");
+    const b = await sub(t, "odd@x.fr", "xx"); // lingua sconosciuta → en
+    const ca = await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: a.confirmToken! });
+    const cb = await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: b.confirmToken! });
+    expect(ca.locale).toBe("fr");
+    expect(cb.locale).toBe("en");
+  });
+
+  it("conteggio e destinatari per lingua (solo attivi)", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    for (const [e, l] of [["a@x.it", "it"], ["b@x.it", "it"], ["c@x.de", "de"], ["d@x.de", "de"]] as const) {
+      const r = await sub(t, e, l);
+      if (e !== "d@x.de") await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: r.confirmToken! }); // d resta pending
+    }
+    const counts = await client.query(api.subscribers.activeByLocale, {});
+    expect(counts.total).toBe(3);
+    expect(counts.byLocale).toMatchObject({ it: 2, de: 1, fr: 0, ro: 0 });
+    const it = await t.query(internal.subscribers.recipientsPage, { limit: 100, locale: "it" });
+    expect(it.map((r) => r.email).sort()).toEqual(["a@x.it", "b@x.it"]);
+    expect((await t.query(internal.subscribers.recipientsPage, { limit: 100 })).length).toBe(3);
+  });
+
+  it("riscrivendosi da un'altra lingua l'iscritto aggiorna la lingua", async () => {
+    const t = makeT();
+    const first = await sub(t, "x@x.ro", "ro");
+    await t.run(async (ctx) => {
+      const d = await ctx.db.query("subscribers").withIndex("by_email", (q) => q.eq("email", "x@x.ro")).first();
+      await ctx.db.patch(d!._id, { confirmSentAt: Date.now() - 20 * 60_000 });
+    });
+    const again = await sub(t, "x@x.ro", "pl");
+    expect(again.send).toBe(true);
+    expect((await t.mutation(api.subscribers.confirmByToken, { secret: SECRET, token: again.confirmToken! })).locale).toBe("pl");
+    expect(first.confirmToken).not.toBe(again.confirmToken);
+  });
+});
+
+describe("messaggi — lingua", () => {
+  it("salva la lingua della pagina (normalizzata) e la espone all'admin", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    await t.mutation(api.leads.create, { ...lead("de"), locale: "de" });
+    await t.mutation(api.leads.create, { ...lead("zz"), locale: "klingon" });
+    await t.mutation(api.leads.create, lead("none"));
+    const rows = await client.query(api.leads.list, {});
+    const byName = Object.fromEntries(rows.map((l) => [l.name, l.locale]));
+    expect(byName).toEqual({ de: "de", zz: "en", none: undefined });
   });
 });

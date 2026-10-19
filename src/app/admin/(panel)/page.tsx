@@ -7,6 +7,7 @@ import { api } from "@convex/_generated/api";
 import { Card, PageHeader, Skeleton, Stat, timeAgo, Btn } from "@/components/admin/ui";
 import { BarChart, RankList } from "@/components/admin/charts";
 import { daysBack } from "@/lib/dates";
+import { localeMeta } from "@/i18n/routing";
 
 const RANGES = [7, 30, 90] as const;
 const COUNTRY = new Intl.DisplayNames(["ro"], { type: "region" });
@@ -18,6 +19,7 @@ const countryName = (k: string) => {
   }
 };
 const DEVICE: Record<string, string> = { mobile: "Telefon", desktop: "Calculator", tablet: "Tabletă" };
+const LANG_NAME: Record<string, string> = Object.fromEntries(Object.entries(localeMeta).map(([k, v]) => [k, `${v.name} (${v.short})`]));
 
 function useNow(ms: number) {
   const [now, setNow] = useState(() => Date.now());
@@ -125,6 +127,7 @@ export default function DashboardPage() {
         <Card title="Click-uri populare">{ov ? <RankList rows={ov.clicks} empty="Încă niciun click înregistrat." /> : <Skeleton className="h-36" />}</Card>
         <Card title="Surse de trafic">{ov ? <RankList rows={ov.refs.map((r) => ({ ...r, key: r.key === "direct" ? "Direct" : r.key }))} /> : <Skeleton className="h-36" />}</Card>
         <Card title="Dispozitive">{ov ? <RankList rows={ov.devices.map((r) => ({ ...r, key: DEVICE[r.key] ?? r.key }))} /> : <Skeleton className="h-36" />}</Card>
+        <Card title="Limbi">{ov ? <RankList rows={ov.langs.map((r) => ({ ...r, key: LANG_NAME[r.key] ?? r.key }))} empty="Încă nu există date." /> : <Skeleton className="h-36" />}</Card>
         <Card title="Țări">{ov ? <RankList rows={ov.countries.map((r) => ({ ...r, key: countryName(r.key) }))} empty="Țara apare când site-ul rulează pe Vercel/Cloudflare." /> : <Skeleton className="h-36" />}</Card>
       </div>
 

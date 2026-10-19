@@ -65,4 +65,15 @@ describe("analytics proprietarie", () => {
     expect(left.events).toHaveLength(1);
     expect(left.counters.length).toBeGreaterThan(0);
   });
+
+  it("conta i visitatori per lingua (una volta per visitatore al giorno)", async () => {
+    const t = makeT();
+    const { client } = await asUser(t, "stefan@core829.ro");
+    await t.mutation(api.analytics.record, rec({ vid: "a", lang: "ro", path: "/ro" }));
+    await t.mutation(api.analytics.record, rec({ vid: "a", lang: "ro", path: "/ro/contact" })); // stesso visitatore
+    await t.mutation(api.analytics.record, rec({ vid: "b", lang: "de", path: "/de" }));
+    await t.mutation(api.analytics.record, rec({ vid: "c", path: "/" })); // senza lingua
+    const o = await client.query(api.analytics.overview, { from: "2026-10-15", today: "2026-10-15" });
+    expect(Object.fromEntries(o.langs.map((r) => [r.key, r.n]))).toEqual({ ro: 1, de: 1 });
+  });
 });

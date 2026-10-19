@@ -2,51 +2,68 @@
 @import "@fontsource-variable/manrope/index.css";
 @import "@fontsource-variable/inter/index.css";
 
-/* ------------------------------------------------------------------ *
- * WINEX — Design tokens
- * Accento rosso · testo antracite (contrasto morbido) · sfondo bianco
- * ------------------------------------------------------------------ */
+/* ====================================================================== *
+ * WINEX — Design system v2 (corporate / enterprise)
+ * Accento rosso · antracite · bianco. Angoli netti, ritmo tipografico rigoroso,
+ * bande scure per autorevolezza, movimento sobrio e misurato.
+ * ====================================================================== */
 :root {
   --bg: #ffffff;
-  --bg-soft: #f6f6f7;
-  --ink: #25282d; /* antracite — non nero puro, per leggerezza */
-  --ink-soft: #4a5059;
-  --ink-mute: #6f7681;
-  --line: rgba(37, 40, 45, 0.1);
+  --bg-soft: #f5f6f8;
+  --bg-dark: #14161a;
+  --bg-dark-2: #1b1e23;
 
-  --red: #dc2430;
-  --red-deep: #b3131e; /* testo/link rosso su bianco (AA) */
-  --red-soft: rgba(220, 36, 48, 0.09);
+  --ink: #1f2328; /* antracite */
+  --ink-soft: #454c55;
+  --ink-mute: #667085;
+  --ink-inv: #f3f4f6;
+  --ink-inv-soft: #aab1bb;
 
-  --glass-bg: rgba(255, 255, 255, 0.58);
-  --glass-bg-strong: rgba(255, 255, 255, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.85);
-  --glass-shadow: 0 1px 0 rgba(255, 255, 255, 0.95) inset,
-    0 0 0 1px rgba(37, 40, 45, 0.05),
-    0 18px 40px -18px rgba(37, 40, 45, 0.22),
-    0 2px 6px rgba(37, 40, 45, 0.04);
+  --line: rgba(31, 35, 40, 0.12);
+  --line-strong: rgba(31, 35, 40, 0.24);
+  --line-inv: rgba(255, 255, 255, 0.14);
 
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --red: #cc1f2b;
+  --red-deep: #a3151e; /* testo/link rosso su bianco (AA) */
+  --red-soft: rgba(204, 31, 43, 0.08);
+
+  --r-btn: 6px;
+  --r-card: 10px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 10px 30px -14px rgba(16, 24, 40, 0.22), 0 1px 2px rgba(16, 24, 40, 0.05);
+
+  /* Motion: un'unica famiglia di curve e durate */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 180ms;
+  --dur-2: 420ms;
+  --dur-3: 800ms;
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-soft: var(--bg-soft);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-dark-2: var(--bg-dark-2);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-mute: var(--ink-mute);
+  --color-ink-inv: var(--ink-inv);
+  --color-ink-inv-soft: var(--ink-inv-soft);
   --color-line: var(--line);
   --color-red: var(--red);
   --color-red-deep: var(--red-deep);
   --color-red-soft: var(--red-soft);
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Manrope Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
-  scroll-behavior: auto; /* Lenis gestisce lo scroll */
+  scroll-behavior: auto; /* Lenis gestisce lo scroll su desktop */
   -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 88px;
 }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -67,174 +84,196 @@ body {
 :focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  letter-spacing: -0.025em;
-  line-height: 1.08;
+  letter-spacing: -0.022em;
+  line-height: 1.12;
   color: var(--ink);
   text-wrap: balance;
+  font-weight: 700;
 }
 p { text-wrap: pretty; }
 
-/* ---------------------------- Glass -------------------------------
- * Performance: backdrop-filter è la proprietà più costosa su GPU mobile
- * (ogni elemento con blur forza un re-blur a ogni frame sotto di sé).
- * Lo applichiamo solo su desktop con puntatore reale; su touch/schermi
- * piccoli usiamo una superficie opaca equivalente visivamente.
- * ------------------------------------------------------------------- */
-.glass {
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+/* ----------------------------- Layout ---------------------------------- */
+.container-x {
+  width: 100%;
+  max-width: 76rem; /* 1216px */
+  margin-inline: auto;
+  padding-inline: 1.25rem;
 }
-.glass-strong {
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-}
-/* Pannello menu mobile: completamente opaco (nessuna trasparenza da comporre) */
-.glass-solid { background: #fff; }
-@media (hover: hover) and (min-width: 768px) {
-  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass {
-      background: var(--glass-bg);
-      -webkit-backdrop-filter: blur(22px) saturate(170%);
-      backdrop-filter: blur(22px) saturate(170%);
-    }
-    .glass-strong {
-      background: var(--glass-bg-strong);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
-      backdrop-filter: blur(30px) saturate(180%);
-    }
-  }
+@media (min-width: 640px) { .container-x { padding-inline: 2rem; } }
+@media (min-width: 1024px) { .container-x { padding-inline: 2.5rem; } }
+
+.section { padding-block: 5rem; }
+@media (min-width: 1024px) { .section { padding-block: 7.5rem; } }
+.section-soft { background: var(--bg-soft); }
+.band-dark { background: var(--bg-dark); color: var(--ink-inv); }
+.band-dark h1, .band-dark h2, .band-dark h3 { color: #fff; }
+
+/* Griglia tecnica di fondo (statica, costo zero) */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(31, 35, 40, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 35, 40, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
 }
 
-/* Superficie "spatial": lieve sollevamento + riflesso che segue il puntatore */
-.spatial {
-  position: relative;
-  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out);
-}
-.spatial::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: radial-gradient(
-    380px circle at var(--mx, 50%) var(--my, 0%),
-    rgba(255, 255, 255, 0.55),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-@media (hover: hover) {
-  .spatial:hover { transform: translateY(-4px); }
-  .spatial:hover::after { opacity: 1; }
-}
-
-/* ----------------------- Sfondo: aurora energia -------------------
- * Gradienti radiali (nessun filter:blur). Statica su mobile, animata su desktop.
- * ------------------------------------------------------------------- */
-.aurora {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: -1;
-  contain: strict;
-}
-.aurora i {
-  position: absolute;
-  border-radius: 9999px;
-}
-.aurora i:nth-child(1) { width: 70vw; height: 70vw; left: -22vw; top: -26vw; background: radial-gradient(closest-side, rgba(220, 36, 48, 0.17), transparent); }
-.aurora i:nth-child(2) { width: 60vw; height: 60vw; right: -18vw; top: -6vw; background: radial-gradient(closest-side, rgba(255, 120, 90, 0.15), transparent); }
-.aurora i:nth-child(3) { width: 50vw; height: 50vw; left: 25vw; bottom: 0; background: radial-gradient(closest-side, rgba(220, 36, 48, 0.08), transparent); }
-@media (hover: hover) and (min-width: 1024px) {
-  .aurora i { will-change: transform; animation: drift 22s ease-in-out infinite alternate; }
-  .aurora i:nth-child(2) { animation-duration: 28s; animation-delay: -6s; }
-  .aurora i:nth-child(3) { animation-duration: 32s; animation-delay: -12s; }
-}
-@keyframes drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(5vw, 4vw, 0) scale(1.12); }
-}
-
-/* ------------------------- Utilities ------------------------------ */
+/* ----------------------------- Tipografia ------------------------------ */
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--red-deep);
 }
-.text-gradient-red {
-  background: linear-gradient(100deg, var(--red-deep), #f2553f 55%, var(--red));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  background: var(--red);
+  transform-origin: left center;
 }
-.hairline { height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+.band-dark .eyebrow { color: #ff8a92; }
+.band-dark .eyebrow::before { background: #ff8a92; }
 
-/* Interazione touch: niente ritardo/flash, scroll nativo fluido */
-a, button, summary, label, input, textarea { touch-action: manipulation; }
+.section-index {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.h-display { font-size: clamp(2.05rem, 3.6vw, 3.2rem); letter-spacing: -0.028em; line-height: 1.08; font-weight: 700; }
+.h-section { font-size: clamp(1.75rem, 3.2vw, 2.6rem); letter-spacing: -0.026em; line-height: 1.12; font-weight: 700; }
+.lead { font-size: 1.125rem; line-height: 1.65; color: var(--ink-soft); }
+@media (min-width: 1024px) { .lead { font-size: 1.1875rem; } }
+.band-dark .lead { color: var(--ink-inv-soft); }
+
+/* ------------------------------ Superfici ------------------------------ */
+.surface {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+}
+.surface-link {
+  transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+}
+@media (hover: hover) {
+  .surface-link:hover { border-color: var(--line-strong); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+}
+/* barra d'accento fissa in alto a sinistra (identità, non interazione) */
+.accent-bar::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem; top: -1px;
+  width: 2.5rem; height: 3px;
+  border-radius: 0 0 2px 2px;
+  background: var(--red);
+}
+
+/* Header: barra piena, vetro solo su desktop con puntatore reale */
+.site-header {
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.site-header[data-scrolled="true"] { box-shadow: 0 6px 24px -16px rgba(16, 24, 40, 0.35); border-bottom-color: var(--line-strong); }
+@media (hover: hover) and (min-width: 768px) {
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header { background: rgba(255, 255, 255, 0.82); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%); }
+  }
+}
+
+/* ------------------------------ Movimento ------------------------------ */
+/* Reveal singolo: solo opacity + transform (compositor) */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* Reveal a gruppi: i figli entrano in sequenza (stagger) */
+.reveal-group > * {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms + var(--d, 0ms));
+}
+.reveal-group.is-in > * { opacity: 1; transform: none; }
+.reveal-group > :nth-child(1) { --i: 0; } .reveal-group > :nth-child(2) { --i: 1; }
+.reveal-group > :nth-child(3) { --i: 2; } .reveal-group > :nth-child(4) { --i: 3; }
+.reveal-group > :nth-child(5) { --i: 4; } .reveal-group > :nth-child(6) { --i: 5; }
+.reveal-group > :nth-child(7) { --i: 6; } .reveal-group > :nth-child(8) { --i: 7; }
+
+/* Linea che si disegna da sinistra */
+.rule-draw { height: 1px; background: var(--line-strong); transform: scaleX(0); transform-origin: left center; transition: transform 1.2s var(--ease-inout); transition-delay: var(--d, 0ms); }
+.rule-draw.is-in { transform: scaleX(1); }
+.eyebrow::before { transition: transform var(--dur-3) var(--ease-out); }
+.reveal:not(.is-in) .eyebrow::before { transform: scaleX(0); }
+
+html:not(.js) .reveal, html:not(.js) .reveal-group > * { opacity: 1; transform: none; }
+html:not(.js) .rule-draw { transform: none; }
+
+/* Transizione di pagina: ingresso morbido ad ogni navigazione (opacity + transform) */
+@keyframes pageIn { from { opacity: 0; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: none; } }
+.page-in { animation: pageIn 0.5s var(--ease-out) both; }
+
+/* Hero: sequenza d'ingresso orchestrata (CSS puro, nessun JS) */
+@keyframes lineUp { from { transform: translate3d(0, 108%, 0); } to { transform: none; } }
+.line-mask { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.line-mask > span { display: block; transform: translate3d(0, 108%, 0); animation: lineUp 1.05s var(--ease-out) forwards; animation-delay: var(--d, 0ms); }
+
+@keyframes rise { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: none; } }
+.rise { opacity: 0; animation: rise 0.9s var(--ease-out) forwards; animation-delay: var(--d, 0ms); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.fade-in { opacity: 0; animation: fadeIn 0.9s var(--ease-inout) forwards; animation-delay: var(--d, 0ms); }
+
+/* Disegno tecnico: i tratti si "tracciano" (pathLength=1) */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.5s var(--ease-inout) forwards; animation-delay: var(--d, 0ms); }
+@keyframes fillIn { to { fill-opacity: 1; } }
+.draw-fill { fill-opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.5s var(--ease-inout) forwards, fillIn 0.9s ease forwards; animation-delay: var(--d, 0ms), calc(var(--d, 0ms) + 0.9s); }
+@keyframes pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+.pop { opacity: 0; transform-box: fill-box; transform-origin: center; animation: pop 0.6s var(--ease-out) forwards; animation-delay: var(--d, 0ms); }
+
+/* Flusso di energia nel disegno: solo desktop, in pausa fuori schermo */
+@keyframes flow { to { stroke-dashoffset: -60; } }
+@media (hover: hover) and (min-width: 1024px) {
+  .flow { stroke-dasharray: 5 7; animation: flow 3.2s linear infinite; }
+  [data-paused="true"] .flow { animation-play-state: paused; }
+}
+
+/* Interazioni touch */
+a, button, summary, label, input, textarea, select { touch-action: manipulation; }
 a, button { -webkit-tap-highlight-color: transparent; }
 
 /* Rendering differito per le sezioni sotto la piega */
 .cv-auto { content-visibility: auto; contain-intrinsic-size: auto 720px; }
 
-/* Reveal on scroll (attivato da <Reveal/>) */
-.reveal {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
-  transition-delay: var(--d, 0ms);
-}
-.reveal.is-in { opacity: 1; transform: none; }
-html:not(.js) .reveal { opacity: 1; transform: none; }
-
-/* Hero: ingresso orchestrato (solo opacity + transform: compositor-only) */
-@keyframes rise {
-  from { opacity: 0; transform: translate3d(0, 22px, 0); }
-  to { opacity: 1; transform: none; }
-}
-.rise { animation: rise 0.9s var(--ease-out) both; animation-delay: var(--d, 0ms); }
-
-@keyframes float-y {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -10px, 0); }
-}
-@keyframes flow-dash { to { stroke-dashoffset: -400; } }
-.flow-dash { stroke-dasharray: 8 14; }
-.hero-dot { display: none; }
-
-/* Animazioni infinite della scena hero: solo desktop e solo se visibile */
-@media (hover: hover) and (min-width: 1024px) {
-  .float-y { animation: float-y 7s ease-in-out infinite; animation-delay: var(--d, 0s); will-change: transform; }
-  .flow-dash { animation: flow-dash 14s linear infinite; }
-  .hero-dot { display: inline; }
-  .scene-stage { perspective: 1400px; }
-  .scene-rig { transform-style: preserve-3d; will-change: transform; }
-  .z3d { transform: translateZ(var(--z, 0px)); }
-  [data-paused="true"] .float-y, [data-paused="true"] .flow-dash { animation-play-state: paused; }
-}
-
-@keyframes marquee { to { transform: translateX(-50%); } }
+/* Barra di avanzamento scroll (solo desktop) */
+.scroll-progress { position: fixed; left: 0; top: 0; z-index: 60; height: 2px; width: 100%; background: var(--red); transform: scaleX(0); transform-origin: left center; pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-  .reveal { opacity: 1; transform: none; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; transition-delay: 0ms !important; }
+  .reveal, .reveal-group > *, .rise, .fade-in, .pop, .page-in { opacity: 1 !important; transform: none !important; }
+  .line-mask > span { transform: none !important; }
+  .draw, .draw-fill { stroke-dashoffset: 0 !important; fill-opacity: 1 !important; }
+  .rule-draw { transform: none !important; }
 }
 
-@media print {
-  .no-print { display: none !important; }
-}
+@media print { .no-print { display: none !important; } }

@@ -2,7 +2,7 @@
 
 Sito web di **Winex** — fabbrica di tâmplărie PVC, aluminiu e lemn (Roman, România). Sviluppato da CORE829 SRL.
 
-**Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · Lenis · Convex · Resend · Zod · npm
+**Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · next-intl · Lenis · Convex · Resend · Zod · npm
 
 ## Avvio
 
@@ -17,9 +17,12 @@ npm run lint && npm run typecheck && npm run build
 
 | Percorso | Contenuto |
 |---|---|
-| `src/app` | Pagine: `/`, `/despre-noi`, `/fabrica`, `/configurator`, `/contact`, pagine legali, API `/api/contact` e `/api/newsletter` |
-| `src/components/home` | Hero (spatial UI 3D in vetro), Materiali, Energia, Processo, CTA |
-| `src/components/visual/EnergyFlow.tsx` | Sfondo canvas "flusso di energia" (pausa se tab nascosta, statico con reduced-motion) |
+| `src/app/[locale]` | Pagine localizzate: home, about, factory, configurator, contact, privacy, terms, cookies, unsubscribe, confirm-subscription (+ 404). Slug tradotti per lingua |
+| `src/i18n` | Routing (lingue, slug, hreflang), navigazione tipizzata, caricamento messaggi, SEO |
+| `messages/*.json` | Testi in 7 lingue (en, ro, it, fr, pl, nl, de), tipizzati su `en.json` |
+| `src/app/api` | `/api/contact`, `/api/newsletter`, `/api/collect`, `/api/unsubscribe`, webhook Resend |
+| `src/components/home` | Hero con sezione tecnica animata, Materiali, Energia, Processo, CTA |
+| `src/components/visual/EnergyFlow.tsx` | Sfondo canvas "flusso di energia" molto discreto (pausa a tab nascosta / in scroll su mobile, statico con reduced-motion) |
 | `src/lib/site.ts` | **Dati aziendali centrali** (campi `TODO` da sostituire) |
 | `convex/` | Schema + mutation (`leads`, `subscribers`) protette da segreto condiviso |
 
@@ -27,8 +30,25 @@ npm run lint && npm run typecheck && npm run build
 
 1. **Convex**: `npx convex dev` (crea il progetto), poi `npx convex env set INGEST_SECRET <segreto>`; imposta `NEXT_PUBLIC_CONVEX_URL` e lo stesso segreto in `CONVEX_INGEST_SECRET`.
 2. **Resend**: verifica il dominio `winex.ro`, imposta `RESEND_API_KEY`, `RESEND_FROM`, `CONTACT_TO_EMAIL` (+ `RESEND_AUDIENCE_ID` per la newsletter).
-3. **OneSpec**: imposta `NEXT_PUBLIC_ONESPEC_URL` (https) → la pagina `/configurator` mostra l'iframe. La CSP in `next.config.ts` ammette `onespec.eu`.
+3. **OneSpec**: il configuratore è già incorporato (`src/lib/site.ts`, ID `fwj8VMz94Z`) con l'embed ufficiale iframe e auto-ridimensionamento (accetta solo messaggi dall'origine `https://platform.onespec.eu` con il nostro ID). La CSP in `next.config.ts` ammette `platform.onespec.eu`. Per cambiare ID: `NEXT_PUBLIC_ONESPEC_ID`.
 4. **Foto**: copia in `public/photos/` e passa `src` ai componenti `PhotoSlot`.
+
+## Lingue (i18n)
+
+Sette lingue: **en, ro, it, fr, pl, nl, de**. Belgio e Lussemburgo sono serviti da nl/fr/de con hreflang regionali (`nl-BE`, `fr-BE`, `de-BE`, `fr-LU`, `de-LU`). URL sempre prefissati (`/it/chi-siamo`); `/` reindirizza in base alla lingua del browser (fallback `en`). **Nessun cookie** per la lingua. Il selettore lingua porta alla pagina equivalente.
+
+- Testi: `messages/<lingua>.json`. Per aggiungere una lingua: nuovo file messages, voce in `src/i18n/routing.ts` (locales, localeMeta, slug) e in `convex/lib/locales.ts` + `convex/lib/emailStrings.ts`.
+- `npm test` verifica che ogni traduzione abbia le stesse chiavi, gli stessi segnaposto/tag/link, non sia lasciata in inglese, e che nessun testo contenga claim da produttore o riferimenti alla località.
+- Le email (conferma newsletter, benvenuto, risposta contatti, piè di pagina campagne) sono nella lingua dell'iscritto/visitatore; messaggi, iscritti, articoli e campagne registrano la lingua. L'admin resta in romeno.
+- Le traduzioni sono state redatte con l'ausilio di IA: far rivedere da madrelingua (soprattutto le pagine legali) prima della pubblicazione.
+
+## Posizionamento
+
+Il sito non dichiara che Winex è un produttore (per poter esplorare liberamente zone e canali di vendita); resta il claim «Direct din curtea fabricii». Un test automatico impedisce di reintrodurre formule da produttore nelle 7 lingue.
+
+## Resend e dominio
+
+Finché non c'è il dominio: il sito funziona (messaggi del modulo contatti salvati su Convex e visibili in admin; la **sezione newsletter non viene mostrata**). Resend con `onboarding@resend.dev` può inviare solo all'indirizzo del proprietario dell'account: basta per i codici di accesso admin (`AUTH_RESEND_KEY`) e per le notifiche dei messaggi. Newsletter, campagne e risposte automatiche ai clienti richiedono il dominio verificato.
 
 ## Sicurezza
 

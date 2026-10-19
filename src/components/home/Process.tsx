@@ -1,30 +1,31 @@
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlassCard } from "@/components/ui/GlassCard";
 
-const steps = [
-  { n: "01", title: "Consultanță", text: "Stabilim nevoile proiectului: dimensiuni, material, performanță, buget." },
-  { n: "02", title: "Configurare", text: "Alegi profilul, culoarea, geamul și accesoriile în configuratorul online." },
-  { n: "03", title: "Producție", text: "Tâmplăria este fabricată la Roman, pe comandă, cu control pe fiecare etapă." },
-  { n: "04", title: "Montaj", text: "Livrare și montaj profesionist, pentru ca performanța să ajungă și în clădire." },
-];
-
-export function Process() {
+export async function Process() {
+  const t = await getTranslations("process");
+  const steps = (["s1", "s2", "s3", "s4"] as const).map((k, i) => ({
+    n: String(i + 1).padStart(2, "0"),
+    title: t(`${k}Title`),
+    text: t(`${k}Text`),
+  }));
   return (
-    <section className="cv-auto relative px-4 py-24 sm:px-6 lg:py-32">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow="Cum lucrăm" title="De la idee la fereastră montată." align="center" />
-        <ol className="mt-14 grid gap-5 md:grid-cols-4">
-          {steps.map((s, i) => (
-            <Reveal as="li" key={s.n} delay={i * 100} className="list-none">
-              <GlassCard className="h-full p-7">
-                <span className="font-display text-5xl font-extrabold text-gradient-red">{s.n}</span>
-                <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
-                <p className="mt-3 text-sm text-ink-soft">{s.text}</p>
-              </GlassCard>
-            </Reveal>
-          ))}
-        </ol>
+    <section className="section cv-auto">
+      <div className="container-x">
+        <SectionHeading index="03" eyebrow={t("eyebrow")} title={t("title")} />
+        <div className="relative mt-14">
+          <Reveal variant="rule" className="absolute inset-x-0 top-[0.4rem] hidden md:block" />
+          <Reveal as="ol" variant="group" className="grid gap-10 md:grid-cols-4 md:gap-8">
+            {steps.map((s) => (
+              <li key={s.n} className="relative md:pt-9">
+                <span className="absolute left-0 top-0 hidden h-3 w-3 rounded-full border-2 border-red bg-white md:block" aria-hidden />
+                <span className="font-display text-sm font-bold tracking-[0.14em] text-red-deep tabular-nums">{s.n}</span>
+                <h3 className="mt-3 text-xl">{s.title}</h3>
+                <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">{s.text}</p>
+              </li>
+            ))}
+          </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -1,30 +1,32 @@
-import Link from "next/link";
-import { legalNav, nav, site } from "@/lib/site";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { legalItems, navItems } from "@/lib/site";
 import { getCompany } from "@/lib/company";
 import { Logo } from "@/components/ui/Logo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export async function Footer() {
+  const [t, nav, meta, c] = await Promise.all([getTranslations("footer"), getTranslations("nav"), getTranslations("meta.pages"), getCompany()]);
   const year = new Date().getFullYear();
-  const c = await getCompany();
+  const ids = [c.cui && `${t("cui")}: ${c.cui}`, c.regCom && `${t("regCom")}: ${c.regCom}`].filter(Boolean).join("  ·  ");
+  const hasContact = Boolean(c.address || c.phone || c.email);
+
   return (
-    <footer className="cv-auto relative mt-12 px-3 pb-6 sm:px-6">
-      <div className="glass mx-auto max-w-6xl rounded-[2rem] p-8 sm:p-12">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+    <footer className="band-dark cv-auto mt-0">
+      <div className="container-x py-16 sm:py-20">
+        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
           <div>
-            <Logo />
-            <p className="mt-5 max-w-xs text-sm text-ink-soft">{site.tagline}</p>
-            <p className="mt-5 text-sm text-ink-mute">
-              {site.city}, {site.country}
-            </p>
+            <Logo inverse />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-inv-soft">{t("tagline")}</p>
           </div>
 
           <div>
-            <h3 className="eyebrow !text-ink-mute">Navigare</h3>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {nav.map((i) => (
+            <h3 className="font-display text-xs font-bold uppercase tracking-[0.16em] !text-ink-inv-soft">{t("navigate")}</h3>
+            <ul className="mt-5 space-y-3 text-sm">
+              {navItems.map((i) => (
                 <li key={i.href}>
-                  <Link className="text-ink-soft transition hover:text-red-deep" href={i.href}>
-                    {i.label}
+                  <Link className="text-ink-inv transition-colors hover:text-white hover:underline hover:underline-offset-4" href={i.href}>
+                    {nav(i.key)}
                   </Link>
                 </li>
               ))}
@@ -32,54 +34,53 @@ export async function Footer() {
           </div>
 
           <div>
-            <h3 className="eyebrow !text-ink-mute">Legal</h3>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {legalNav.map((i) => (
+            <h3 className="font-display text-xs font-bold uppercase tracking-[0.16em] !text-ink-inv-soft">{t("legal")}</h3>
+            <ul className="mt-5 space-y-3 text-sm">
+              {legalItems.map((i) => (
                 <li key={i.href}>
-                  <Link className="text-ink-soft transition hover:text-red-deep" href={i.href}>
-                    {i.label}
+                  <Link className="text-ink-inv transition-colors hover:text-white hover:underline hover:underline-offset-4" href={i.href}>
+                    {meta(`${i.key}.title`)}
                   </Link>
                 </li>
               ))}
               <li>
-                <a
-                  className="text-ink-soft transition hover:text-red-deep"
-                  href="https://anpc.ro/ce-este-sal/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ANPC — SAL
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-ink-soft transition hover:text-red-deep"
-                  href="https://ec.europa.eu/consumers/odr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Platforma SOL (UE)
+                <a className="text-ink-inv transition-colors hover:text-white hover:underline hover:underline-offset-4" href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener noreferrer">
+                  {t("anpc")}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="eyebrow !text-ink-mute">Contact</h3>
-            <address className="mt-4 space-y-2.5 text-sm not-italic text-ink-soft">
-              <p>{c.address}</p>
-              <p>{c.phone}</p>
-              <p>{c.email}</p>
-            </address>
+            <h3 className="font-display text-xs font-bold uppercase tracking-[0.16em] !text-ink-inv-soft">{t("contact")}</h3>
+            {hasContact ? (
+              <address className="mt-5 space-y-3 text-sm not-italic text-ink-inv">
+                {c.address && <p>{c.address}</p>}
+                {c.phone && (
+                  <p>
+                    <a className="hover:underline hover:underline-offset-4" href={`tel:${c.phone.replace(/[^+\d]/g, "")}`}>{c.phone}</a>
+                  </p>
+                )}
+                {c.email && (
+                  <p>
+                    <a className="hover:underline hover:underline-offset-4" href={`mailto:${c.email}`}>{c.email}</a>
+                  </p>
+                )}
+              </address>
+            ) : (
+              <p className="mt-5 text-sm text-ink-inv-soft">
+                <Link className="text-ink-inv underline underline-offset-4 hover:text-white" href="/contact">{nav("contact")}</Link>
+              </p>
+            )}
           </div>
         </div>
 
-        <div className="hairline mt-10" />
-        <div className="mt-6 flex flex-col gap-2 text-xs text-ink-mute sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-[var(--line-inv)] pt-6 text-xs text-ink-inv-soft sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.name}. Toate drepturile rezervate.
+            © {year} {c.legalName || "Winex"}. {t("rights")}
+            {ids && <span className="mt-1 block sm:ml-3 sm:mt-0 sm:inline">{ids}</span>}
           </p>
-          <p>CUI: {c.cui} · Reg. Com.: {c.regCom}</p>
+          <LanguageSwitcher className="[&_button]:text-ink-inv [&_button:hover]:bg-white/10 [&_button:hover]:text-white [&_ul]:bottom-full [&_ul]:mb-2 [&_ul]:mt-0" align="left" />
         </div>
       </div>
     </footer>

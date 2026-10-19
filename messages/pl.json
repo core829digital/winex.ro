@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "title": "Winex — Okna i drzwi z PVC, aluminium i drewna",
+    "description": "Winex oferuje okna, drzwi i systemy stolarki z PVC, aluminium i drewna. Energooszczędność, precyzja wykonania i dostawa prosto z dziedzińca fabryki.",
+    "pages": {
+      "about": { "title": "O nas", "description": "Winex oferuje stolarkę z PVC, aluminium i drewna, prosto z dziedzińca fabryki." },
+      "factory": { "title": "Fabryka", "description": "Tam, gdzie powstaje: cięcie, spawanie, montaż i kontrola jakości stolarki z PVC, aluminium i drewna." },
+      "configurator": { "title": "Konfigurator", "description": "Skonfiguruj online okna i drzwi Winex: materiał, kolor, rodzaj otwierania i szyby." },
+      "contact": { "title": "Kontakt", "description": "Skontaktuj się z Winex, aby otrzymać wycenę okien i drzwi z PVC, aluminium i drewna." },
+      "privacy": { "title": "Polityka prywatności", "description": "Jak Winex przetwarza dane osobowe." },
+      "terms": { "title": "Regulamin", "description": "Warunki korzystania ze strony internetowej Winex." },
+      "cookies": { "title": "Polityka plików cookie", "description": "Pliki cookie i podobne technologie na stronie Winex." },
+      "unsubscribe": { "title": "Rezygnacja z newslettera", "description": "Zrezygnuj z newslettera Winex." },
+      "confirm": { "title": "Potwierdź zapis", "description": "Potwierdź zapis do newslettera Winex." }
+    }
+  },
+  "common": {
+    "skip": "Przejdź do treści",
+    "tagline": "Prosto z dziedzińca fabryki",
+    "home": "Winex — strona główna",
+    "language": "Język",
+    "menuOpen": "Otwórz menu",
+    "menuClose": "Zamknij menu",
+    "scrollDown": "Przewiń do następnej sekcji",
+    "photoAlt": "Zdjęcie: {caption}"
+  },
+  "nav": {
+    "label": "Nawigacja główna",
+    "mobileLabel": "Nawigacja mobilna",
+    "about": "O nas",
+    "factory": "Fabryka",
+    "configurator": "Konfigurator",
+    "contact": "Kontakt",
+    "cta": "Konfiguruj"
+  },
+  "hero": {
+    "eyebrow": "Okna, drzwi i systemy",
+    "titleLine1": "Energooszczędna stolarka,",
+    "titleLine2": "prosto z dziedzińca fabryki.",
+    "lead": "Nasza stolarka została zaprojektowana z myślą o izolacji, trwałości i designie, który zwraca uwagę.",
+    "primary": "Skonfiguruj stolarkę",
+    "secondary": "Poznaj fabrykę",
+    "diagramLabel": "Schematyczny przekrój okna (ilustracja poglądowa)",
+    "interior": "Wnętrze",
+    "exterior": "Zewnątrz",
+    "item1Title": "Profil wielokomorowy",
+    "item1Text": "Komory wewnętrzne spowalniają przepływ ciepła przez ramę.",
+    "item2Title": "Pakiet szybowy izolacyjny",
+    "item2Text": "Szczelne szyby rozdzielone ramką dystansową ograniczają straty ciepła.",
+    "item3Title": "Ciągła uszczelka",
+    "item3Text": "Uszczelnia połączenie skrzydła z ramą przed powietrzem i wodą.",
+    "trust1": "Karty techniczne na żądanie",
+    "trust2": "PVC · Aluminium · Drewno",
+    "trust3": "Konfigurator online",
+    "trust4": "Profesjonalny montaż"
+  },
+  "materials": {
+    "eyebrow": "Materiały",
+    "title": "Trzy materiały, jeden standard jakości.",
+    "lead": "Ten sam standard jakości dla każdego materiału, aby specyfikacja wynikała z projektu, a nie z ograniczeń dostawcy.",
+    "pvc": {
+      "label": "PVC",
+      "title": "PVC",
+      "text": "Zrównoważony wybór dla budynków mieszkalnych i komercyjnych: wysoka izolacyjność cieplna i akustyczna, minimalna konserwacja oraz dobry stosunek parametrów do kosztu.",
+      "p1": "Profile wielokomorowe",
+      "p2": "Minimalna konserwacja",
+      "p3": "Energooszczędność"
+    },
+    "alu": {
+      "label": "ALU",
+      "title": "Aluminium",
+      "text": "Smukłe, sztywne profile do dużych przeszkleń, czystych linii architektonicznych i projektów komercyjnych.",
+      "p1": "Smukłe profile, więcej światła dziennego",
+      "p2": "Wytrzymałość konstrukcyjna",
+      "p3": "Trwałe wykończenia"
+    },
+    "timber": {
+      "label": "DREWNO",
+      "title": "Drewno",
+      "text": "Ciepło naturalnego materiału, dostarczone z precyzją produkcji przemysłowej, do projektów, w których wygląd liczy się tak samo jak parametry.",
+      "p1": "Naturalna estetyka",
+      "p2": "Detale wykonywane na zamówienie",
+      "p3": "Do domów i renowacji"
+    }
+  },
+  "energy": {
+    "eyebrow": "Energooszczędność",
+    "title": "Parametry cieplne, które widać w rachunku i czuć w pomieszczeniu.",
+    "lead": "Dobrą stolarkę ocenia się po tym, ile oszczędza i jak sprawdza się na co dzień, a nie tylko po wyglądzie.",
+    "chambersTitle": "Profile wielokomorowe",
+    "chambersText": "Komory powietrzne w profilu spowalniają przepływ ciepła między wnętrzem a zewnętrzem.",
+    "heatTitle": "Ciepło zostaje w środku",
+    "heatText": "Mniej energii traconej zimą, mniej ciepła wpadającego latem.",
+    "acousticTitle": "Komfort akustyczny",
+    "acousticText": "Szyby i uszczelki, które tłumią hałas z zewnątrz.",
+    "airtightTitle": "Szczelność i bezpieczeństwo",
+    "airtightText": "Ciągłe uszczelki i wysokiej jakości okucia zapewniają precyzyjne zamknięcie.",
+    "note": "Parametry zależą od wybranego systemu i szyb. Karty techniczne są dostępne na żądanie."
+  },
+  "process": {
+    "eyebrow": "Jak działamy",
+    "title": "Od specyfikacji do zamontowanej stolarki.",
+    "s1Title": "Konsultacja",
+    "s1Text": "Ustalamy wymagania projektu: wymiary, materiał, parametry i budżet.",
+    "s2Title": "Konfiguracja",
+    "s2Text": "Wybierasz profil, kolor, szyby i okucia w konfiguratorze online.",
+    "s3Title": "Realizacja",
+    "s3Text": "Stolarka jest wykonywana na zamówienie, z kontrolą na każdym etapie.",
+    "s4Title": "Montaż",
+    "s4Text": "Dostawa i profesjonalny montaż, aby parametry były widoczne także w budynku."
+  },
+  "cta": {
+    "eyebrow": "Konfigurator",
+    "title": "Określ stolarkę online.",
+    "text": "Wybierz materiał, kolor, rodzaj otwierania i szyby, a następnie wyślij konfigurację bezpośrednio do naszego zespołu.",
+    "button": "Otwórz konfigurator"
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Bądź na bieżąco.",
+    "text": "Nowości o produktach, projektach i ofertach. Bez spamu — zrezygnować możesz w każdej chwili."
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "Adres e-mail",
+      "placeholder": "imie@firma.pl",
+      "submit": "Zapisz się",
+      "consent": "Wyrażam zgodę na otrzymywanie wiadomości e-mail od Winex (otrzymasz e-mail z potwierdzeniem) i zapoznałem(-am) się z <link>Polityką prywatności</link>.",
+      "success": "Prawie gotowe. Sprawdź skrzynkę i kliknij link potwierdzający."
+    },
+    "contact": {
+      "name": "Imię i nazwisko",
+      "namePh": "Twoje imię i nazwisko",
+      "email": "E-mail",
+      "emailPh": "imie@firma.pl",
+      "phone": "Telefon",
+      "phonePh": "+48 …",
+      "subject": "Temat",
+      "subjectPh": "Np. wycena okien z PVC",
+      "message": "Wiadomość",
+      "messagePh": "Opowiedz nam o swoim projekcie…",
+      "consent": "Wyrażam zgodę na przetwarzanie moich danych zgodnie z <link>Polityką prywatności</link>.",
+      "submit": "Wyślij wiadomość",
+      "successTitle": "Wiadomość wysłana",
+      "successText": "Dziękujemy. Odpowiemy tak szybko, jak to możliwe."
+    },
+    "unsubscribe": {
+      "title": "Rezygnacja z subskrypcji",
+      "invalid": "Nieprawidłowy link. Użyj linku rezygnacji z ostatniej otrzymanej wiadomości.",
+      "ask": "Potwierdź, że nie chcesz już otrzymywać newslettera Winex.",
+      "button": "Potwierdź rezygnację",
+      "done": "Zrezygnowano z subskrypcji. Nie będziesz już otrzymywać od nas wiadomości.",
+      "error": "Link jest nieprawidłowy lub wystąpił błąd. Spróbuj ponownie."
+    },
+    "confirm": {
+      "title": "Potwierdź zapis",
+      "invalid": "Nieprawidłowy link. Użyj linku z wiadomości potwierdzającej.",
+      "ask": "Kliknij przycisk, aby potwierdzić, że chcesz otrzymywać newsletter Winex.",
+      "button": "Potwierdź zapis",
+      "done": "Dziękujemy. Twój zapis został potwierdzony. Wiadomość powitalna jest w drodze.",
+      "expired": "Ten link wygasł. Zapisz się ponownie na stronie głównej.",
+      "used": "Ten link jest nieprawidłowy lub został już użyty.",
+      "error": "Wystąpił błąd. Spróbuj ponownie."
+    },
+    "errors": {
+      "invalid_name": "Podaj swoje imię i nazwisko.",
+      "invalid_email": "Adres e-mail jest nieprawidłowy.",
+      "invalid_phone": "Numer telefonu jest nieprawidłowy.",
+      "invalid_message": "Wiadomość jest zbyt krótka.",
+      "consent_required": "Musisz zaakceptować przetwarzanie danych.",
+      "rate_limited": "Zbyt wiele prób. Spróbuj ponownie za kilka minut.",
+      "unavailable": "Usługa jest chwilowo niedostępna. Zadzwoń lub napisz do nas bezpośrednio.",
+      "failed": "Nie udało się wysłać zgłoszenia. Spróbuj ponownie.",
+      "forbidden": "Żądanie odrzucone.",
+      "network": "Brak połączenia. Sprawdź internet i spróbuj ponownie.",
+      "generic": "Wystąpił błąd. Spróbuj ponownie."
+    }
+  },
+  "about": {
+    "eyebrow": "O nas",
+    "titleLine1": "Standard jakości,",
+    "titleLine2": "stosowany przy każdym otworze.",
+    "lead": "Winex oferuje stolarkę z PVC, aluminium i drewna. Pracujemy na zamówienie, kontrolujemy jakość na każdym etapie i dostarczamy prosto z dziedzińca fabryki.",
+    "storyTitle": "Czym się zajmujemy",
+    "story1": "Nasza oferta opiera się na trzech materiałach — PVC, aluminium i drewnie — dzięki czemu każdy projekt otrzymuje rozwiązanie, które do niego pasuje, a nie tylko takie, które jest dostępne.",
+    "story2": "Pracując bezpośrednio z fabryką i dostarczając prosto z jej dziedzińca, utrzymujemy specyfikację, terminy i jakość pod ścisłą kontrolą.",
+    "photoCaption": "Zespół",
+    "valuesEyebrow": "Zasady",
+    "valuesTitle": "Jak pracujemy.",
+    "precisionTitle": "Precyzja",
+    "precisionText": "Każdy element jest określony co do wymiaru, z wąskimi tolerancjami i kontrolą na każdym etapie.",
+    "efficiencyTitle": "Efektywność",
+    "efficiencyText": "Stolarkę traktujemy jako system oszczędzający energię, a nie tylko produkt.",
+    "craftTitle": "Rzemiosło",
+    "craftText": "Nowoczesna technologia połączona z doświadczeniem ludzi, którzy znają materiał.",
+    "reliabilityTitle": "Rzetelność",
+    "reliabilityText": "Jasna komunikacja, realistyczne terminy i wsparcie przed montażem i po nim."
+  },
+  "factory": {
+    "eyebrow": "Fabryka",
+    "titleLine1": "Tam, gdzie każdy element",
+    "titleLine2": "nabiera kształtu.",
+    "lead": "Stolarka realizowana na zamówienie, sprawdzana krok po kroku i wysyłana gotowa do montażu — prosto z dziedzińca fabryki.",
+    "exterior": "Zewnętrzna strona fabryki",
+    "cutting": "Linia cięcia",
+    "welding": "Spawanie profili",
+    "assembly": "Montaż",
+    "quality": "Kontrola jakości",
+    "dispatch": "Magazyn i wysyłka",
+    "stagesEyebrow": "Produkcja",
+    "stagesTitle": "Od profilu do gotowego wyrobu.",
+    "raw": "Materiały wejściowe",
+    "rawText": "Dobór profili, szyb i okuć.",
+    "cut": "Cięcie i obróbka",
+    "cutText": "Cięcie co do milimetra, zgodnie z zamówieniem.",
+    "assemble": "Montaż",
+    "assembleText": "Spawanie, montaż okuć i szklenie.",
+    "qc": "Kontrola jakości",
+    "qcText": "Kontrole przed pakowaniem i wysyłką."
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "titleLine1": "Porozmawiajmy",
+    "titleLine2": "o Twoim projekcie.",
+    "lead": "Napisz lub zadzwoń. Odpowiadamy jasną wyceną i realistycznym terminem.",
+    "infoTitle": "Dane kontaktowe",
+    "formTitle": "Wyślij nam wiadomość",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "hours": "Godziny otwarcia",
+    "noDetails": "Skorzystaj z formularza, aby się z nami skontaktować."
+  },
+  "configurator": {
+    "eyebrow": "Konfigurator",
+    "titleLine1": "Określ swoją",
+    "titleLine2": "stolarkę.",
+    "lead": "Skonfiguruj okna i drzwi do swojego projektu i wyślij nam zapytanie o wycenę.",
+    "step1": "Wybierz typ i materiał",
+    "step2": "Ustaw wymiary",
+    "step3": "Kolor, szyby, akcesoria",
+    "step4": "Wyślij konfigurację",
+    "iframeTitle": "Konfigurator wycen Winex",
+    "openNew": "Otwórz w nowym oknie",
+    "help": "Wolisz porozmawiać z kimś?",
+    "helpLink": "Skontaktuj się z naszym zespołem"
+  },
+  "footer": {
+    "tagline": "Stolarka z PVC, aluminium i drewna. Prosto z dziedzińca fabryki.",
+    "navigate": "Nawigacja",
+    "legal": "Informacje prawne",
+    "contact": "Kontakt",
+    "anpc": "ANPC — alternatywne rozstrzyganie sporów",
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "cui": "NIP / numer podatkowy",
+    "regCom": "Rejestr handlowy"
+  },
+  "notFound": {
+    "eyebrow": "Błąd 404",
+    "titleLine1": "Nie znaleziono",
+    "titleLine2": "strony.",
+    "text": "Ten adres nie istnieje lub został przeniesiony.",
+    "back": "Wróć na stronę główną"
+  },
+  "legal": {
+    "updated": "Ostatnia aktualizacja: {date}",
+    "translationNotice": "To tłumaczenie ma charakter pomocniczy. W razie rozbieżności rozstrzygająca jest wersja w języku rumuńskim.",
+    "idCui": "NIP {v}",
+    "idRegCom": "Rejestr handlowy {v}",
+    "idAddress": "siedziba: {v}",
+    "idEmail": "e-mail: {v}",
+    "idPhone": "telefon: {v}"
+  },
+  "privacy": {
+    "sections": [
+      {
+        "title": "1. Administrator danych",
+        "blocks": [{ "p": "Administratorem danych osobowych jest **{identity}**." }]
+      },
+      {
+        "title": "2. Jakie dane przetwarzamy i dlaczego",
+        "blocks": [
+          {
+            "ul": [
+              "**Formularze kontaktowe i zapytania o wycenę:** imię i nazwisko, e-mail, telefon (opcjonalnie), treść wiadomości i język strony. Cel: odpowiedź na zapytanie i przygotowanie wyceny. Podstawa prawna: działania przed zawarciem umowy na Twoje żądanie oraz prawnie uzasadniony interes (art. 6 ust. 1 lit. b i f RODO).",
+              "**Newsletter:** adres e-mail i język. Cel: wysyłanie komunikacji handlowej. Podstawa prawna: Twoja zgoda (art. 6 ust. 1 lit. a RODO), którą możesz wycofać w każdej chwili. Zapis odbywa się z podwójnym potwierdzeniem: otrzymujesz wiadomość z linkiem potwierdzającym i do czasu potwierdzenia nie wysyłamy żadnej komunikacji. Niepotwierdzone zgłoszenia są automatycznie usuwane po 30 dniach; datę potwierdzenia przechowujemy jako dowód zgody.",
+              "**Anonimowe statystyki strony:** odwiedzone podstrony, kliknięcia przycisków i linków, typ urządzenia, kraj, język i źródło ruchu. Nie używamy plików cookie i niczego nie zapisujemy na Twoim urządzeniu. Identyfikator odwiedzającego to anonimowy kod przeliczany codziennie, którego nie można wykorzystać do Twojej identyfikacji. Szanujemy sygnały „Do Not Track” i „Global Privacy Control”. Cel: zrozumienie i ulepszanie strony. Podstawa prawna: prawnie uzasadniony interes. Szczegółowe zdarzenia są usuwane po 3 dniach; pozostają tylko sumy zbiorcze.",
+              "**Dane techniczne:** Twój adres IP jest wykorzystywany tymczasowo dla bezpieczeństwa i zapobiegania nadużyciom (ograniczanie liczby żądań). Podstawa prawna: prawnie uzasadniony interes."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Odbiorcy",
+        "blocks": [
+          { "p": "Dane są przetwarzane przez dostawców usług działających jako podmioty przetwarzające:" },
+          {
+            "ul": [
+              "Convex, Inc. — przechowywanie wiadomości, subskrybentów i anonimowych statystyk;",
+              "Resend, Inc. — wysyłka i dostarczanie wiadomości e-mail;",
+              "nasz dostawca hostingu;",
+              "OneSpec — wyłącznie jeśli korzystasz z konfiguratora online, zgodnie z jego własną polityką."
+            ]
+          },
+          { "p": "Niektórzy dostawcy mogą przetwarzać dane poza Europejskim Obszarem Gospodarczym; przekazywanie opiera się na standardowych klauzulach umownych i/lub na Ramach ochrony danych UE–USA, w zależności od przypadku." }
+        ]
+      },
+      {
+        "title": "4. Okres przechowywania",
+        "blocks": [
+          { "p": "Wiadomości kontaktowe: do 24 miesięcy od ostatniej interakcji, chyba że zostanie zawarta umowa. Newsletter: do wycofania zgody. Dane wynikające z relacji umownych: zgodnie z obowiązkami prawnymi (w tym księgowymi i podatkowymi)." }
+        ]
+      },
+      {
+        "title": "5. Twoje prawa",
+        "blocks": [
+          { "p": "Masz prawo dostępu, sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia i sprzeciwu, a także prawo do wycofania zgody. Możesz napisać do nas na adres {email}. Masz również prawo wniesienia skargi do krajowego organu ochrony danych w swoim kraju lub do [rumuńskiego Krajowego Organu Nadzoru nad Przetwarzaniem Danych Osobowych (ANSPDCP)](https://www.dataprotection.ro)." }
+        ]
+      },
+      {
+        "title": "6. Bezpieczeństwo",
+        "blocks": [{ "p": "Stosujemy szyfrowane połączenia (HTTPS), ograniczony dostęp do danych i środki techniczne chroniące przed nadużyciami. Nie sprzedajemy Twoich danych." }]
+      },
+      {
+        "title": "7. Zmiany",
+        "blocks": [{ "p": "Możemy aktualizować niniejszą politykę; obowiązująca jest zawsze wersja opublikowana na tej stronie." }]
+      }
+    ]
+  },
+  "terms": {
+    "sections": [
+      {
+        "title": "1. O stronie",
+        "blocks": [{ "p": "Ta strona internetowa ({domain}) jest prowadzona przez **{identity}**. Korzystając ze strony, akceptujesz niniejsze warunki." }]
+      },
+      {
+        "title": "2. Informacje o produktach",
+        "blocks": [{ "p": "Treści tej strony mają charakter wyłącznie informacyjny i nie stanowią wiążącej oferty. Zdjęcia, kolory i specyfikacje mogą różnić się od produktu końcowego. Oferty i umowy są ustalane indywidualnie, w formie pisemnej." }]
+      },
+      {
+        "title": "3. Konfigurator",
+        "blocks": [{ "p": "Konfiguracje utworzone za pomocą konfiguratora mają charakter orientacyjny do czasu pisemnego potwierdzenia oferty przez Winex. Konfigurator jest udostępniany we współpracy z OneSpec; korzystanie z niego może podlegać również warunkom tego dostawcy." }]
+      },
+      {
+        "title": "4. Własność intelektualna",
+        "blocks": [{ "p": "Teksty, zdjęcia, logotypy i projekt tej strony należą do Winex lub jego licencjodawców i nie mogą być kopiowane ani wykorzystywane bez pisemnej zgody." }]
+      },
+      {
+        "title": "5. Ograniczenie odpowiedzialności",
+        "blocks": [{ "p": "Dokładamy starań, aby informacje były rzetelne, ale nie gwarantujemy braku błędów ani nieprzerwanej dostępności strony. Odpowiedzialność jest ograniczona w zakresie dozwolonym przez prawo." }]
+      },
+      {
+        "title": "6. Dane osobowe",
+        "blocks": [{ "p": "Przetwarzanie danych osobowych opisano w [Polityce prywatności](internal:/privacy) oraz w [Polityce plików cookie](internal:/cookies)." }]
+      },
+      {
+        "title": "7. Prawo właściwe i spory",
+        "blocks": [{ "p": "Niniejsze warunki podlegają prawu rumuńskiemu. Konsumenci mogą także skorzystać z [alternatywnego rozstrzygania sporów ANPC (SAL)](https://anpc.ro/ce-este-sal/) oraz z sądów i organizacji ochrony konsumentów w swoim kraju zamieszkania." }]
+      }
+    ]
+  },
+  "cookies": {
+    "sections": [
+      {
+        "title": "1. Czym są pliki cookie",
+        "blocks": [{ "p": "Pliki cookie to małe pliki zapisywane w przeglądarce, używane do działania i ulepszania strony internetowej." }]
+      },
+      {
+        "title": "2. Czego używamy na {domain}",
+        "blocks": [
+          { "p": "Obecnie strona **nie używa analitycznych ani marketingowych plików cookie**. Mierzymy odwiedziny własnym systemem, bez plików cookie i bez zapisywania informacji na Twoim urządzeniu (szczegóły w [Polityce prywatności](internal:/privacy)). Do technicznego działania strony nie jest wymagana zgoda." }
+        ]
+      },
+      {
+        "title": "3. Usługi stron trzecich",
+        "blocks": [{ "p": "Strona konfiguratora ładuje usługę zewnętrzną (OneSpec) w osadzonej ramce. Może ona ustawiać własne pliki cookie lub używać podobnych technologii, zgodnie z polityką jej dostawcy." }]
+      },
+      {
+        "title": "4. Zarządzanie plikami cookie",
+        "blocks": [{ "p": "Pliki cookie możesz usunąć lub zablokować w ustawieniach przeglądarki. Blokowanie może wpływać na działanie usług stron trzecich." }]
+      },
+      {
+        "title": "5. Zmiany",
+        "blocks": [{ "p": "Jeśli wprowadzimy narzędzia analityczne lub marketingowe, poprosimy o Twoją zgodę przed ich włączeniem." }]
+      }
+    ]
+  },
+  "emails": {
+    "defaultSubject": "Wiadomość od Winex"
+  }
+}

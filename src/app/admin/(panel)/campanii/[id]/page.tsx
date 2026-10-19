@@ -8,9 +8,10 @@ import { ArrowLeft, Send, TestTube2 } from "lucide-react";
 import { api } from "@convex/_generated/api";
 import type { Doc, Id } from "@convex/_generated/dataModel";
 import { renderEmailHtml } from "@convex/lib/emailTemplate";
-import { Badge, Btn, Card, ConfirmBtn, Field, Input, PageHeader, Skeleton, Stat, Textarea, fmtDate } from "@/components/admin/ui";
+import { Badge, Btn, Card, ConfirmBtn, Field, Input, PageHeader, Skeleton, Stat, Textarea, fmtDate, inputCls } from "@/components/admin/ui";
 import { errMsg, useToast } from "@/components/admin/toast";
 import { STATUS_LABEL, STATUS_TONE } from "@/components/admin/campaign-status";
+import { localeMeta, locales } from "@/i18n/routing";
 
 export default function CampaignEditor({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -29,7 +30,7 @@ function Editor({ id, doc }: { id: Id<"campaigns"> | null; doc: Doc<"campaigns">
   const sendTest = useMutation(api.campaigns.sendTest);
   const send = useMutation(api.campaigns.send);
   const unschedule = useMutation(api.campaigns.cancelSchedule);
-  const active = useQuery(api.subscribers.activeCount);
+  const counts = useQuery(api.subscribers.activeByLocale);
 
   const locked = !!doc && doc.status !== "draft" && doc.status !== "failed";
   const [f, setF] = useState({
@@ -39,20 +40,22 @@ function Editor({ id, doc }: { id: Id<"campaigns"> | null; doc: Doc<"campaigns">
     body: doc?.body ?? "Bună ziua,\n\nScrie aici mesajul tău. Poți folosi **text îngroșat**, [linkuri](https://winex.ro) și liste:\n\n- primul punct\n- al doilea punct",
     ctaLabel: doc?.ctaLabel ?? "",
     ctaUrl: doc?.ctaUrl ?? "",
+    audience: doc?.audience ?? "all",
   });
+  const active = counts ? (f.audience === "all" ? counts.total : (counts.byLocale[f.audience] ?? 0)) : undefined;
   const [when, setWhen] = useState("");
   const [busy, setBusy] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setF((s) => ({ ...s, [k]: e.target.value }));
 
   const html = useMemo(
-    () => renderEmailHtml({ subject: f.subject, preheader: f.preheader, body: f.body, ctaLabel: f.ctaLabel, ctaUrl: f.ctaUrl, unsubscribeUrl: "#", siteUrl: "https://www.winex.ro", companyLine: "Winex · Roman, România" }),
+    () => renderEmailHtml({ locale: f.audience === "all" ? "ro" : f.audience, subject: f.subject, preheader: f.preheader, body: f.body, ctaLabel: f.ctaLabel, ctaUrl: f.ctaUrl, unsubscribeUrl: "#", siteUrl: "https://www.winex.ro", companyLine: "Winex · Roman, România" }),
     [f],
   );
 
   const persist = async () => {
     setBusy(true);
     try {
-      const nid = await save({ id: id ?? undefined, name: f.name || f.subject || "Campanie fără nume", subject: f.subject, preheader: f.preheader, body: f.body, ctaLabel: f.ctaLabel, ctaUrl: f.ctaUrl });
+      const nid = await save({ id: id ?? undefined, name: f.name || f.subject || "Campanie fără nume", subject: f.subject, preheader: f.preheader, body: f.body, ctaLabel: f.ctaLabel, ctaUrl: f.ctaUrl, audience: f.audience });
       toast("Salvat");
       if (!id) router.replace(`/admin/campanii/${nid}`);
       return nid;
@@ -102,6 +105,12 @@ function Editor({ id, doc }: { id: Id<"campaigns"> | null; doc: Doc<"campaigns">
             <Field label="Subiect e-mail"><Input value={f.subject} onChange={set("subject")} disabled={locked} maxLength={200} placeholder="Subiectul văzut de destinatar" /></Field>
             <Field label="Text de previzualizare" hint="Apare lângă subiect în inbox."><Input value={f.preheader} onChange={set("preheader")} disabled={locked} maxLength={200} /></Field>
             <Field label="Mesaj" hint="Paragrafe separate prin rând gol · # Titlu · **îngroșat** · [text](https://link) · liste cu „- ”."><Textarea rows={12} value={f.body} onChange={set("body")} disabled={locked} className="font-mono text-[13px]" /></Field>
+            <Field label="Public țintă" hint="Mesajul se scrie într-o singură limbă: alege limba abonaților care îl primesc. Subsolul și linkul de dezabonare sunt traduse automat.">
+              <select value={f.audience} onChange={(e) => setF((s) => ({ ...s, audience: e.target.value }))} disabled={locked} className={inputCls}>
+                <option value="all">Toți abonații activi{counts ? ` (${counts.total})` : ""}</option>
+                {locales.map((l) => <option key={l} value={l}>{localeMeta[l].name} ({localeMeta[l].short}){counts ? ` — ${counts.byLocale[l] ?? 0}` : ""}</option>)}
+              </select>
+            </Field>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="Text buton (opțional)"><Input value={f.ctaLabel} onChange={set("ctaLabel")} disabled={locked} placeholder="Configurează acum" /></Field>
               <Field label="Link buton"><Input value={f.ctaUrl} onChange={set("ctaUrl")} disabled={locked} placeholder="https://www.winex.ro/configurator" /></Field>
@@ -132,7 +141,7 @@ function Editor({ id, doc }: { id: Id<"campaigns"> | null; doc: Doc<"campaigns">
 
             {doc && !locked && (
               <div className="mt-5 border-t border-black/[0.07] pt-4">
-                <p className="text-sm text-ink-soft">Destinatari: <b className="text-ink">{active ?? "…"}</b> abonați activi. Cei dezabonați sau blocați sunt excluși automat.</p>
+                <p className="text-sm text-ink-soft">Destinatari: <b className="text-ink">{active ?? "…"}</b> abonați activi{f.audience !== "all" ? ` (${localeMeta[f.audience as keyof typeof localeMeta]?.name ?? f.audience})` : ""}. Cei în așteptare, dezabonați sau blocați sunt excluși automat.</p>
                 <div className="mt-3 flex flex-wrap items-end gap-3">
                   <Field label="Programează (opțional)"><Input type="datetime-local" value={when} onChange={(e) => setWhen(e.target.value)} /></Field>
                   <ConfirmBtn
