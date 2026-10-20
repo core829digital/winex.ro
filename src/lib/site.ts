@@ -11,10 +11,10 @@ export const site = {
   legalUpdated: "2026-10-19",
   country: "RO",
   company: {
-    legalName: "WINEX ADVANCE SRL",
-    cui: "", // da inserire (CUI / cod fiscale) non appena disponibile
-    regCom: "", // da inserire (Nr. Reg. Com.) non appena disponibile
-    address: "Str. Mihai Eminescu 10/56, Roman, România",
+    legalName: "WINEX ADVANCE S.R.L.",
+    cui: "RO43676104", // ANAF: CUI 43676104, plătitor de TVA
+    regCom: "J27/149/2021", // ONRC Neamț, înregistrat 04.02.2021
+    address: "Str. Mihai Eminescu, Bl. 10, Sc. C, Et. 3, Ap. 56, Roman, jud. Neamț, România",
     phone: "+40 766 231 632",
     email: "office@winex.ro",
     hours: "",
