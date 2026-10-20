@@ -7,10 +7,6 @@
         "title": "À propos",
         "description": "Winex propose des menuiseries en PVC, aluminium et bois, directement depuis la cour de l’usine."
       },
-      "factory": {
-        "title": "L’usine",
-        "description": "Là où elles sont réalisées : découpe, soudure, assemblage et contrôle qualité des menuiseries en PVC, aluminium et bois."
-      },
       "configurator": {
         "title": "Configurateur",
         "description": "Configurez en ligne vos fenêtres et portes Winex : matériau, couleur, type d’ouverture et vitrage."
@@ -55,7 +51,6 @@
     "label": "Navigation principale",
     "mobileLabel": "Navigation mobile",
     "about": "À propos",
-    "factory": "L’usine",
     "configurator": "Configurateur",
     "contact": "Contact",
     "cta": "Configurer"
@@ -65,8 +60,6 @@
     "titleLine1": "Des menuiseries à haute efficacité énergétique,",
     "titleLine2": "directement depuis la cour de l’usine.",
     "lead": "Nos menuiseries sont conçues pour l’isolation, la durabilité et un design qui se remarque.",
-    "primary": "Configurer vos menuiseries",
-    "secondary": "Découvrir l’usine",
     "diagramLabel": "Coupe schématique d’une fenêtre (illustrative)",
     "interior": "Intérieur",
     "exterior": "Extérieur",
@@ -79,7 +72,8 @@
     "trust1": "Fiches techniques sur demande",
     "trust2": "PVC · Aluminium · Bois",
     "trust3": "Configurateur en ligne",
-    "trust4": "Pose professionnelle"
+    "trust4": "Pose professionnelle",
+    "windowLabel": "Illustration animée d’une fenêtre qui s’ouvre et se ferme"
   },
   "materials": {
     "eyebrow": "Matériaux",
@@ -135,12 +129,6 @@
     "s3Text": "Vos menuiseries sont réalisées sur commande, avec des contrôles à chaque étape.",
     "s4Title": "Pose",
     "s4Text": "Livraison et pose professionnelle, pour que la performance se retrouve dans le bâtiment."
-  },
-  "cta": {
-    "eyebrow": "Configurateur",
-    "title": "Spécifiez vos menuiseries en ligne.",
-    "text": "Choisissez le matériau, la couleur, le type d’ouverture et le vitrage, puis envoyez la configuration directement à notre équipe.",
-    "button": "Ouvrir le configurateur"
   },
   "newsletter": {
     "eyebrow": "Newsletter",
@@ -200,7 +188,8 @@
       "failed": "Nous n’avons pas pu envoyer votre demande. Veuillez réessayer.",
       "forbidden": "Requête refusée.",
       "network": "Connexion indisponible. Vérifiez votre connexion internet et réessayez.",
-      "generic": "Une erreur s’est produite. Veuillez réessayer."
+      "generic": "Une erreur s’est produite. Veuillez réessayer.",
+      "verification_failed": "La vérification de sécurité a échoué. Rechargez la page et réessayez."
     }
   },
   "about": {
@@ -223,28 +212,6 @@
     "reliabilityTitle": "Fiabilité",
     "reliabilityText": "Une communication claire, des délais réalistes et un accompagnement avant et après la pose."
   },
-  "factory": {
-    "eyebrow": "L’usine",
-    "titleLine1": "Là où chaque menuiserie",
-    "titleLine2": "prend forme.",
-    "lead": "Des menuiseries réalisées sur commande, contrôlées étape par étape et expédiées prêtes à poser — directement depuis la cour de l’usine.",
-    "exterior": "Extérieur de l’usine",
-    "cutting": "Ligne de découpe",
-    "welding": "Soudure des profilés",
-    "assembly": "Assemblage",
-    "quality": "Contrôle qualité",
-    "dispatch": "Stockage et expédition",
-    "stagesEyebrow": "Production",
-    "stagesTitle": "Du profilé au produit fini.",
-    "raw": "Matières premières",
-    "rawText": "Sélection des profilés, des vitrages et de la quincaillerie.",
-    "cut": "Découpe et usinage",
-    "cutText": "Découpe au millimètre, selon la commande.",
-    "assemble": "Assemblage",
-    "assembleText": "Soudure, montage de la quincaillerie et vitrage.",
-    "qc": "Contrôle qualité",
-    "qcText": "Vérifications avant l’emballage et l’expédition."
-  },
   "contact": {
     "eyebrow": "Contact",
     "titleLine1": "Parlons de",
@@ -256,7 +223,8 @@
     "phone": "Téléphone",
     "email": "E-mail",
     "hours": "Horaires d’ouverture",
-    "noDetails": "Utilisez le formulaire pour nous contacter."
+    "noDetails": "Utilisez le formulaire pour nous contacter.",
+    "company": "Société"
   },
   "configurator": {
     "eyebrow": "Configurateur",
@@ -316,7 +284,8 @@
               "**Formulaires de contact et de demande de devis :** nom, e-mail, téléphone (facultatif), contenu du message et langue de la page. Finalité : répondre à votre demande et préparer un devis. Base juridique : mesures précontractuelles prises à votre demande et intérêt légitime (art. 6, par. 1, points b et f du RGPD).",
               "**Newsletter :** adresse e-mail et langue. Finalité : envoi de communications commerciales. Base juridique : votre consentement (art. 6, par. 1, point a du RGPD), que vous pouvez retirer à tout moment. L’inscription se fait en deux étapes : vous recevez un e-mail contenant un lien de confirmation et aucune communication n’est envoyée tant que vous n’avez pas confirmé. Les demandes non confirmées sont supprimées automatiquement après 30 jours ; nous conservons la date de confirmation comme preuve du consentement.",
               "**Statistiques anonymes du site :** pages consultées, clics sur les boutons et les liens, type d’appareil, pays, langue et source du trafic. Nous n’utilisons aucun cookie et ne stockons rien sur votre appareil. L’identifiant de visiteur est un code anonyme recalculé chaque jour, qui ne permet pas de vous identifier. Nous respectons les signaux « Do Not Track » et « Global Privacy Control ». Finalité : comprendre et améliorer le site. Base juridique : intérêt légitime. Les événements détaillés sont supprimés après 3 jours ; seuls les totaux agrégés sont conservés.",
-              "**Données techniques :** votre adresse IP est utilisée temporairement pour la sécurité et la prévention des abus (limitation du nombre de requêtes). Base juridique : intérêt légitime."
+              "**Données techniques :** votre adresse IP est utilisée temporairement pour la sécurité et la prévention des abus (limitation du nombre de requêtes). Base juridique : intérêt légitime.",
+              "**Protection contre le spam et les robots :** le formulaire de contact utilise un jeton de sécurité signé et de durée limitée, un champ piège masqué et une limitation du nombre de requêtes par adresse IP (conservée uniquement en mémoire, pour une courte durée). Si elle est activée, la vérification Cloudflare Turnstile contrôle que la demande émane d’une personne. Base juridique : intérêt légitime à assurer la sécurité du site et de notre messagerie."
             ]
           }
         ]
@@ -332,6 +301,7 @@
               "Convex, Inc. — stockage des messages, des abonnés et des statistiques anonymes ;",
               "Resend, Inc. — envoi et distribution des e-mails ;",
               "notre hébergeur web ;",
+              "Cloudflare, Inc. — vérification anti-robot Turnstile sur le formulaire de contact, uniquement si elle est activée ;",
               "OneSpec — uniquement si vous utilisez le configurateur en ligne, selon sa propre politique."
             ]
           },
@@ -431,6 +401,14 @@
             "p": "Les présentes conditions sont régies par le droit roumain. Les consommateurs peuvent également recourir au [règlement alternatif des litiges de l’ANPC (SAL)](https://anpc.ro/ce-este-sal/) ainsi qu’aux juridictions et aux organismes de protection des consommateurs de leur pays de résidence."
           }
         ]
+      },
+      {
+        "title": "8. Utilisation acceptable",
+        "blocks": [
+          {
+            "p": "Vous ne devez pas utiliser le site ni ses formulaires pour envoyer du spam, du code malveillant ou des contenus illicites, pour effectuer des envois automatisés ou pour tenter de perturber le service ou d’y accéder sans autorisation. Ces requêtes sont bloquées et les abus peuvent être signalés aux autorités compétentes."
+          }
+        ]
       }
     ]
   },
@@ -480,5 +458,18 @@
   },
   "emails": {
     "defaultSubject": "Message de Winex"
+  },
+  "support": {
+    "eyebrow": "Qualité et assistance",
+    "title": "Des profilés de qualité. Un suivi numérique. À un appel de vous.",
+    "lead": "Nous travaillons avec des systèmes de profilés multichambres de haute qualité, et chaque projet est géré dans un processus entièrement numérique, de la première demande à la pose.",
+    "p1Title": "Profilés de haute qualité",
+    "p1Text": "Des systèmes de profilés multichambres choisis pour l’isolation thermique, la durabilité et une finition nette et précise.",
+    "p2Title": "Une assistance réelle",
+    "p2Text": "Une équipe dédiée répond à vos questions, prépare votre devis et reste disponible après la pose.",
+    "p3Title": "Un système entièrement numérique",
+    "p3Text": "Configuration en ligne, devis et commandes numériques dans un seul système : moins d’erreurs, des réponses plus rapides.",
+    "call": "Appeler Winex",
+    "callNote": "Parlez directement à notre équipe."
   }
 }

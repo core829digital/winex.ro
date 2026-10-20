@@ -74,3 +74,42 @@ export async function getServerSettings() {
     return { company: null, notifications: null };
   }
 }
+
+const TOOL_UA = /^(?:curl|wget|python|go-http|java|okhttp|libwww|scrapy|httpclient|postman|insomnia|axios|node-fetch|undici|aiohttp|httpie)\b/i;
+
+/**
+ * Guardia rigorosa per i moduli pubblici: Origin coerente (obbligatorio per i POST), Sec-Fetch-Site non cross-site,
+ * User-Agent presente e non di uno strumento da riga di comando. Restituisce anche l'IP del client.
+ */
+export function guardStrict(req: Request, opts: { requireOrigin?: boolean } = {}): { ok: true; ip: string; ua: string } | { ok: false } {
+  const base = guard(req);
+  if (!base.ok) return base;
+  const { requireOrigin = true } = opts;
+  if (requireOrigin && !req.headers.get("origin")) return { ok: false };
+  const fetchSite = req.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin" && fetchSite !== "same-site") return { ok: false };
+  const ua = req.headers.get("user-agent")?.trim() ?? "";
+  if (ua.length < 8 || ua.length > 400 || TOOL_UA.test(ua)) return { ok: false };
+  return { ok: true, ip: base.ip, ua };
+}
+
+/** Verifica Cloudflare Turnstile (gratuito). Se TURNSTILE_SECRET_KEY non è impostata il controllo è disattivato. */
+export const turnstileEnabled = Boolean(process.env.TURNSTILE_SECRET_KEY);
+
+export async function verifyTurnstile(token: unknown, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+  if (typeof token !== "string" || token.length < 10 || token.length > 2048) return false;
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body: new URLSearchParams({ secret, response: token, ...(ip !== "unknown" ? { remoteip: ip } : {}) }),
+      signal: AbortSignal.timeout(5000),
+    });
+    const data = (await res.json()) as { success?: boolean };
+    return data.success === true;
+  } catch (e) {
+    console.error("[turnstile] verifica non riuscita", e);
+    return false; // fail closed
+  }
+}

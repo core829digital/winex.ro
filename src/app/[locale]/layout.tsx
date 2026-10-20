@@ -7,7 +7,6 @@ import { routing, localeMeta, type Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/i18n/seo";
 import { site } from "@/lib/site";
 import { getCompany } from "@/lib/company";
-import { MobileCta } from "@/components/layout/MobileCta";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -72,7 +71,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
 
   return (
     <html lang={locale as Locale}>
-      <body className="min-h-dvh overflow-x-clip max-md:pb-[4.5rem]">
+      <body className="min-h-dvh overflow-x-clip">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <a
             href="#main"
@@ -86,7 +85,6 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Header />
           <main id="main">{children}</main>
           <Footer />
-          <MobileCta />
           <Tracker />
         </NextIntlClientProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />

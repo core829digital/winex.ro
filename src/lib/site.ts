@@ -11,12 +11,12 @@ export const site = {
   legalUpdated: "2026-10-19",
   country: "RO",
   company: {
-    legalName: "Winex",
-    cui: "",
-    regCom: "",
-    address: "",
-    phone: "",
-    email: "",
+    legalName: "WINEX ADVANCE SRL",
+    cui: "", // da inserire (CUI / cod fiscale) non appena disponibile
+    regCom: "", // da inserire (Nr. Reg. Com.) non appena disponibile
+    address: "Str. Mihai Eminescu 10/56, Roman, România",
+    phone: "+40 766 231 632",
+    email: "office@winex.ro",
     hours: "",
   },
   social: { facebook: "", instagram: "", linkedin: "" },
@@ -34,8 +34,6 @@ export const oneSpec = {
 /** Voci di navigazione principali (chiavi interne delle pathnames localizzate). */
 export const navItems = [
   { href: "/about", key: "about" },
-  { href: "/factory", key: "factory" },
-  { href: "/configurator", key: "configurator" },
   { href: "/contact", key: "contact" },
 ] as const;
 

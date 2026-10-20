@@ -17,11 +17,11 @@ npm run lint && npm run typecheck && npm run build
 
 | Percorso | Contenuto |
 |---|---|
-| `src/app/[locale]` | Pagine localizzate: home, about, factory, configurator, contact, privacy, terms, cookies, unsubscribe, confirm-subscription (+ 404). Slug tradotti per lingua |
+| `src/app/[locale]` | Pagine localizzate: home, about, configurator (solo dal pulsante rosso dell’header), contact, privacy, terms, cookies, unsubscribe, confirm-subscription (+ 404). Slug tradotti per lingua |
 | `src/i18n` | Routing (lingue, slug, hreflang), navigazione tipizzata, caricamento messaggi, SEO |
 | `messages/*.json` | Testi in 7 lingue (en, ro, it, fr, pl, nl, de), tipizzati su `en.json` |
 | `src/app/api` | `/api/contact`, `/api/newsletter`, `/api/collect`, `/api/unsubscribe`, webhook Resend |
-| `src/components/home` | Hero con sezione tecnica animata, Materiali, Energia, Processo, CTA |
+| `src/components/home` | Apertura a scorrimento (finestra), hero con finestra animata in loop, Materiali, Energia (con sezione tecnica), Processo, Supporto + chiamata |
 | `src/components/visual/EnergyFlow.tsx` | Sfondo canvas "flusso di energia" molto discreto (pausa a tab nascosta / in scroll su mobile, statico con reduced-motion) |
 | `src/lib/site.ts` | **Dati aziendali centrali** (campi `TODO` da sostituire) |
 | `convex/` | Schema + mutation (`leads`, `subscribers`) protette da segreto condiviso |
@@ -91,3 +91,7 @@ Dati societari, testi About, foto fabbrica, logo ufficiale, revisione legale del
 - Lenis solo su desktop (su touch scroll nativo). Menu mobile animato solo con `transform`/`opacity`.
 - `content-visibility: auto` sulle sezioni sotto la piega.
 - Misura di riferimento (Chromium, emulazione iPhone, CPU 4× più lenta): 24 → 60 fps; latenza tap 168–312 ms → 40–72 ms.
+
+## Sicurezza del modulo contatti
+
+Strati, in ordine: Origin + `Sec-Fetch-Site` + User-Agent → rate-limit (IP 5/10 min e 20/giorno, globale, per email 3/ora) → **token firmato HMAC** (`/api/form-token`: tempo minimo 2 s, scadenza 2 h, legato allo User-Agent, monouso) → honeypot → rilevamento XSS/injection sul testo grezzo → validazione + sanitizzazione Zod (NFKC, niente tag/controllo/bidi/a-capo nei campi di riga) → Cloudflare Turnstile opzionale (`NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`, gratuito) → filtro spam e duplicati → controlli di lunghezza anche in Convex. Bot e spam ricevono un «ok» finto (nulla salvato né inviato). In produzione serve `FORM_SIGNING_SECRET` (o `CONVEX_INGEST_SECRET`): senza, il modulo si rifiuta. Test: `tests/web/form-security.test.ts`.

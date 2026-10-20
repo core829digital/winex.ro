@@ -19,6 +19,10 @@ export const create = mutation({
   },
   handler: async (ctx, { secret, locale, ...lead }) => {
     assertIngestSecret(secret);
+    // Difesa in profondità: anche con il segreto, nessun valore fuori misura o con markup entra nel database.
+    if (lead.name.length > 120 || lead.email.length > 254 || lead.message.length > 4000 || (lead.subject?.length ?? 0) > 160 || (lead.phone?.length ?? 0) > 30 || lead.source.length > 40)
+      throw new ConvexError("INVALID_INPUT");
+    if (/[<>]/.test(`${lead.name}${lead.subject ?? ""}${lead.phone ?? ""}`)) throw new ConvexError("INVALID_INPUT");
     return await ctx.db.insert("leads", { ...lead, locale: locale ? normalizeLocale(locale) : undefined, status: "new", createdAt: Date.now() });
   },
 });

@@ -7,10 +7,6 @@
         "title": "Chi siamo",
         "description": "Winex offre serramenti in PVC, alluminio e legno, direttamente dal cortile della fabbrica."
       },
-      "factory": {
-        "title": "La fabbrica",
-        "description": "Dove nasce il prodotto: taglio, saldatura, assemblaggio e controllo qualità dei serramenti in PVC, alluminio e legno."
-      },
       "configurator": {
         "title": "Configuratore",
         "description": "Configura online finestre e porte Winex: materiale, colore, tipo di apertura e vetro."
@@ -55,7 +51,6 @@
     "label": "Navigazione principale",
     "mobileLabel": "Navigazione mobile",
     "about": "Chi siamo",
-    "factory": "Fabbrica",
     "configurator": "Configuratore",
     "contact": "Contatti",
     "cta": "Configura"
@@ -65,8 +60,6 @@
     "titleLine1": "Serramenti ad alta efficienza energetica,",
     "titleLine2": "direttamente dal cortile della fabbrica.",
     "lead": "I nostri serramenti sono pensati per l’isolamento, la durata e un design che si fa notare.",
-    "primary": "Configura i tuoi serramenti",
-    "secondary": "Scopri la fabbrica",
     "diagramLabel": "Sezione schematica di una finestra (illustrativa)",
     "interior": "Interno",
     "exterior": "Esterno",
@@ -79,7 +72,8 @@
     "trust1": "Schede tecniche su richiesta",
     "trust2": "PVC · Alluminio · Legno",
     "trust3": "Configuratore online",
-    "trust4": "Posa professionale"
+    "trust4": "Posa professionale",
+    "windowLabel": "Illustrazione animata di una finestra che si apre e si chiude"
   },
   "materials": {
     "eyebrow": "Materiali",
@@ -135,12 +129,6 @@
     "s3Text": "I serramenti vengono realizzati su ordinazione, con controlli a ogni fase.",
     "s4Title": "Posa",
     "s4Text": "Consegna e posa professionale, perché le prestazioni arrivino fino all’edificio."
-  },
-  "cta": {
-    "eyebrow": "Configuratore",
-    "title": "Specifica i tuoi serramenti online.",
-    "text": "Scegli materiale, colore, tipo di apertura e vetro, poi invia la configurazione direttamente al nostro team.",
-    "button": "Apri il configuratore"
   },
   "newsletter": {
     "eyebrow": "Newsletter",
@@ -200,7 +188,8 @@
       "failed": "Non siamo riusciti a inviare la richiesta. Riprova.",
       "forbidden": "Richiesta rifiutata.",
       "network": "Connessione non disponibile. Controlla la rete e riprova.",
-      "generic": "Si è verificato un errore. Riprova."
+      "generic": "Si è verificato un errore. Riprova.",
+      "verification_failed": "Verifica di sicurezza non riuscita. Ricarica la pagina e riprova."
     }
   },
   "about": {
@@ -223,28 +212,6 @@
     "reliabilityTitle": "Affidabilità",
     "reliabilityText": "Comunicazione chiara, tempi realistici e assistenza prima e dopo la posa."
   },
-  "factory": {
-    "eyebrow": "La fabbrica",
-    "titleLine1": "Dove ogni serramento",
-    "titleLine2": "prende forma.",
-    "lead": "Serramenti realizzati su ordinazione, controllati passo dopo passo e spediti pronti per la posa — direttamente dal cortile della fabbrica.",
-    "exterior": "Esterno della fabbrica",
-    "cutting": "Linea di taglio",
-    "welding": "Saldatura dei profili",
-    "assembly": "Assemblaggio",
-    "quality": "Controllo qualità",
-    "dispatch": "Magazzino e spedizione",
-    "stagesEyebrow": "Produzione",
-    "stagesTitle": "Dal profilo al prodotto finito.",
-    "raw": "Materie prime",
-    "rawText": "Selezione di profili, vetri e ferramenta.",
-    "cut": "Taglio e lavorazione",
-    "cutText": "Taglio al millimetro, secondo l’ordine.",
-    "assemble": "Assemblaggio",
-    "assembleText": "Saldatura, montaggio della ferramenta e vetratura.",
-    "qc": "Controllo qualità",
-    "qcText": "Verifiche prima dell’imballaggio e della spedizione."
-  },
   "contact": {
     "eyebrow": "Contatti",
     "titleLine1": "Parliamo",
@@ -256,7 +223,8 @@
     "phone": "Telefono",
     "email": "Email",
     "hours": "Orari di apertura",
-    "noDetails": "Usa il modulo per contattarci."
+    "noDetails": "Usa il modulo per contattarci.",
+    "company": "Azienda"
   },
   "configurator": {
     "eyebrow": "Configuratore",
@@ -316,7 +284,8 @@
               "**Moduli di contatto e di richiesta preventivo:** nome, email, telefono (facoltativo), contenuto del messaggio e lingua della pagina. Finalità: rispondere alla tua richiesta e predisporre un preventivo. Base giuridica: misure precontrattuali adottate su tua richiesta e legittimo interesse (art. 6, par. 1, lett. b e f GDPR).",
               "**Newsletter:** indirizzo email e lingua. Finalità: invio di comunicazioni commerciali. Base giuridica: il tuo consenso (art. 6, par. 1, lett. a GDPR), che puoi revocare in qualsiasi momento. L’iscrizione prevede una doppia conferma: ricevi un’email con un link di conferma e non viene inviata alcuna comunicazione finché non confermi. Le richieste non confermate vengono eliminate automaticamente dopo 30 giorni; conserviamo la data di conferma come prova del consenso.",
               "**Statistiche anonime del sito:** pagine visitate, clic su pulsanti e link, tipo di dispositivo, paese, lingua e fonte del traffico. Non utilizziamo cookie e non memorizziamo nulla sul tuo dispositivo. L’identificativo del visitatore è un codice anonimo ricalcolato ogni giorno che non può essere usato per identificarti. Rispettiamo i segnali “Do Not Track” e “Global Privacy Control”. Finalità: comprendere e migliorare il sito. Base giuridica: legittimo interesse. Gli eventi dettagliati vengono eliminati dopo 3 giorni; restano solo i totali aggregati.",
-              "**Dati tecnici:** il tuo indirizzo IP viene utilizzato temporaneamente per sicurezza e per prevenire abusi (limitazione delle richieste). Base giuridica: legittimo interesse."
+              "**Dati tecnici:** il tuo indirizzo IP viene utilizzato temporaneamente per sicurezza e per prevenire abusi (limitazione delle richieste). Base giuridica: legittimo interesse.",
+              "**Protezione da spam e bot:** il modulo di contatto utilizza un token di sicurezza firmato e a durata limitata, un campo trappola nascosto e la limitazione delle richieste per indirizzo IP (conservato solo in memoria, per breve tempo). Se attivato, Cloudflare Turnstile verifica che la richiesta provenga da una persona. Base giuridica: legittimo interesse a mantenere sicuri il sito e la nostra casella di posta."
             ]
           }
         ]
@@ -332,6 +301,7 @@
               "Convex, Inc. — archiviazione di messaggi, iscritti e statistiche anonime;",
               "Resend, Inc. — invio e consegna delle email;",
               "il nostro fornitore di hosting;",
+              "Cloudflare, Inc. — verifica anti-bot Turnstile sul modulo di contatto, solo se attivata;",
               "OneSpec — solo se utilizzi il configuratore online, secondo la propria informativa."
             ]
           },
@@ -431,6 +401,14 @@
             "p": "I presenti termini sono disciplinati dalla legge rumena. I consumatori possono inoltre rivolgersi alla [risoluzione alternativa delle controversie ANPC (SAL)](https://anpc.ro/ce-este-sal/) e ai tribunali e agli organismi di tutela dei consumatori del proprio paese di residenza."
           }
         ]
+      },
+      {
+        "title": "8. Uso consentito",
+        "blocks": [
+          {
+            "p": "Non è consentito utilizzare il sito o i suoi moduli per inviare spam, codice dannoso o contenuti illeciti, per effettuare invii automatizzati o per tentare di compromettere il servizio o di accedervi senza autorizzazione. Tali richieste vengono bloccate e gli abusi possono essere segnalati alle autorità competenti."
+          }
+        ]
       }
     ]
   },
@@ -480,5 +458,18 @@
   },
   "emails": {
     "defaultSubject": "Messaggio da Winex"
+  },
+  "support": {
+    "eyebrow": "Qualità e assistenza",
+    "title": "Profili di qualità. Assistenza digitale. A una telefonata di distanza.",
+    "lead": "Lavoriamo con sistemi di profili multicamera di alta qualità e ogni progetto è gestito con un processo completamente digitale, dalla prima richiesta alla posa.",
+    "p1Title": "Profili di alta qualità",
+    "p1Text": "Sistemi di profili multicamera scelti per isolamento termico, durata e una finitura pulita e precisa.",
+    "p2Title": "Assistenza concreta",
+    "p2Text": "Un team dedicato risponde alle tue domande, prepara il preventivo e resta a disposizione anche dopo la posa.",
+    "p3Title": "Sistema completamente digitale",
+    "p3Text": "Configurazione online, preventivi e ordini digitali in un unico sistema: meno errori, risposte più rapide.",
+    "call": "Chiama Winex",
+    "callNote": "Parla direttamente con il nostro team."
   }
 }

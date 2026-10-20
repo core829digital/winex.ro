@@ -7,10 +7,6 @@
         "title": "About us",
         "description": "Winex supplies PVC, aluminium and timber joinery, direct from the factory yard."
       },
-      "factory": {
-        "title": "The factory",
-        "description": "Where it is made: cutting, welding, assembly and quality control of PVC, aluminium and timber joinery."
-      },
       "configurator": {
         "title": "Configurator",
         "description": "Configure Winex windows and doors online: material, colour, opening type and glazing."
@@ -55,7 +51,6 @@
     "label": "Main navigation",
     "mobileLabel": "Mobile navigation",
     "about": "About us",
-    "factory": "Factory",
     "configurator": "Configurator",
     "contact": "Contact",
     "cta": "Configure"
@@ -65,8 +60,6 @@
     "titleLine1": "Energy-efficient joinery,",
     "titleLine2": "direct from the factory yard.",
     "lead": "Our joinery is designed for insulation, durability and a design that stands out.",
-    "primary": "Configure your joinery",
-    "secondary": "Explore the factory",
     "diagramLabel": "Schematic cross-section of a window (illustrative)",
     "interior": "Interior",
     "exterior": "Exterior",
@@ -79,7 +72,8 @@
     "trust1": "Technical data sheets on request",
     "trust2": "PVC · Aluminium · Timber",
     "trust3": "Online configurator",
-    "trust4": "Professional installation"
+    "trust4": "Professional installation",
+    "windowLabel": "Animated illustration of a window opening and closing"
   },
   "materials": {
     "eyebrow": "Materials",
@@ -135,12 +129,6 @@
     "s3Text": "Your joinery is produced to order, with checks at every stage.",
     "s4Title": "Installation",
     "s4Text": "Delivery and professional installation, so the performance reaches the building."
-  },
-  "cta": {
-    "eyebrow": "Configurator",
-    "title": "Specify your joinery online.",
-    "text": "Choose material, colour, opening type and glazing, then send the configuration directly to our team.",
-    "button": "Open the configurator"
   },
   "newsletter": {
     "eyebrow": "Newsletter",
@@ -200,7 +188,8 @@
       "failed": "We could not send your request. Please try again.",
       "forbidden": "Request rejected.",
       "network": "Connection unavailable. Check your internet connection and try again.",
-      "generic": "An error occurred. Please try again."
+      "generic": "An error occurred. Please try again.",
+      "verification_failed": "Security check failed. Please reload the page and try again."
     }
   },
   "about": {
@@ -223,28 +212,6 @@
     "reliabilityTitle": "Reliability",
     "reliabilityText": "Clear communication, realistic lead times and support before and after installation."
   },
-  "factory": {
-    "eyebrow": "The factory",
-    "titleLine1": "Where every unit",
-    "titleLine2": "takes shape.",
-    "lead": "Joinery produced to order, checked step by step and dispatched ready for installation — straight from the factory yard.",
-    "exterior": "Factory exterior",
-    "cutting": "Cutting line",
-    "welding": "Profile welding",
-    "assembly": "Assembly",
-    "quality": "Quality control",
-    "dispatch": "Warehouse and dispatch",
-    "stagesEyebrow": "Production",
-    "stagesTitle": "From profile to finished unit.",
-    "raw": "Raw materials",
-    "rawText": "Selection of profiles, glazing and hardware.",
-    "cut": "Cutting and machining",
-    "cutText": "Cut to the millimetre, according to the order.",
-    "assemble": "Assembly",
-    "assembleText": "Welding, hardware fitting and glazing.",
-    "qc": "Quality control",
-    "qcText": "Checks before packing and dispatch."
-  },
   "contact": {
     "eyebrow": "Contact",
     "titleLine1": "Let’s discuss",
@@ -256,7 +223,8 @@
     "phone": "Phone",
     "email": "Email",
     "hours": "Opening hours",
-    "noDetails": "Please use the form to reach us."
+    "noDetails": "Please use the form to reach us.",
+    "company": "Company"
   },
   "configurator": {
     "eyebrow": "Configurator",
@@ -316,7 +284,8 @@
               "**Contact and quote request forms:** name, email, phone (optional), message content and the language of the page. Purpose: replying to your request and preparing a quote. Legal basis: pre-contractual steps at your request and our legitimate interest (Art. 6(1)(b) and (f) GDPR).",
               "**Newsletter:** email address and language. Purpose: sending commercial communications. Legal basis: your consent (Art. 6(1)(a) GDPR), which you may withdraw at any time. Subscription uses double confirmation: you receive an email with a confirmation link and no communications are sent until you confirm. Unconfirmed requests are deleted automatically after 30 days; we keep the confirmation date as proof of consent.",
               "**Anonymous site statistics:** pages visited, clicks on buttons and links, device type, country, language and traffic source. We use no cookies and store nothing on your device. The visitor identifier is an anonymous code recalculated every day that cannot be used to identify you. We respect the “Do Not Track” and “Global Privacy Control” signals. Purpose: understanding and improving the site. Legal basis: legitimate interest. Detailed events are deleted after 3 days; only aggregate totals remain.",
-              "**Technical data:** your IP address is used temporarily for security and abuse prevention (rate limiting). Legal basis: legitimate interest."
+              "**Technical data:** your IP address is used temporarily for security and abuse prevention (rate limiting). Legal basis: legitimate interest.",
+              "**Spam and bot protection:** the contact form uses a signed, time-limited security token, a hidden trap field and rate limiting by IP address (kept only in memory, for a short time). If enabled, Cloudflare Turnstile checks that the request comes from a person. Legal basis: legitimate interest in keeping the website and our mailbox safe."
             ]
           }
         ]
@@ -332,6 +301,7 @@
               "Convex, Inc. — storage of messages, subscribers and anonymous statistics;",
               "Resend, Inc. — sending and delivery of emails;",
               "our web hosting provider;",
+              "Cloudflare, Inc. — Turnstile anti-bot check on the contact form, only if enabled;",
               "OneSpec — only if you use the online configurator, under its own policy."
             ]
           },
@@ -431,6 +401,14 @@
             "p": "These terms are governed by Romanian law. Consumers may also have recourse to the [ANPC alternative dispute resolution (SAL)](https://anpc.ro/ce-este-sal/) and to the courts and consumer bodies of their country of residence."
           }
         ]
+      },
+      {
+        "title": "8. Acceptable use",
+        "blocks": [
+          {
+            "p": "You may not use the website or its forms to send spam, malicious code or unlawful content, to run automated submissions, or to try to disrupt or gain unauthorised access to the service. Such requests are blocked, and we may report abuse to the competent authorities."
+          }
+        ]
       }
     ]
   },
@@ -480,5 +458,18 @@
   },
   "emails": {
     "defaultSubject": "Message from Winex"
+  },
+  "support": {
+    "eyebrow": "Quality & support",
+    "title": "Quality profiles. Digital support. One call away.",
+    "lead": "We work with high-quality multi-chamber profile systems, and every project is managed through a fully digital process — from the first enquiry to installation.",
+    "p1Title": "High-quality profiles",
+    "p1Text": "Multi-chamber profile systems chosen for thermal insulation, durability and a clean, precise finish.",
+    "p2Title": "Real assistance",
+    "p2Text": "A dedicated team answers your questions, prepares your quote and stays available after installation.",
+    "p3Title": "Fully digital system",
+    "p3Text": "Online configuration, digital quotes and orders in a single system: fewer errors, faster answers.",
+    "call": "Call Winex",
+    "callNote": "Speak directly with our team."
   }
 }

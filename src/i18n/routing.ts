@@ -32,7 +32,6 @@ export const routing = defineRouting({
   pathnames: {
     "/": "/",
     "/about": { en: "/about", ro: "/despre-noi", it: "/chi-siamo", fr: "/a-propos", pl: "/o-nas", nl: "/over-ons", de: "/ueber-uns" },
-    "/factory": { en: "/factory", ro: "/fabrica", it: "/fabbrica", fr: "/usine", pl: "/fabryka", nl: "/fabriek", de: "/werk" },
     "/configurator": { en: "/configurator", ro: "/configurator", it: "/configuratore", fr: "/configurateur", pl: "/konfigurator", nl: "/configurator", de: "/konfigurator" },
     "/contact": { en: "/contact", ro: "/contact", it: "/contatti", fr: "/contact", pl: "/kontakt", nl: "/contact", de: "/kontakt" },
     "/privacy": { en: "/privacy-policy", ro: "/politica-confidentialitate", it: "/informativa-privacy", fr: "/politique-de-confidentialite", pl: "/polityka-prywatnosci", nl: "/privacybeleid", de: "/datenschutz" },

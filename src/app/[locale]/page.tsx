@@ -4,10 +4,11 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Hero } from "@/components/home/Hero";
+import { ScrollWindowIntro } from "@/components/home/ScrollWindowIntro";
 import { Materials } from "@/components/home/Materials";
 import { Energy } from "@/components/home/Energy";
 import { Process } from "@/components/home/Process";
-import { CtaBand } from "@/components/home/CtaBand";
+import { Support } from "@/components/home/Support";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { newsletterEnabled } from "@/lib/server";
 
@@ -21,11 +22,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   return (
     <>
-      <Hero />
+      <ScrollWindowIntro />
+      <div className="hero-wrap relative">
+        <Hero />
+      </div>
       <Materials />
       <Energy />
       <Process />
-      <CtaBand />
+      <Support />
       {/* La newsletter richiede Convex + Resend (doppia conferma): senza, la sezione non viene mostrata. */}
       {newsletterEnabled() && <NewsletterSection />}
     </>

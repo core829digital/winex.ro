@@ -7,10 +7,6 @@
         "title": "Despre noi",
         "description": "Winex oferă tâmplărie din PVC, aluminiu și lemn, direct din curtea fabricii."
       },
-      "factory": {
-        "title": "Fabrica",
-        "description": "Unde se realizează: tăiere, sudare, asamblare și control al calității pentru tâmplăria din PVC, aluminiu și lemn."
-      },
       "configurator": {
         "title": "Configurator",
         "description": "Configurează online ferestre și uși Winex: material, culoare, tip de deschidere și geam."
@@ -55,7 +51,6 @@
     "label": "Navigare principală",
     "mobileLabel": "Navigare mobil",
     "about": "Despre noi",
-    "factory": "Fabrica",
     "configurator": "Configurator",
     "contact": "Contact",
     "cta": "Configurează"
@@ -65,8 +60,6 @@
     "titleLine1": "Tâmplărie eficientă energetic,",
     "titleLine2": "direct din curtea fabricii.",
     "lead": "Tâmplăria noastră este gândită pentru izolare, durabilitate și un design care se vede.",
-    "primary": "Configurează tâmplăria",
-    "secondary": "Descoperă fabrica",
     "diagramLabel": "Secțiune schematică printr-o fereastră (ilustrativ)",
     "interior": "Interior",
     "exterior": "Exterior",
@@ -79,7 +72,8 @@
     "trust1": "Fișe tehnice la cerere",
     "trust2": "PVC · Aluminiu · Lemn",
     "trust3": "Configurator online",
-    "trust4": "Montaj profesionist"
+    "trust4": "Montaj profesionist",
+    "windowLabel": "Ilustrație animată a unei ferestre care se deschide și se închide"
   },
   "materials": {
     "eyebrow": "Materiale",
@@ -135,12 +129,6 @@
     "s3Text": "Tâmplăria este realizată la comandă, cu verificări la fiecare etapă.",
     "s4Title": "Montaj",
     "s4Text": "Livrare și montaj profesionist, astfel încât performanța să ajungă și în clădire."
-  },
-  "cta": {
-    "eyebrow": "Configurator",
-    "title": "Specifică tâmplăria online.",
-    "text": "Alege materialul, culoarea, tipul de deschidere și geamul, apoi trimite configurația direct echipei noastre.",
-    "button": "Deschide configuratorul"
   },
   "newsletter": {
     "eyebrow": "Newsletter",
@@ -200,7 +188,8 @@
       "failed": "Nu am putut trimite solicitarea. Te rugăm să reîncerci.",
       "forbidden": "Cerere respinsă.",
       "network": "Conexiune indisponibilă. Verifică internetul și reîncearcă.",
-      "generic": "A apărut o eroare. Reîncearcă."
+      "generic": "A apărut o eroare. Reîncearcă.",
+      "verification_failed": "Verificarea de securitate a eșuat. Reîncarcă pagina și încearcă din nou."
     }
   },
   "about": {
@@ -223,28 +212,6 @@
     "reliabilityTitle": "Încredere",
     "reliabilityText": "Comunicare clară, termene realiste și suport înainte și după montaj."
   },
-  "factory": {
-    "eyebrow": "Fabrica",
-    "titleLine1": "Locul în care fiecare produs",
-    "titleLine2": "capătă formă.",
-    "lead": "Tâmplărie realizată la comandă, verificată pas cu pas și expediată gata de montaj — direct din curtea fabricii.",
-    "exterior": "Exteriorul fabricii",
-    "cutting": "Linia de tăiere",
-    "welding": "Sudarea profilelor",
-    "assembly": "Asamblare",
-    "quality": "Control al calității",
-    "dispatch": "Depozit și expediere",
-    "stagesEyebrow": "Producție",
-    "stagesTitle": "De la profil la produsul finit.",
-    "raw": "Materie primă",
-    "rawText": "Selecția profilelor, a geamurilor și a feroneriei.",
-    "cut": "Tăiere și prelucrare",
-    "cutText": "Debitare la milimetru, conform comenzii.",
-    "assemble": "Asamblare",
-    "assembleText": "Sudare, montaj feronerie și vitrare.",
-    "qc": "Control al calității",
-    "qcText": "Verificări înainte de ambalare și expediere."
-  },
   "contact": {
     "eyebrow": "Contact",
     "titleLine1": "Să discutăm",
@@ -256,7 +223,8 @@
     "phone": "Telefon",
     "email": "E-mail",
     "hours": "Program",
-    "noDetails": "Folosește formularul pentru a ne contacta."
+    "noDetails": "Folosește formularul pentru a ne contacta.",
+    "company": "Companie"
   },
   "configurator": {
     "eyebrow": "Configurator",
@@ -316,7 +284,8 @@
               "**Formularele de contact și de cerere de ofertă:** nume, e-mail, telefon (opțional), conținutul mesajului și limba paginii. Scop: răspunsul la solicitare și pregătirea ofertei. Temei: măsuri precontractuale la cererea persoanei vizate și interesul legitim (art. 6 alin. 1 lit. b și f GDPR).",
               "**Newsletter:** adresa de e-mail și limba. Scop: trimiterea de comunicări comerciale. Temei: consimțământul tău (art. 6 alin. 1 lit. a GDPR), pe care îl poți retrage oricând. Abonarea se face prin dublă confirmare: primești un e-mail cu un link de confirmare, iar până la confirmare nu primești nicio comunicare. Cererile neconfirmate se șterg automat după 30 de zile; păstrăm data confirmării ca dovadă a consimțământului.",
               "**Statistici anonime ale site-ului:** paginile vizitate, clicurile pe butoane și linkuri, tipul dispozitivului, țara, limba și sursa de trafic. Nu folosim cookie-uri și nu stocăm nimic pe dispozitivul tău. Identificatorul de vizitator este un cod anonim, recalculat zilnic, care nu poate fi folosit pentru a te identifica. Respectăm semnalele „Do Not Track” și „Global Privacy Control”. Scop: înțelegerea și îmbunătățirea site-ului. Temei: interes legitim. Evenimentele detaliate se șterg după 3 zile; rămân doar totaluri agregate.",
-              "**Date tehnice:** adresa IP este folosită temporar pentru securitate și prevenirea abuzurilor (limitarea cererilor). Temei: interes legitim."
+              "**Date tehnice:** adresa IP este folosită temporar pentru securitate și prevenirea abuzurilor (limitarea cererilor). Temei: interes legitim.",
+              "**Protecție anti-spam și anti-bot:** formularul de contact folosește un token de securitate semnat și cu durată limitată, un câmp-capcană ascuns și limitarea cererilor în funcție de adresa IP (păstrată doar în memorie, pentru scurt timp). Dacă este activat, Cloudflare Turnstile verifică dacă cererea provine de la o persoană. Temei legal: interesul legitim de a păstra în siguranță site-ul și căsuța noastră de e-mail."
             ]
           }
         ]
@@ -332,6 +301,7 @@
               "Convex, Inc. — stocarea mesajelor, a abonaților și a statisticilor anonime;",
               "Resend, Inc. — trimiterea și livrarea e-mailurilor;",
               "furnizorul de găzduire a site-ului;",
+              "Cloudflare, Inc. — verificarea anti-bot Turnstile pentru formularul de contact, numai dacă este activată;",
               "OneSpec — doar dacă folosești configuratorul online, conform politicii proprii."
             ]
           },
@@ -431,6 +401,14 @@
             "p": "Legea aplicabilă este legea română. Consumatorii pot apela și la [soluționarea alternativă a litigiilor ANPC (SAL)](https://anpc.ro/ce-este-sal/), precum și la instanțele și organismele de protecție a consumatorilor din țara lor de reședință."
           }
         ]
+      },
+      {
+        "title": "8. Utilizare acceptabilă",
+        "blocks": [
+          {
+            "p": "Nu aveți voie să folosiți site-ul sau formularele sale pentru a trimite spam, cod rău intenționat sau conținut ilegal, pentru a efectua trimiteri automate ori pentru a încerca să perturbați serviciul sau să obțineți acces neautorizat la acesta. Astfel de cereri sunt blocate, iar abuzurile pot fi raportate autorităților competente."
+          }
+        ]
       }
     ]
   },
@@ -480,5 +458,18 @@
   },
   "emails": {
     "defaultSubject": "Mesaj de la Winex"
+  },
+  "support": {
+    "eyebrow": "Calitate și suport",
+    "title": "Profile de calitate. Suport digital. La un apel distanță.",
+    "lead": "Lucrăm cu sisteme de profile cu mai multe camere, de înaltă calitate, iar fiecare proiect este gestionat printr-un proces complet digital — de la prima solicitare până la montaj.",
+    "p1Title": "Profile de înaltă calitate",
+    "p1Text": "Sisteme de profile cu mai multe camere, alese pentru izolare termică, durabilitate și o finisare curată, precisă.",
+    "p2Title": "Asistență reală",
+    "p2Text": "O echipă dedicată răspunde întrebărilor tale, pregătește oferta și rămâne la dispoziție și după montaj.",
+    "p3Title": "Sistem complet digital",
+    "p3Text": "Configurare online, oferte și comenzi digitale într-un singur sistem: mai puține erori, răspunsuri mai rapide.",
+    "call": "Sună la Winex",
+    "callNote": "Vorbește direct cu echipa noastră."
   }
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Building2, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { routing, type Locale } from "@/i18n/routing";
 import { pageMetadata } from "@/i18n/seo";
 import { getCompany } from "@/lib/company";
@@ -23,6 +23,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
   // I campi non compilati nell'admin non vengono mostrati.
   const rows = [
+    { icon: Building2, label: t("company"), value: [c.legalName, c.cui && `CUI ${c.cui}`, c.regCom && `Reg. Com. ${c.regCom}`].filter(Boolean).join(" · "), href: undefined as string | undefined },
     { icon: MapPin, label: t("address"), value: c.address, href: undefined as string | undefined },
     { icon: Phone, label: t("phone"), value: c.phone, href: c.phone ? `tel:${c.phone.replace(/[^+\d]/g, "")}` : undefined },
     { icon: Mail, label: t("email"), value: c.email, href: c.email ? `mailto:${c.email}` : undefined },

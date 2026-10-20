@@ -15,7 +15,7 @@ export function alternatesFor(locale: Locale, pathname: AppPathname) {
   return { canonical: abs(getPathname({ locale, href: pathname })), languages };
 }
 
-type PageKey = "about" | "factory" | "configurator" | "contact" | "privacy" | "terms" | "cookies" | "unsubscribe" | "confirm";
+type PageKey = "about" | "configurator" | "contact" | "privacy" | "terms" | "cookies" | "unsubscribe" | "confirm";
 
 /** Metadata di una pagina interna, tradotti nella lingua richiesta. */
 export async function pageMetadata(locale: Locale, pathname: AppPathname, key: PageKey, opts: { index?: boolean } = {}): Promise<Metadata> {

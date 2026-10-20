@@ -1,6 +1,9 @@
 import { NextResponse, after } from "next/server";
 import { contactSchema } from "@/lib/validation";
 import { rateLimit } from "@/lib/rate-limit";
+import { createHash } from "node:crypto";
+import { looksHostile, looksSpammy } from "@/lib/sanitize";
+import { verifyFormToken } from "@/lib/form-token";
 import {
   api,
   convex,
@@ -8,10 +11,11 @@ import {
   env,
   esc,
   getServerSettings,
-  guard,
+  guardStrict,
   readJson,
   resend,
   resendReady,
+  verifyTurnstile,
 } from "@/lib/server";
 import { notifyAdmins } from "@/lib/push";
 import { contactReplyEmail } from "@/lib/newsletter-mail";
@@ -19,18 +23,66 @@ import { site } from "@/lib/site";
 
 export const runtime = "nodejs";
 
+/** Risposta "ok" senza fare nulla: il bot non capisce di essere stato bloccato. */
+const quietOk = () => NextResponse.json({ ok: true });
+
+const FIELDS = ["name", "email", "phone", "subject", "message"] as const;
+const seen = new Map<string, number>();
+
 export async function POST(req: Request) {
-  const g = guard(req);
+  // 1. Provenienza: Origin coerente, Sec-Fetch-Site, User-Agent, JSON
+  const g = guardStrict(req);
   if (!g.ok) return NextResponse.json({ error: "forbidden" }, { status: 403 });
-  if (!rateLimit(`contact:${g.ip}`, 5, 10 * 60_000))
+  if (!(req.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json"))
+    return NextResponse.json({ error: "forbidden" }, { status: 415 });
+
+  // 2. Anti-flood: per IP (breve e giornaliero) e globale
+  if (!rateLimit(`contact:${g.ip}`, 5, 10 * 60_000) || !rateLimit(`contact-day:${g.ip}`, 20, 24 * 3_600_000) || !rateLimit("contact:all", 120, 10 * 60_000))
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
-  const parsed = contactSchema.safeParse(await readJson(req));
+  const body = await readJson(req);
+  if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ error: "generic" }, { status: 400 });
+  const raw = body as Record<string, unknown>;
+
+  // 3. Firma del modulo (token HMAC, monouso, con tempo minimo/massimo e User-Agent)
+  const tk = verifyFormToken(raw.ft, g.ua);
+  if (!tk.ok) {
+    console.warn(`[contact] token rifiutato: ${tk.reason}`);
+    return NextResponse.json({ error: "verification_failed" }, { status: 403 });
+  }
+
+  // 4. Honeypot e input ostile (XSS / injection) sul testo GREZZO
+  if (typeof raw.website === "string" && raw.website.trim()) return quietOk();
+  const rawText = FIELDS.map((k) => (typeof raw[k] === "string" ? (raw[k] as string) : "")).join(" ");
+  if (looksHostile(rawText)) {
+    console.warn("[contact] input ostile bloccato");
+    return quietOk();
+  }
+
+  // 5. Validazione + sanitizzazione (Zod)
+  const parsed = contactSchema.safeParse(raw);
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "generic" }, { status: 400 });
   }
-  const { website, ...data } = parsed.data;
-  if (website) return NextResponse.json({ ok: true }); // honeypot
+  const { website: _hp, ft: _ft, turnstile, ...data } = parsed.data;
+  void _hp;
+  void _ft;
+
+  // 6. Anti-bot: Turnstile (se attivo)
+  if (!(await verifyTurnstile(turnstile, g.ip))) return NextResponse.json({ error: "verification_failed" }, { status: 403 });
+
+  // 7. Spam, flood per indirizzo email e duplicati
+  if (looksSpammy(`${data.subject ?? ""}
+${data.message}`)) {
+    console.warn("[contact] spam bloccato");
+    return quietOk();
+  }
+  if (!rateLimit(`contact-email:${data.email}`, 3, 3_600_000)) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  const fingerprint = createHash("sha256").update(`${data.email}|${data.message}`).digest("hex");
+  const nowMs = Date.now();
+  for (const [k, t] of seen) if (nowMs - t > 3_600_000) seen.delete(k);
+  if (seen.has(fingerprint)) return quietOk();
+  seen.set(fingerprint, nowMs);
 
   const settings = await getServerSettings();
   const notif = (settings.notifications ?? {}) as { leadEmailTo?: string; pushOnLead?: boolean };

@@ -2,9 +2,10 @@ import { getTranslations } from "next-intl/server";
 import { Flame, Layers, ShieldCheck, Volume2 } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { HeroDiagram } from "./HeroDiagram";
 
 export async function Energy() {
-  const t = await getTranslations("energy");
+  const [t, h] = await Promise.all([getTranslations("energy"), getTranslations("hero")]);
   const items = [
     { icon: Layers, title: t("chambersTitle"), text: t("chambersText") },
     { icon: Flame, title: t("heatTitle"), text: t("heatText") },
@@ -31,6 +32,18 @@ export async function Energy() {
             <p className="border-t border-[var(--line-strong)] pt-5 text-xs leading-relaxed text-ink-mute">{t("note")}</p>
           </Reveal>
         </div>
+        <Reveal className="mx-auto w-full max-w-3xl lg:col-span-2">
+          <HeroDiagram
+            label={h("diagramLabel")}
+            interior={h("interior")}
+            exterior={h("exterior")}
+            items={[
+              { title: h("item1Title"), text: h("item1Text") },
+              { title: h("item2Title"), text: h("item2Text") },
+              { title: h("item3Title"), text: h("item3Text") },
+            ]}
+          />
+        </Reveal>
       </div>
     </section>
   );

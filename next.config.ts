@@ -9,12 +9,12 @@ const isDev = process.env.NODE_ENV !== "production";
 const csp = [
   "default-src 'self'",
   // Next.js inietta script inline per l'hydration; senza nonce serve 'unsafe-inline'.
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "connect-src 'self' https://*.convex.cloud wss://*.convex.cloud https://*.convex.site" + (isDev ? " ws:" : ""),
-  "frame-src 'self' https://platform.onespec.eu https://onespec.eu https://*.onespec.eu",
+  "frame-src 'self' https://challenges.cloudflare.com https://platform.onespec.eu https://onespec.eu https://*.onespec.eu",
   "worker-src 'self'",
   "manifest-src 'self'",
   "frame-ancestors 'self'",

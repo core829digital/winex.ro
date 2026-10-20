@@ -3,7 +3,7 @@ import { getPathname } from "@/i18n/navigation";
 import { regionalAlternates, routing, type AppPathname } from "@/i18n/routing";
 import { site } from "@/lib/site";
 
-const PAGES: AppPathname[] = ["/", "/about", "/factory", "/configurator", "/contact", "/privacy", "/terms", "/cookies"];
+const PAGES: AppPathname[] = ["/", "/about", "/configurator", "/contact", "/privacy", "/terms", "/cookies"];
 const abs = (path: string) => `${site.url.replace(/\/$/, "")}${path}`;
 
 export default function sitemap(): MetadataRoute.Sitemap {

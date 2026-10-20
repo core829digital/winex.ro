@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import { Factory, Layers, SlidersHorizontal, Wrench } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { HeroDiagram } from "./HeroDiagram";
+import { HeroWindow } from "./HeroWindow";
 
 export async function Hero() {
-  const t = await getTranslations("hero");
+  const [t, nav] = await Promise.all([getTranslations("hero"), getTranslations("nav")]);
   const trust = [
     { icon: Factory, text: t("trust1") },
     { icon: Layers, text: t("trust2") },
@@ -26,22 +26,15 @@ export async function Hero() {
             {t("lead")}
           </p>
           <div className="rise mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "560ms" } as React.CSSProperties}>
-            <ButtonLink href="/configurator" arrow>{t("primary")}</ButtonLink>
-            <ButtonLink href="/factory" variant="outline">{t("secondary")}</ButtonLink>
+            <ButtonLink href="/contact" arrow>{nav("contact")}</ButtonLink>
+            <ButtonLink href="/about" variant="outline">{nav("about")}</ButtonLink>
           </div>
         </div>
 
         <div className="rise" style={{ "--d": "300ms" } as React.CSSProperties}>
-          <HeroDiagram
-            label={t("diagramLabel")}
-            interior={t("interior")}
-            exterior={t("exterior")}
-            items={[
-              { title: t("item1Title"), text: t("item1Text") },
-              { title: t("item2Title"), text: t("item2Text") },
-              { title: t("item3Title"), text: t("item3Text") },
-            ]}
-          />
+          <div className="surface relative overflow-hidden shadow-[var(--shadow-md)]">
+            <HeroWindow label={t("windowLabel")} />
+          </div>
         </div>
       </div>
 
