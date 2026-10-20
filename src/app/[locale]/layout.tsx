@@ -6,6 +6,8 @@ import "../globals.css";
 import { routing, localeMeta, type Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/i18n/seo";
 import { site } from "@/lib/site";
+import { getCompany } from "@/lib/company";
+import { MobileCta } from "@/components/layout/MobileCta";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -47,18 +49,30 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const [all, t] = await Promise.all([getMessages(), getTranslations({ locale, namespace: "common" })]);
   const messages = Object.fromEntries(CLIENT_NAMESPACES.map((k) => [k, (all as Record<string, unknown>)[k]]));
 
+  const company = await getCompany();
+  const sameAs = [company.facebook, company.instagram, company.linkedin].filter(Boolean);
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: site.url,
-    slogan: t("tagline"),
-    address: { "@type": "PostalAddress", addressCountry: site.country },
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.url}/#org`,
+        name: site.name,
+        legalName: company.legalName,
+        url: site.url,
+        slogan: t("tagline"),
+        address: { "@type": "PostalAddress", ...(company.address ? { streetAddress: company.address } : {}), addressCountry: site.country },
+        ...(company.phone ? { telephone: company.phone } : {}),
+        ...(company.email ? { email: company.email } : {}),
+        ...(sameAs.length ? { sameAs } : {}),
+      },
+      { "@type": "WebSite", "@id": `${site.url}/#site`, url: site.url, name: site.name, inLanguage: locale, publisher: { "@id": `${site.url}/#org` } },
+    ],
   };
 
   return (
     <html lang={locale as Locale}>
-      <body className="min-h-dvh overflow-x-clip">
+      <body className="min-h-dvh overflow-x-clip max-md:pb-[4.5rem]">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <a
             href="#main"
@@ -72,6 +86,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <MobileCta />
           <Tracker />
         </NextIntlClientProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
