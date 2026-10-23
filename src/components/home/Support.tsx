@@ -19,10 +19,10 @@ export async function Support() {
   const tel = c.phone ? `tel:${c.phone.replace(/[^+\d]/g, "")}` : null;
 
   return (
-    <section className="section section-soft cv-auto relative isolate overflow-hidden border-y border-line">
+    <section className="section cv-auto relative isolate overflow-hidden">
       <div className="bg-grid absolute inset-0 -z-10 opacity-70" aria-hidden />
       <div className="container-x">
-        <SectionHeading index="04" eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
+        <SectionHeading index="05" eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
 
         <Reveal variant="group" className="mt-14 grid gap-5 md:grid-cols-3">
           {items.map((it) => (

@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "images": "node scripts/images.mjs"
   },
   "dependencies": {
     "@auth/core": "^0.41.1",
@@ -40,6 +41,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.1",
     "postcss": "^8.5.30",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vitest": "^5.0.4"

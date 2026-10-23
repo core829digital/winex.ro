@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { Hero } from "@/components/home/Hero";
 import { ScrollWindowIntro } from "@/components/home/ScrollWindowIntro";
 import { Materials } from "@/components/home/Materials";
+import { ProfileShowcase } from "@/components/home/ProfileShowcase";
 import { Energy } from "@/components/home/Energy";
 import { Process } from "@/components/home/Process";
 import { Support } from "@/components/home/Support";
@@ -30,6 +31,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <Hero />
         </div>
         <Materials />
+        <ProfileShowcase />
         <Energy />
         <Process />
         <Support />

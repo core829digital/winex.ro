@@ -471,5 +471,20 @@
     "p3Text": "Configurare online, oferte și comenzi digitale într-un singur sistem: mai puține erori, răspunsuri mai rapide.",
     "call": "Sună la Winex",
     "callNote": "Vorbește direct cu echipa noastră."
+  },
+  "profile": {
+    "eyebrow": "Sistem de profile",
+    "title": "aluplast IDEAL 4000: profilul din spatele fiecărei ferestre.",
+    "lead": "Un sistem PVC cu mai multe camere, verificat de zeci de ani: robust, bine izolat și disponibil într-o gamă largă de forme și culori.",
+    "depth": "Adâncime constructivă",
+    "chambers": "Camere",
+    "uf": "Transmitanță termică a ramei",
+    "seals": "Garnituri",
+    "sealsV": "2 niveluri de etanșare",
+    "steel": "Armare",
+    "steelV": "Oțel zincat",
+    "diagramLabel": "Secțiune ilustrativă a unui profil PVC cu mai multe camere",
+    "note": "Secțiune ilustrativă. Date tehnice conform documentației sistemului aluplast; valorile finale depind de configurația și geamul alese.",
+    "photoAlt": "Profil de fereastră aluplast IDEAL 4000"
   }
 }

@@ -471,5 +471,20 @@
     "p3Text": "Online configuratie, digitale offertes en bestellingen in één systeem: minder fouten, snellere antwoorden.",
     "call": "Bel Winex",
     "callNote": "Spreek rechtstreeks met ons team."
+  },
+  "profile": {
+    "eyebrow": "Profielsysteem",
+    "title": "aluplast IDEAL 4000: het profiel achter elk raam.",
+    "lead": "Een meerkamer-PVC-systeem dat zich al decennia bewijst: stevig, goed geïsoleerd en verkrijgbaar in veel vormen en kleuren.",
+    "depth": "Inbouwdiepte",
+    "chambers": "Kamers",
+    "uf": "Warmtedoorgangscoëfficiënt kozijn",
+    "seals": "Afdichtingen",
+    "sealsV": "2 afdichtingsniveaus",
+    "steel": "Versterking",
+    "steelV": "Verzinkt staal",
+    "diagramLabel": "Illustratieve doorsnede van een meerkamer-PVC-profiel",
+    "note": "Illustratieve doorsnede. Technische gegevens volgens de documentatie van het aluplast-systeem; de uiteindelijke waarden hangen af van de gekozen configuratie en beglazing.",
+    "photoAlt": "aluplast IDEAL 4000 raamprofiel"
   }
 }

@@ -1,0 +1,1 @@
+Metti qui i PNG trasparenti (es. ideal-4000.png) e lancia: npm run images

@@ -10,9 +10,9 @@ export async function Process() {
     text: t(`${k}Text`),
   }));
   return (
-    <section className="section cv-auto">
+    <section className="section section-soft cv-auto border-y border-line">
       <div className="container-x">
-        <SectionHeading index="03" eyebrow={t("eyebrow")} title={t("title")} />
+        <SectionHeading index="04" eyebrow={t("eyebrow")} title={t("title")} />
         <div className="relative mt-14">
           <Reveal variant="rule" className="absolute inset-x-0 top-[0.4rem] hidden md:block" />
           <Reveal as="ol" variant="group" className="grid gap-10 md:grid-cols-4 md:gap-8">

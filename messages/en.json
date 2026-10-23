@@ -471,5 +471,20 @@
     "p3Text": "Online configuration, digital quotes and orders in a single system: fewer errors, faster answers.",
     "call": "Call Winex",
     "callNote": "Speak directly with our team."
+  },
+  "profile": {
+    "eyebrow": "Profile system",
+    "title": "aluplast IDEAL 4000: the profile behind every window.",
+    "lead": "A multi-chamber PVC system that has proven itself for decades: solid, well insulated and available in a wide range of shapes and colours.",
+    "depth": "Construction depth",
+    "chambers": "Chambers",
+    "uf": "Frame thermal transmittance",
+    "seals": "Seals",
+    "sealsV": "2 sealing levels",
+    "steel": "Reinforcement",
+    "steelV": "Galvanised steel",
+    "diagramLabel": "Illustrative cross-section of a multi-chamber PVC window profile",
+    "note": "Illustrative cross-section. Technical data according to the aluplast system documentation; final values depend on the chosen configuration and glazing.",
+    "photoAlt": "aluplast IDEAL 4000 window profile"
   }
 }

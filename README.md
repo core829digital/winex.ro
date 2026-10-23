@@ -31,7 +31,7 @@ npm run lint && npm run typecheck && npm run build
 1. **Convex**: `npx convex dev` (crea il progetto), poi `npx convex env set INGEST_SECRET <segreto>`; imposta `NEXT_PUBLIC_CONVEX_URL` e lo stesso segreto in `CONVEX_INGEST_SECRET`.
 2. **Resend**: verifica il dominio `winex.ro`, imposta `RESEND_API_KEY`, `RESEND_FROM`, `CONTACT_TO_EMAIL` (+ `RESEND_AUDIENCE_ID` per la newsletter).
 3. **OneSpec**: il configuratore è già incorporato (`src/lib/site.ts`, ID `fwj8VMz94Z`) con l'embed ufficiale iframe e auto-ridimensionamento (accetta solo messaggi dall'origine `https://platform.onespec.eu` con il nostro ID). La CSP in `next.config.ts` ammette `platform.onespec.eu`. Per cambiare ID: `NEXT_PUBLIC_ONESPEC_ID`.
-4. **Foto**: copia in `public/photos/` e passa `src` ai componenti `PhotoSlot`.
+4. **Foto**: metti i PNG (anche trasparenti) o JPG in `assets/images/<cartella>/` e lancia `npm run images`: vengono creati i WebP ottimizzati in `public/photos/<cartella>/` (1600 px + versione 800 px, trasparenza conservata). La sezione del profilo usa automaticamente `public/photos/profiles/ideal-4000.webp` (da `assets/images/profiles/ideal-4000.png`) al posto dello spaccato illustrativo.
 
 ## Lingue (i18n)
 

@@ -471,5 +471,20 @@
     "p3Text": "Konfiguracja online, cyfrowe wyceny i zamówienia w jednym systemie: mniej błędów, szybsze odpowiedzi.",
     "call": "Zadzwoń do Winex",
     "callNote": "Porozmawiaj bezpośrednio z naszym zespołem."
+  },
+  "profile": {
+    "eyebrow": "System profili",
+    "title": "aluplast IDEAL 4000: profil w każdym oknie.",
+    "lead": "Wielokomorowy system PVC sprawdzony od dziesięcioleci: solidny, dobrze izolujący i dostępny w szerokiej gamie kształtów i kolorów.",
+    "depth": "Głębokość zabudowy",
+    "chambers": "Komory",
+    "uf": "Współczynnik przenikania ciepła ramy",
+    "seals": "Uszczelki",
+    "sealsV": "2 poziomy uszczelnienia",
+    "steel": "Wzmocnienie",
+    "steelV": "Stal ocynkowana",
+    "diagramLabel": "Przekrój poglądowy wielokomorowego profilu PVC",
+    "note": "Przekrój poglądowy. Dane techniczne według dokumentacji systemu aluplast; wartości końcowe zależą od wybranej konfiguracji i szyby.",
+    "photoAlt": "Profil okienny aluplast IDEAL 4000"
   }
 }

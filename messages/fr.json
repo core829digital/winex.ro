@@ -471,5 +471,20 @@
     "p3Text": "Configuration en ligne, devis et commandes numériques dans un seul système : moins d’erreurs, des réponses plus rapides.",
     "call": "Appeler Winex",
     "callNote": "Parlez directement à notre équipe."
+  },
+  "profile": {
+    "eyebrow": "Système de profilés",
+    "title": "aluplast IDEAL 4000 : le profilé derrière chaque fenêtre.",
+    "lead": "Un système PVC multichambre éprouvé depuis des décennies : robuste, bien isolé et disponible dans une large gamme de formes et de couleurs.",
+    "depth": "Profondeur de construction",
+    "chambers": "Chambres",
+    "uf": "Transmission thermique du cadre",
+    "seals": "Joints",
+    "sealsV": "2 niveaux d’étanchéité",
+    "steel": "Renfort",
+    "steelV": "Acier galvanisé",
+    "diagramLabel": "Coupe illustrative d’un profilé PVC multichambre",
+    "note": "Coupe illustrative. Données techniques selon la documentation du système aluplast ; les valeurs finales dépendent de la configuration et du vitrage choisis.",
+    "photoAlt": "Profilé de fenêtre aluplast IDEAL 4000"
   }
 }

@@ -13,12 +13,12 @@ export async function Energy() {
     { icon: ShieldCheck, title: t("airtightTitle"), text: t("airtightText") },
   ];
   return (
-    <section className="section section-soft cv-auto border-y border-line">
+    <section className="section cv-auto">
       <div className="container-x">
         {/* Il titolo resta fisso solo accanto alle schede: il contenitore sticky finisce prima del disegno tecnico. */}
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
-            <SectionHeading index="02" eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
+            <SectionHeading index="03" eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
           </div>
           <div>
             <Reveal variant="group" className="grid gap-x-10 gap-y-0 sm:grid-cols-2">

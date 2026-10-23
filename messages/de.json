@@ -471,5 +471,20 @@
     "p3Text": "Online-Konfiguration, digitale Angebote und Bestellungen in einem System: weniger Fehler, schnellere Antworten.",
     "call": "Winex anrufen",
     "callNote": "Sprechen Sie direkt mit unserem Team."
+  },
+  "profile": {
+    "eyebrow": "Profilsystem",
+    "title": "aluplast IDEAL 4000: das Profil hinter jedem Fenster.",
+    "lead": "Ein Mehrkammer-PVC-System, das sich seit Jahrzehnten bewährt: stabil, gut gedämmt und in vielen Formen und Farben erhältlich.",
+    "depth": "Bautiefe",
+    "chambers": "Kammern",
+    "uf": "Wärmedurchgangskoeffizient Rahmen",
+    "seals": "Dichtungen",
+    "sealsV": "2 Dichtungsebenen",
+    "steel": "Verstärkung",
+    "steelV": "Verzinkter Stahl",
+    "diagramLabel": "Illustrativer Schnitt eines Mehrkammer-PVC-Fensterprofils",
+    "note": "Illustrativer Schnitt. Technische Daten gemäß der Dokumentation des aluplast-Systems; die Endwerte hängen von der gewählten Konfiguration und Verglasung ab.",
+    "photoAlt": "aluplast IDEAL 4000 Fensterprofil"
   }
 }
