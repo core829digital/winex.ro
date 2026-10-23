@@ -36,32 +36,46 @@ const easeInOut = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x 
 /** progresso 0→1 di `p` nell'intervallo [a, b], con curva morbida */
 const seg = (p: number, a: number, b: number) => smooth(clamp((p - a) / (b - a)));
 
-/** Punto (X,Y) del piano dell'anta ruotata di `th` attorno alla cerniera (a sinistra), con prospettiva. */
-function proj(g: Geo, X: number, Y: number, th: number): [number, number] {
-  const u = (X - g.ax) / g.aw;
-  const xRaw = g.ax + u * g.aw * Math.cos(th);
+/** Finestra a 2 ante: "L" con cerniere a sinistra, "R" con cerniere a destra; si incontrano al centro del vano. */
+type Side = "L" | "R";
+
+/**
+ * Punto (X,Y) del piano di un'anta ruotata di `th` attorno alla propria cerniera, con prospettiva.
+ * `u` = distanza dalla cerniera (0 alla cerniera, 1 al bordo libero centrale).
+ */
+function proj(g: Geo, side: Side, X: number, Y: number, th: number): [number, number] {
+  const half = g.aw / 2;
+  const hinge = side === "L" ? g.ax : g.ax + g.aw;
+  const dir = side === "L" ? 1 : -1;
+  const u = Math.abs(X - hinge) / half;
+  const xRaw = hinge + dir * u * half * Math.cos(th);
   const s = 1 / (1 - PERSPECTIVE * u * Math.sin(th));
   return [g.cx + (xRaw - g.cx) * s, g.cy + (Y - g.cy) * s];
 }
 const ring = (pts: [number, number][]) => `M${pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join("L")}Z`;
-const box = (g: Geo, x0: number, y0: number, x1: number, y1: number, th: number): [number, number][] => [
-  proj(g, x0, y0, th),
-  proj(g, x1, y0, th),
-  proj(g, x1, y1, th),
-  proj(g, x0, y1, th),
+const box = (g: Geo, side: Side, x0: number, y0: number, x1: number, y1: number, th: number): [number, number][] => [
+  proj(g, side, x0, y0, th),
+  proj(g, side, x1, y0, th),
+  proj(g, side, x1, y1, th),
+  proj(g, side, x0, y1, th),
 ];
+/** Estremi orizzontali di un'anta (dalla cerniera al centro del vano). */
+const span = (g: Geo, side: Side): [number, number] => (side === "L" ? [g.ax, g.cx] : [g.cx, g.ax + g.aw]);
 /** Anta come cornice (contorno + vano del vetro, even-odd): il vetro resta trasparente. */
-const sashD = (g: Geo, th: number) => {
-  const gi = g.t * 0.7;
-  return ring(box(g, g.ax, g.ay, g.ax + g.aw, g.ay + g.ah, th)) + ring(box(g, g.ax + gi, g.ay + gi, g.ax + g.aw - gi, g.ay + g.ah - gi, th));
+const sashD = (g: Geo, side: Side, th: number) => {
+  const gi = g.t * 0.62;
+  const [x0, x1] = span(g, side);
+  return ring(box(g, side, x0, g.ay, x1, g.ay + g.ah, th)) + ring(box(g, side, x0 + gi, g.ay + gi, x1 - gi, g.ay + g.ah - gi, th));
 };
-const glassD = (g: Geo, th: number) => {
-  const gi = g.t * 0.7;
-  return ring(box(g, g.ax + gi, g.ay + gi, g.ax + g.aw - gi, g.ay + g.ah - gi, th));
+const glassD = (g: Geo, side: Side, th: number) => {
+  const gi = g.t * 0.62;
+  const [x0, x1] = span(g, side);
+  return ring(box(g, side, x0 + gi, g.ay + gi, x1 - gi, g.ay + g.ah - gi, th));
 };
+/** Maniglia rossa sul bordo centrale dell'anta destra (anta principale). */
 const handleD = (g: Geo, th: number) => {
-  const gi = g.t * 0.7;
-  return ring(box(g, g.ax + g.aw - gi * 0.95, g.cy - 56, g.ax + g.aw - gi * 0.35, g.cy + 56, th));
+  const gi = g.t * 0.62;
+  return ring(box(g, "R", g.cx + gi * 0.3, g.cy - 56, g.cx + gi * 0.85, g.cy + 56, th));
 };
 
 export function ScrollWindowIntro() {
@@ -73,8 +87,10 @@ export function ScrollWindowIntro() {
   const dark = useRef<SVGPathElement>(null);
   const bloom = useRef<SVGRectElement>(null);
   const white = useRef<SVGRectElement>(null);
-  const sash = useRef<SVGPathElement>(null);
-  const glass = useRef<SVGPathElement>(null);
+  const sashL = useRef<SVGPathElement>(null);
+  const sashR = useRef<SVGPathElement>(null);
+  const glassL = useRef<SVGPathElement>(null);
+  const glassR = useRef<SVGPathElement>(null);
   const handle = useRef<SVGPathElement>(null);
   const title = useRef<HTMLDivElement>(null);
   const svg = useRef<SVGSVGElement>(null);
@@ -114,7 +130,10 @@ export function ScrollWindowIntro() {
       const p = clamp(-w.getBoundingClientRect().top / span);
 
       const titleOut = seg(p, 0.04, 0.18);
-      const th = (easeInOut(clamp((p - 0.08) / 0.47)) * 80 * Math.PI) / 180;
+      // l'anta destra (con la maniglia) parte per prima, la sinistra la segue: apertura "a battente" più naturale
+      const MAX = (82 * Math.PI) / 180;
+      const thR = easeInOut(clamp((p - 0.08) / 0.44)) * MAX;
+      const thL = easeInOut(clamp((p - 0.13) / 0.44)) * MAX;
       const Z = 1 + 1.5 * seg(p, 0.46, 0.94);
       const light = seg(p, 0.36, 0.86);
       const frameOp = 1 - seg(p, 0.72, 0.9);
@@ -126,9 +145,11 @@ export function ScrollWindowIntro() {
       bloom.current?.setAttribute("opacity", (0.25 + 0.75 * seg(p, 0.12, 0.6)).toFixed(3));
       frame.current?.setAttribute("opacity", frameOp.toFixed(3));
       white.current?.setAttribute("opacity", whiteOp.toFixed(3));
-      sash.current?.setAttribute("d", sashD(g, th));
-      glass.current?.setAttribute("d", glassD(g, th));
-      handle.current?.setAttribute("d", handleD(g, th));
+      sashL.current?.setAttribute("d", sashD(g, "L", thL));
+      sashR.current?.setAttribute("d", sashD(g, "R", thR));
+      glassL.current?.setAttribute("d", glassD(g, "L", thL));
+      glassR.current?.setAttribute("d", glassD(g, "R", thR));
+      handle.current?.setAttribute("d", handleD(g, thR));
 
       if (title.current) {
         title.current.style.opacity = (1 - titleOut).toFixed(3);
@@ -277,10 +298,14 @@ export function ScrollWindowIntro() {
               <rect x={g.fx + g.t * 0.35} y={g.fy + g.t * 0.35} width={g.fw - g.t * 0.7} height={g.fh - g.t * 0.7} fill="none" stroke={ink} strokeOpacity="0.18" {...ne} />
               <rect x={g.ax} y={g.ay} width={g.aw} height={g.ah} fill="none" stroke={ink} strokeOpacity="0.5" strokeWidth="1.2" {...ne} />
               <rect x={g.fx - 18} y={g.fy + g.fh} width={g.fw + 36} height={Math.max(14, g.t * 0.5)} rx="3" fill="#eef0f3" stroke={ink} strokeOpacity="0.5" {...ne} />
-              <path ref={sash} d={sashD(g, 0)} fill="#ffffff" fillRule="evenodd" stroke={ink} strokeWidth="1.5" strokeLinejoin="round" {...ne} />
-              <path ref={glass} d={glassD(g, 0)} fill="url(#si-glass)" stroke={ink} strokeOpacity="0.45" strokeLinejoin="round" {...ne} />
-              <circle cx={g.ax} cy={g.ay + g.ah * 0.16} r="5" fill={ink} />
-              <circle cx={g.ax} cy={g.ay + g.ah * 0.84} r="5" fill={ink} />
+              {(["L", "R"] as const).map((side) => (
+                <g key={side}>
+                  <path ref={side === "L" ? sashL : sashR} d={sashD(g, side, 0)} fill="#ffffff" fillRule="evenodd" stroke={ink} strokeWidth="1.5" strokeLinejoin="round" {...ne} />
+                  <path ref={side === "L" ? glassL : glassR} d={glassD(g, side, 0)} fill="url(#si-glass)" stroke={ink} strokeOpacity="0.45" strokeLinejoin="round" {...ne} />
+                </g>
+              ))}
+              {/* cerniere: due per anta, sui lati esterni */}
+              {[g.ax, g.ax + g.aw].flatMap((x) => [0.16, 0.84].map((f) => <circle key={`${x}-${f}`} cx={x} cy={g.ay + g.ah * f} r="5" fill={ink} />))}
               <path ref={handle} d={handleD(g, 0)} fill="#cc1f2b" />
             </g>
           </g>

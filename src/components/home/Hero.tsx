@@ -1,12 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { Factory, Layers, SlidersHorizontal, Wrench } from "lucide-react";
+import { FileText, Layers, SlidersHorizontal, Wrench } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { HeroWindow } from "./HeroWindow";
 
 export async function Hero() {
   const [t, nav] = await Promise.all([getTranslations("hero"), getTranslations("nav")]);
   const trust = [
-    { icon: Factory, text: t("trust1") },
+    { icon: FileText, text: t("trust1") },
     { icon: Layers, text: t("trust2") },
     { icon: SlidersHorizontal, text: t("trust3") },
     { icon: Wrench, text: t("trust4") },

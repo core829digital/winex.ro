@@ -11,7 +11,7 @@ const FIELDS = [
   ["legalName", "Denumire legală", "S.C. … S.R.L."],
   ["cui", "CUI", "RO12345678"],
   ["regCom", "Nr. Reg. Comerțului", "J2000/000/2000"],
-  ["address", "Adresă (sediu / fabrică)", "Str. …, Roman, jud. Neamț"],
+  ["address", "Adresă (sediu social)", "Str. …, Roman, jud. Neamț"],
   ["phone", "Telefon", "+40 …"],
   ["email", "E-mail de contact", "contact@winex.ro"],
   ["hours", "Program", "Luni–Vineri 08:00–17:00"],

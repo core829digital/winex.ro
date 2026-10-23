@@ -11,7 +11,7 @@ export const contentType = "image/png";
 export default async function OgImage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale = hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
-  const t = await getTranslations({ locale, namespace: "common" });
+  const [t, hero] = await Promise.all([getTranslations({ locale, namespace: "common" }), getTranslations({ locale, namespace: "hero" })]);
 
   return new ImageResponse(
     (
@@ -33,7 +33,7 @@ export default async function OgImage({ params }: { params: Promise<{ locale: st
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2 }}>{t("tagline")}</div>
-          <div style={{ fontSize: 30, color: "#aab1bb" }}>PVC · Aluminium · Wood</div>
+          <div style={{ fontSize: 30, color: "#aab1bb" }}>{hero("trust2")}</div>
         </div>
         <div style={{ display: "flex", height: 4, width: "100%", background: "linear-gradient(90deg,#cc1f2b,#14161a)" }} />
       </div>

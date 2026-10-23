@@ -263,6 +263,15 @@ html:not(.js) .rule-draw { transform: none; }
 .scroll-progress { transition: opacity 0.7s var(--ease-out); }
 html.intro-pending .site-header { transform: translate3d(0, -100%, 0); opacity: 0; pointer-events: none; }
 html.intro-pending .scroll-progress { opacity: 0; }
+/* Linea-guida a scorrimento (home): sopra gli sfondi delle sezioni, sotto header e intro, mai cliccabile */
+.scroll-trail { position: absolute; inset: 0; z-index: 10; pointer-events: none; overflow: visible; }
+.scroll-trail__route { fill: none; stroke: var(--line-strong); stroke-width: 1.2; stroke-dasharray: 2 7; stroke-linecap: round; }
+.scroll-trail__line { fill: none; stroke: var(--red); stroke-width: 1.8; stroke-linecap: round; }
+.scroll-trail__head { fill: var(--red); transition: opacity var(--dur-2) var(--ease-out); filter: drop-shadow(0 0 6px rgba(204, 31, 43, 0.55)); }
+.scroll-trail__dot { fill: #fff; stroke: var(--line-strong); stroke-width: 1.5; transition: fill var(--dur-2) var(--ease-out), stroke var(--dur-2) var(--ease-out); }
+.scroll-trail__halo { fill: var(--red-soft); opacity: 0; transform: scale(0.4); transform-box: fill-box; transform-origin: center; transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out); }
+.scroll-trail__node.is-on .scroll-trail__dot { fill: var(--red); stroke: var(--red); }
+.scroll-trail__node.is-on .scroll-trail__halo { opacity: 1; transform: scale(1); }
 html.intro-pending .hero-wrap :is(.rise, .fade-in, .draw, .draw-fill, .pop, .line-mask > span) { animation-play-state: paused; }
 
 /* Flusso di energia nel disegno: solo desktop, in pausa fuori schermo */

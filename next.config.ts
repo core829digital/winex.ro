@@ -40,6 +40,14 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   images: { formats: ["image/avif", "image/webp"] },
+  // La pagina «Fabbrica» non esiste più: i vecchi indirizzi (tutte le lingue) vanno alla home della stessa lingua.
+  async redirects() {
+    const old: Record<string, string> = { en: "factory", ro: "fabrica", it: "fabbrica", fr: "usine", pl: "fabryka", nl: "fabriek", de: "werk" };
+    return [
+      ...Object.entries(old).map(([l, slug]) => ({ source: `/${l}/${slug}`, destination: `/${l}`, permanent: true })),
+      ...[...new Set(Object.values(old))].map((slug) => ({ source: `/${slug}`, destination: "/", permanent: true })),
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

@@ -9,6 +9,7 @@ import { Materials } from "@/components/home/Materials";
 import { Energy } from "@/components/home/Energy";
 import { Process } from "@/components/home/Process";
 import { Support } from "@/components/home/Support";
+import { ScrollTrail } from "@/components/visual/ScrollTrail";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { newsletterEnabled } from "@/lib/server";
 
@@ -23,15 +24,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <ScrollWindowIntro />
-      <div className="hero-wrap relative">
-        <Hero />
-      </div>
-      <Materials />
-      <Energy />
-      <Process />
-      <Support />
-      {/* La newsletter richiede Convex + Resend (doppia conferma): senza, la sezione non viene mostrata. */}
-      {newsletterEnabled() && <NewsletterSection />}
+      {/* Linea-guida a scorrimento: un punto per ogni sezione figlia */}
+      <ScrollTrail>
+        <div className="hero-wrap relative">
+          <Hero />
+        </div>
+        <Materials />
+        <Energy />
+        <Process />
+        <Support />
+        {/* La newsletter richiede Convex + Resend (doppia conferma): senza, la sezione non viene mostrata. */}
+        {newsletterEnabled() && <NewsletterSection />}
+      </ScrollTrail>
     </>
   );
 }

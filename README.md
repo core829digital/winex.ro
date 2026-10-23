@@ -81,7 +81,7 @@ Chi si iscrive dal sito resta **«în așteptare»** finché non clicca il link 
 
 ## Da completare (contenuti)
 
-Dati societari, testi About, foto fabbrica, logo ufficiale, revisione legale delle pagine legali.
+Testi About, foto, logo ufficiale, revisione legale delle pagine legali. La pagina «Fabbrica» è stata rimossa: i vecchi indirizzi (in tutte le lingue) reindirizzano alla home.
 
 ## Performance (mobile-first)
 
