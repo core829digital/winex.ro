@@ -93,6 +93,7 @@ export function ScrollWindowIntro() {
   const glassR = useRef<SVGPathElement>(null);
   const handle = useRef<SVGPathElement>(null);
   const title = useRef<HTMLDivElement>(null);
+  const cue = useRef<HTMLDivElement>(null);
   const svg = useRef<SVGSVGElement>(null);
   const [dims, setDims] = useState({ W: 1440, H: 900 });
 
@@ -129,16 +130,21 @@ export function ScrollWindowIntro() {
       const span = Math.max(1, w.offsetHeight - st.offsetHeight);
       const p = clamp(-w.getBoundingClientRect().top / span);
 
-      const titleOut = seg(p, 0.04, 0.18);
-      // l'anta destra (con la maniglia) parte per prima, la sinistra la segue: apertura "a battente" più naturale
+      /*
+       * Sequenza: 1) l'anta destra (con la maniglia) e poi la sinistra si aprono;
+       * 2) a finestra aperta compare la frase e resta leggibile; 3) la camera attraversa la finestra,
+       * il telaio sfuma, la frase esce e compare il sito.
+       */
       const MAX = (82 * Math.PI) / 180;
-      const thR = easeInOut(clamp((p - 0.08) / 0.44)) * MAX;
-      const thL = easeInOut(clamp((p - 0.13) / 0.44)) * MAX;
-      const Z = 1 + 1.5 * seg(p, 0.46, 0.94);
-      const light = seg(p, 0.36, 0.86);
-      const frameOp = 1 - seg(p, 0.72, 0.9);
-      const whiteOp = seg(p, 0.76, 0.94);
-      const stageOp = 1 - seg(p, 0.92, 1);
+      const thR = easeInOut(clamp((p - 0.03) / 0.36)) * MAX;
+      const thL = easeInOut(clamp((p - 0.07) / 0.36)) * MAX;
+      const light = seg(p, 0.2, 0.62);
+      const titleIn = seg(p, 0.42, 0.54);
+      const titleOut = seg(p, 0.8, 0.9);
+      const Z = 1 + 1.6 * seg(p, 0.6, 0.96);
+      const frameOp = 1 - seg(p, 0.64, 0.84);
+      const whiteOp = seg(p, 0.72, 0.9);
+      const stageOp = 1 - seg(p, 0.93, 1);
 
       zoom.current?.setAttribute("transform", `translate(${g.cx} ${g.cy}) scale(${Z.toFixed(4)}) translate(${-g.cx} ${-g.cy})`);
       dark.current?.setAttribute("opacity", (1 - light).toFixed(3));
@@ -152,13 +158,16 @@ export function ScrollWindowIntro() {
       handle.current?.setAttribute("d", handleD(g, thR));
 
       if (title.current) {
-        title.current.style.opacity = (1 - titleOut).toFixed(3);
-        title.current.style.transform = `translate3d(0, ${(-40 * titleOut).toFixed(1)}px, 0)`;
+        title.current.style.opacity = (titleIn * (1 - titleOut)).toFixed(3);
+        const dy = 36 * (1 - titleIn) - 40 * titleOut;
+        const sc = 0.96 + 0.04 * titleIn;
+        title.current.style.transform = `translate3d(0, ${dy.toFixed(1)}px, 0) scale(${sc.toFixed(4)})`;
       }
+      if (cue.current) cue.current.style.opacity = (1 - seg(p, 0, 0.06)).toFixed(3);
       st.style.opacity = stageOp.toFixed(3);
       st.style.visibility = stageOp <= 0.001 ? "hidden" : "visible";
 
-      const nowDone = p > 0.9;
+      const nowDone = p > 0.92;
       if (nowDone !== done) {
         done = nowDone;
         root.classList.toggle("intro-pending", !done);
@@ -311,13 +320,21 @@ export function ScrollWindowIntro() {
           </g>
         </svg>
 
-        {/* titolo in sovrimpressione (decorativo: il titolo vero è nell'hero) */}
-        <div ref={title} className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-12 text-center">
+        {/* frase in sovrimpressione: compare a finestra aperta (decorativa: il titolo vero è nell'hero) */}
+        <div
+          ref={title}
+          className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-12 text-center"
+          style={{ opacity: 0 }}
+        >
           <p className="eyebrow">Winex</p>
           <p className="mt-5 max-w-3xl font-display text-[clamp(1.7rem,5.2vw,4.4rem)] font-bold leading-[1.04] tracking-[-0.03em] text-ink">
             {t("tagline")}
           </p>
-          <span className="mt-10 grid h-11 w-11 place-items-center rounded-full border border-[var(--line-strong)] bg-white/70 text-ink">
+        </div>
+
+        {/* invito a scorrere, solo all'inizio */}
+        <div ref={cue} className="pointer-events-none absolute inset-x-0 bottom-[calc(6vmin+1.25rem)] flex justify-center">
+          <span className="grid h-11 w-11 place-items-center rounded-full border border-[var(--line-strong)] bg-white/80 text-ink shadow-[var(--shadow-sm)]">
             <ChevronDown size={20} strokeWidth={1.6} className="animate-bounce" />
           </span>
         </div>

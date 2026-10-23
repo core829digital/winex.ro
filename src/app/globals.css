@@ -256,9 +256,9 @@ html:not(.js) .rule-draw { transform: none; }
 
 /* Apertura a scorrimento della home: scena sticky a tutto schermo; l'hero (sotto) entra quando l'anta è aperta */
 /* Parte da y=0 (sotto l'header, che resta nascosto finché l'intro non finisce). */
-.scroll-intro { position: relative; z-index: 30; height: 330svh; margin-top: -4.25rem; margin-bottom: -100svh; pointer-events: none; }
+.scroll-intro { position: relative; z-index: 30; height: 380svh; margin-top: -4.25rem; margin-bottom: -100svh; pointer-events: none; }
 .scroll-intro__stage { position: sticky; top: 0; height: 100svh; overflow: hidden; background: #0e1013; }
-@media (max-width: 767px) { .scroll-intro { height: 270svh; } }
+@media (max-width: 767px) { .scroll-intro { height: 320svh; } }
 .site-header { transition: transform 0.7s var(--ease-out), opacity 0.7s var(--ease-out), box-shadow var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out); }
 .scroll-progress { transition: opacity 0.7s var(--ease-out); }
 html.intro-pending .site-header { transform: translate3d(0, -100%, 0); opacity: 0; pointer-events: none; }
