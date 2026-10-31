@@ -23,6 +23,7 @@ npm run lint && npm run typecheck && npm run build
 | `src/app/api` | `/api/contact`, `/api/newsletter`, `/api/collect`, `/api/unsubscribe`, webhook Resend |
 | `src/components/home` | Apertura a scorrimento (finestra), hero con finestra animata in loop, Materiali, Energia (con sezione tecnica), Processo, Supporto + chiamata |
 | `src/components/visual/EnergyFlow.tsx` | Sfondo canvas "flusso di energia" molto discreto (pausa a tab nascosta / in scroll su mobile, statico con reduced-motion) |
+| `branding/` + `npm run brand` | Logo ufficiale: rimuove il fondo e genera `public/brand/winex-logo(.webp/.png)` e la variante per fondi scuri `winex-logo-inverse.webp` |
 | `src/lib/site.ts` | **Dati aziendali centrali** (campi `TODO` da sostituire) |
 | `convex/` | Schema + mutation (`leads`, `subscribers`) protette da segreto condiviso |
 

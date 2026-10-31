@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Logo } from "@/components/ui/Logo";
 
 /**
  * Intro cinematica a scorrimento (home).
@@ -326,8 +327,8 @@ export function ScrollWindowIntro() {
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-12 text-center"
           style={{ opacity: 0 }}
         >
-          <p className="eyebrow">Winex</p>
-          <p className="mt-5 max-w-3xl font-display text-[clamp(1.7rem,5.2vw,4.4rem)] font-bold leading-[1.04] tracking-[-0.03em] text-ink">
+          <Logo priority className="h-10 sm:h-14" />
+          <p className="mt-6 max-w-3xl font-display text-[clamp(1.7rem,5.2vw,4.4rem)] font-bold leading-[1.04] tracking-[-0.03em] text-ink">
             {t("tagline")}
           </p>
         </div>

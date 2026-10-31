@@ -36,7 +36,7 @@ export function Header() {
     <header className="site-header sticky top-0 z-50" data-scrolled={scrolled}>
       <div className="container-x flex h-[4.25rem] items-center justify-between gap-6">
         <Link href="/" aria-label={c("home")} className="shrink-0 rounded-md">
-          <Logo />
+          <Logo priority className="h-[1.875rem] sm:h-8" />
         </Link>
 
         <nav aria-label={t("label")} className="hidden items-center gap-1 md:flex">

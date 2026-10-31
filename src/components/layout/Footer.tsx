@@ -77,7 +77,7 @@ export async function Footer() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-[var(--line-inv)] pt-6 text-xs text-ink-inv-soft sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {c.legalName || "Winex"}. {t("rights")}
+            © {year} {c.legalName || "Winex"}{(c.legalName || "Winex").endsWith(".") ? "" : "."} {t("rights")}
             {ids && <span className="mt-1 block sm:ml-3 sm:mt-0 sm:inline">{ids}</span>}
           </p>
           <LanguageSwitcher className="[&_button]:text-ink-inv [&_button:hover]:bg-white/10 [&_button:hover]:text-white [&_ul]:bottom-full [&_ul]:mb-2 [&_ul]:mt-0" align="left" />
